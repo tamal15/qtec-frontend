@@ -10,7 +10,7 @@ const Services = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/gethomeservice`
+          `https://webi-bacend.onrender.com/gethomeservice`
         );
         const result = await response.json();
         setHomeservice(result);

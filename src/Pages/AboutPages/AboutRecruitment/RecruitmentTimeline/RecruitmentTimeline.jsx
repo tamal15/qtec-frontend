@@ -21,7 +21,7 @@ const RecruitmentTimeline = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getrecruitmentprocess`
+          `https://webi-bacend.onrender.com/getrecruitmentprocess`
         );
         const result = await response.json();
         setData(result);

@@ -36,7 +36,7 @@ const CareerGlobal = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getcareerglobal`
+          `https://webi-bacend.onrender.com/getcareerglobal`
         );
         const result = await response.json();
         setData(result);

@@ -7,7 +7,7 @@ const AwardStatus = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getawardstatus`
+          `https://webi-bacend.onrender.com/getawardstatus`
         );
         const result = await response.json();
         setData(result);

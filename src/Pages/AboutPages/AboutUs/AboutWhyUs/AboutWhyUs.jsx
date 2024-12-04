@@ -12,7 +12,7 @@ const AboutWhyUs = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('http://localhost:5000/getaboutwhyus');
+        const response = await fetch('https://webi-bacend.onrender.com/getaboutwhyus');
         if (!response.ok) throw new Error('Failed to fetch data');
         const result = await response.json();
         setData(result);

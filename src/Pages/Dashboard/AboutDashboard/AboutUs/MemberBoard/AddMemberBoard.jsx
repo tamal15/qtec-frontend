@@ -56,7 +56,7 @@ const AddMemberBoard = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/postboardmember", formData); // Adjust the URL to your backend API
+      await axios.post("https://webi-bacend.onrender.com/postboardmember", formData); // Adjust the URL to your backend API
       Swal.fire({
         icon: "success",
         title: "Success",

@@ -8,7 +8,7 @@ const TestimonialClient = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/gettestimonialclient`
+          `https://webi-bacend.onrender.com/gettestimonialclient`
         );
         const result = await response.json();
         setData(result);

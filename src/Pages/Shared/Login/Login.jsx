@@ -1,21 +1,17 @@
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useFirebase from "../../Hooks/useFirebase";
 
 const Login = () => {
-  const { loginWithGoogle, loginWithOwnEmailAndPass, authError } = useFirebase();
+  const {  loginWithOwnEmailAndPass, authError } = useFirebase();
 
   // Location & Navigate
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Handle Google Login
-  const handleGoogleLogin = () => {
-    loginWithGoogle(location, navigate);
-  };
+ 
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
@@ -47,12 +43,12 @@ const Login = () => {
 
             {/* Right Section */}
             <div className="bg-blue-900 text-black p-8 rounded-lg w-full max-w-lg">
-              <h2 className="text-2xl font-bold mb-6 text-center">
-                Login to SARONG
+              <h2 className="text-2xl font-bold mb-6 text-center text-white mt-10">
+                Login to  c.o overseas
               </h2>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form className="h-64 w-96" onSubmit={handleSubmit(onSubmit)}>
                 {/* Email Input */}
-                <div className="mb-4">
+                <div className="mb-4 ">
                   <input
                     type="email"
                     {...register("email", { required: true })}
@@ -86,24 +82,7 @@ const Login = () => {
                 </button>
               </form>
 
-              {/* Meta Links */}
-              <div className="text-center mt-4">
-                <p>
-                  New to Education?{" "}
-                  <Link
-                    to="/register"
-                    className="text-blue-400 hover:underline"
-                  >
-                    Create a free Account
-                  </Link>
-                </p>
-                <span
-                  onClick={handleGoogleLogin}
-                  className="inline-flex items-center mt-4 cursor-pointer text-xl"
-                >
-                  Continue with <FcGoogle className="ml-2" />
-                </span>
-              </div>
+             
 
               {/* Error Alert */}
               {authError && (

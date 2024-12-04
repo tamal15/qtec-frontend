@@ -8,7 +8,7 @@ const EventCareBanner = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/geteventwecare`
+          `https://webi-bacend.onrender.com/geteventwecare`
         );
         const result = await response.json();
         setData(result);

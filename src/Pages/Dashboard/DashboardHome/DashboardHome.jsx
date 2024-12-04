@@ -55,9 +55,7 @@ const DashboardHome = () => {
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
+ 
 
   const closeModal = () => {
     setIsOpen(false);
@@ -84,13 +82,7 @@ const DashboardHome = () => {
         >
           Logout
         </button>
-        <button
-          onClick={openModal}
-          className="bg-green-500 text-white font-semibold px-4
-       py-2 rounded-md duration-300 active:scale-90 "
-        >
-          Change Password
-        </button>
+       
       </div>
       <Modal
         isOpen={modalIsOpen}

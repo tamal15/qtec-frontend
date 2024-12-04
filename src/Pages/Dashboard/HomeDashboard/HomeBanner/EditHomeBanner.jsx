@@ -13,7 +13,7 @@ const EditHomeBanner = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`http://localhost:5000/editbannerHome/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editbannerHome/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -32,7 +32,7 @@ const EditHomeBanner = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/bannerupdate/${id}`, {
+    fetch(`https://webi-bacend.onrender.com/bannerupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(banner),

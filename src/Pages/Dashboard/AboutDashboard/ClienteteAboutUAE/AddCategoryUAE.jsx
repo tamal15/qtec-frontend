@@ -55,7 +55,7 @@ const AddCategoryUAE = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/postclientcategoryUAE", formData); // Adjust the URL to your backend API
+      await axios.post("https://webi-bacend.onrender.com/postclientcategoryUAE", formData); // Adjust the URL to your backend API
       Swal.fire({
         icon: "success",
         title: "Success",

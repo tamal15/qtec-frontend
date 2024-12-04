@@ -12,7 +12,7 @@ const AwardRecognition = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getawardcard`
+          `https://webi-bacend.onrender.com/getawardcard`
         );
         const result = await response.json();
         setData(result);

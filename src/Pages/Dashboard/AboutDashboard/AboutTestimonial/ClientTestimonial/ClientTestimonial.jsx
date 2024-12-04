@@ -15,7 +15,7 @@ const ClientTestimonial = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/gettestimonialclient`
+          `https://webi-bacend.onrender.com/gettestimonialclient`
         );
         const result = await response.json();
         setData(result);
@@ -41,7 +41,7 @@ const ClientTestimonial = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/clienttestimonialdelete/${id}`)
+          .delete(`https://webi-bacend.onrender.com/clienttestimonialdelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

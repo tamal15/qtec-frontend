@@ -6,7 +6,7 @@ const TeamMember = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getaboutteam`
+          `https://webi-bacend.onrender.com/getaboutteam`
         );
         const result = await response.json();
         setData(result);

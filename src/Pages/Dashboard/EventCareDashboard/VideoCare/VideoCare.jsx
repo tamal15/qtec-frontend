@@ -15,7 +15,7 @@ const VideoCare = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/geteventvideo`
+          `https://webi-bacend.onrender.com/geteventvideo`
         );
         const result = await response.json();
         setData(result);
@@ -42,7 +42,7 @@ const VideoCare = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/eventvideodelete/${id}`)
+          .delete(`https://webi-bacend.onrender.com/eventvideodelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

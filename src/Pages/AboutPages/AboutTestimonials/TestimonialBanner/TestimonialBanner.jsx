@@ -7,7 +7,7 @@ const TestimonialBanner = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/gettestimonialbanners`
+          `https://webi-bacend.onrender.com/gettestimonialbanners`
         );
         const result = await response.json();
         setData(result);

@@ -15,7 +15,7 @@ const AwardCard = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getawardcard`
+          `https://webi-bacend.onrender.com/getawardcard`
         );
         const result = await response.json();
         setData(result);
@@ -41,7 +41,7 @@ const AwardCard = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/awardcarddelete/${id}`)
+          .delete(`https://webi-bacend.onrender.com/awardcarddelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

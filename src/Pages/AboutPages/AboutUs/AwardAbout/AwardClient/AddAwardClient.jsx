@@ -59,7 +59,7 @@ const AddAwardClient = () => {
     };
 
     try {
-      await axios.post("http://localhost:5000/postawardclient", formData);
+      await axios.post("https://webi-bacend.onrender.com/postawardclient", formData);
       Swal.fire({
         icon: "success",
         title: "Success",

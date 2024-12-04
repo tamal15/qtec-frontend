@@ -56,7 +56,7 @@ const AddClientTestimonial = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/postclienttestimonial", formData); // Adjust the URL to your backend API
+      await axios.post("https://webi-bacend.onrender.com/postclienttestimonial", formData); // Adjust the URL to your backend API
       Swal.fire({
         icon: "success",
         title: "Success",

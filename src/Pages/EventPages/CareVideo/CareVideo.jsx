@@ -6,7 +6,7 @@ const CareVideo = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/geteventvideo`
+          `https://webi-bacend.onrender.com/geteventvideo`
         );
         const result = await response.json();
         setData(result);

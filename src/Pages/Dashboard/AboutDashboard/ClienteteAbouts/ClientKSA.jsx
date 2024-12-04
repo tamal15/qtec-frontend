@@ -14,7 +14,7 @@ const ClientKSA  = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getclientcategories`
+          `https://webi-bacend.onrender.com/getclientcategories`
         );
         const result = await response.json();
         setData(result);
@@ -41,7 +41,7 @@ const ClientKSA  = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/clientetedatasdelete/${id}`)
+          .delete(`https://webi-bacend.onrender.com/clientetedatasdelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

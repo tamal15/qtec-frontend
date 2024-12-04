@@ -3,11 +3,14 @@ import { FaBars,  FaTimes } from "react-icons/fa";
 import { Outlet } from "react-router-dom";
 // import useTitle from "../hooks/useTitle";
 import DashboardSideBar from "./DashboardSideBar/DashboardSideBar";
+import useFirebase from "../Hooks/useFirebase";
 
 const Dashboard = () => {
 //   useTitle("Dashboard Home");
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
   const [isOpens, setIsOpens] = useState(false);
+  const { admin } = useFirebase();
+
 
   const toggleDropdown = () => {
     setIsOpens(!isOpens);
@@ -15,8 +18,13 @@ const Dashboard = () => {
   // const value = 1;
   return (
     <div className="flex flex-row-reverse gap-4 relative">
-      {/* Side Bar Start  */}
-      <div
+
+  { admin && 
+
+
+  <>
+
+<div
         className={`${
           // isOpenSidebar ? "w-full md:w-[20%]" : "w-0 md:w-[20%]"
           isOpenSidebar ? "w-[20%]" : "w-0 md:w-[20%]"
@@ -108,6 +116,16 @@ const Dashboard = () => {
           <Outlet></Outlet>
         </div>
       </div>
+  
+  
+  
+  </>
+  
+  
+  
+  }
+
+    
     </div>
   );
 };

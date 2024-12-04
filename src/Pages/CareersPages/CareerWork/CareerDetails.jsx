@@ -7,7 +7,7 @@ const CareerDetails = () => {
     const [banner, setBanner] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5000/editCareerwork/${id}`)
+        fetch(`https://webi-bacend.onrender.com/editCareerwork/${id}`)
           .then((res) => res.json())
           .then((data) => setBanner(data))
           .catch((error) => console.error("Error fetching banner:", error));

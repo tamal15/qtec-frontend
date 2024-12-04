@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getmediagallery`
+          `https://webi-bacend.onrender.com/getmediagallery`
         );
         const result = await response.json();
         setData(result);

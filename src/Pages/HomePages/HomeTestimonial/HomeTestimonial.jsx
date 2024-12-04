@@ -34,7 +34,7 @@ import { useEffect, useState } from "react";
       async function fetchData() {
         try {
           const response = await fetch(
-            `http://localhost:5000/gethometestimonial`
+            `https://webi-bacend.onrender.com/gethometestimonial`
           );
           const result = await response.json();
           setData(result);

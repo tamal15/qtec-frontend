@@ -14,6 +14,10 @@
   color: white;
 }
 
+.navbarsidecolor{
+  background-color: rgb(17 24 39);
+}
+
 .login-form {
   padding: 20px; /* Add padding for better spacing */
   margin: 0 auto; /* Center the form */
@@ -28,7 +32,7 @@
 
 /* Custom Scrollbar section Start*/
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 5px;
 }
 ::-webkit-scrollbar-thumb {
   background: #007cde;

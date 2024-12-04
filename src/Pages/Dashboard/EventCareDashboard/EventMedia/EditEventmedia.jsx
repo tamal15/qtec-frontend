@@ -12,7 +12,7 @@ const EditEventmedia = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`http://localhost:5000/editmedia/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editmedia/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -31,7 +31,7 @@ const EditEventmedia = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/eventmediaupdate/${id}`, {
+    fetch(`https://webi-bacend.onrender.com/eventmediaupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(banner),

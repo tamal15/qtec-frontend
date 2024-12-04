@@ -9,7 +9,7 @@ const Banner = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`http://localhost:5000/getbanner`);
+        const response = await fetch(`https://webi-bacend.onrender.com/getbanner`);
         const result = await response.json();
         setData(result); // Store the fetched banners
         setLoading(false); // Set loading to false

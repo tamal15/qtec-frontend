@@ -16,7 +16,7 @@ const EditCategoryqatar = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`http://localhost:5000/editscategorysqatars/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editscategorysqatars/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -75,7 +75,7 @@ const EditCategoryqatar = () => {
     }
 
     // Send the updated data to the server
-    fetch(`http://localhost:5000/clientcategorysqatarsupdates/${id}`, {
+    fetch(`https://webi-bacend.onrender.com/clientcategorysqatarsupdates/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBanner),

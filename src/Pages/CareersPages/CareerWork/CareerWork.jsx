@@ -53,7 +53,7 @@ const CareerWork = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getcareerwork`
+          `https://webi-bacend.onrender.com/getcareerwork`
         );
         const result = await response.json();
         setData(result);

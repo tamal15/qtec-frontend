@@ -12,7 +12,7 @@ const EditVideoCare = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`http://localhost:5000/editvideocare/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editvideocare/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -31,7 +31,7 @@ const EditVideoCare = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/videocareupdate/${id}`, {
+    fetch(`https://webi-bacend.onrender.com/videocareupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(banner),

@@ -1,9 +1,8 @@
 import {  useState } from "react";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { BiLogoBlogger } from "react-icons/bi";
 import {
   FaBullseye,
-  FaClosedCaptioning,
   FaEye,
   FaFlag,
   FaHome,
@@ -17,16 +16,13 @@ import {
   FaVoteYea,
 } from "react-icons/fa";
 import { GrServices } from "react-icons/gr";
-import { IoIosArrowDown } from "react-icons/io";
-import { RiContactsFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import useFirebase from "../../Hooks/useFirebase";
-// import { AuthContext } from "../providers/AuthProvider";
+import PropTypes from 'prop-types'; 
 
 const DashboardSideBar = ({ setIsOpenSidebar }) => {
-  const [isOpen, setIsOpen] = useState(null);
+  // const [isOpen, setIsOpen] = useState(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [isAboutOpen, setAboutOpen] = useState(false);
   const [isAboutawardOpen, setAboutawardOpen] = useState(false);
   const [isAboutclienteleOpen, setAboutclienteleOpen] = useState(false);
   const [isAbouttestimonialOpen, setAbouttestimonialOpen] = useState(false);
@@ -37,7 +33,6 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
   const [isCareerOpen, setCareerOpen] = useState(false);
   const [isService, setServiceOpen] = useState(false);
   const [isContactus, setContactus] = useState(false);
-  const [isFooter, setFooter] = useState(false);
   const { userLogOut } = useFirebase();
 
 
@@ -45,9 +40,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
   const handleSettingsToggle = () => {
     setIsSettingsOpen(!isSettingsOpen);
   };
-  const handleAboutToggle = () => {
-    setAboutOpen(!isAboutOpen);
-  };
+  
   const handleAboutAward = () => {
     setAboutawardOpen(!isAboutawardOpen);
   };
@@ -79,11 +72,9 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
     setEventcare(!isEventcare);
   };
 
-  const handleFooterToggle = () => {
-    setFooter(!isFooter);
-  };
-  const handleToggle = (idx) =>
-    setIsOpen((prevIdx) => (prevIdx === idx ? null : idx));
+  
+  // const handleToggle = (idx) =>
+  //   setIsOpen((prevIdx) => (prevIdx === idx ? null : idx));
   return (
     <>
       <div className="w-full overflow-hidden">
@@ -195,7 +186,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                     </NavLink>
                     <NavLink
                       onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/showGetintouch"}
+                      to={"/dashboard/clientshomes"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
                         <FaVoteYea className="text-xl text-[#01c0c9]" />
@@ -206,6 +197,17 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                     </NavLink>
                     <NavLink
                       onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/categoryhomesclints"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <FaVoteYea className="text-xl text-[#01c0c9]" />
+                        <h2 className="font-semibold hidden md:block">
+                        CategoryClient
+                        </h2>
+                      </div>
+                    </NavLink>
+                    {/* <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
                       to={"/dashboard/showGetintouch"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
@@ -214,93 +216,16 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                         HomeContact
                         </h2>
                       </div>
-                    </NavLink>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* about section start  */}
-
-            <div
-              className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
-            >
-              <div className="overflow-hidden">
-                <div
-                  onClick={handleAboutToggle}
-                  className={`border-orange-500 border-l-[3px] cursor-pointer`}
-                >
-                  <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
-                    <span className="overflow-hidden">
-                      <FaUsers
-                        className={`text-xl text-[#007cde] ${
-                          isAboutOpen ? "transform rotate-180" : ""
-                        }`}
-                      />
-                    </span>
-                    <h4 className="font-semibold hidden md:block">About</h4>
-                  </div>
-                </div>
-                <div
-                  className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
-                    isAboutOpen
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
-                  }`}
-                >
-                  <div className="overflow-hidden">
+                    </NavLink> */}
                     <NavLink
                       onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/about"}
+                      to={"/dashboard/getformhomedatas"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">AboutUsBanner</h2>
-                      </div>
-                    </NavLink>
-                    <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/about"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">DetailsAboutUs</h2>
-                      </div>
-                    </NavLink>
-                    <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/about"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">AboutWhyUs</h2>
-                      </div>
-                    </NavLink>
-                    <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/about"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">BoardMember</h2>
-                      </div>
-                    </NavLink>
-                    <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/about"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">TeamMember</h2>
-                      </div>
-                    </NavLink>
-                    <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/about"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">ContactBanner</h2>
+                        <FaVoteYea className="text-xl text-[#01c0c9]" />
+                        <h2 className="font-semibold hidden md:block">
+                        ContactFormdata
+                        </h2>
                       </div>
                     </NavLink>
                   </div>
@@ -308,9 +233,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
               </div>
             </div>
 
-
-
-            {/* about award start  */}
+           
 
             <div
               className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
@@ -341,7 +264,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                   <div className="overflow-hidden">
                     <NavLink
                       onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/about"}
+                      to={"/dashboard/aboutawardsbanners"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
                         <FaSellcast className="text-xl text-[#01c0c9]" />
@@ -678,6 +601,15 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                         <h2 className="font-semibold hidden md:block">RecruitmentProcess</h2>
                       </div>
                     </NavLink>
+                    <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/getformdatas"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <h2 className="font-semibold hidden md:block">GetFormData</h2>
+                      </div>
+                    </NavLink>
                   </div>
                 </div>
               </div>
@@ -949,50 +881,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
            
             {/* evenr we care part end  */}
 
-            {/* footer section start  */}
-            <div
-              className={`grid overflow-hidden transition-all duration-300 ease-in-out shadow `}
-            >
-              <div className="overflow-hidden">
-                <div
-                  onClick={handleFooterToggle}
-                  className={`border-orange-500 border-l-[3px] cursor-pointer`}
-                >
-                  <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
-                    <span className="overflow-hidden">
-                      <FaEye
-                        className={`text-xl text-[#007cde] ${
-                          isFooter ? "transform rotate-180" : ""
-                        }`}
-                      />
-                    </span>
-                    <h4 className="font-semibold hidden md:block">Footer</h4>
-                  </div>
-                </div>
-                <div
-                  className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
-                    isFooter
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/showfooter"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaRegEye className="text-xl text-[#FF6600]" />
-                        <h2 className="font-semibold hidden md:block">
-                          Footer
-                        </h2>
-                      </div>
-                    </NavLink>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* footer section end  */}
+           
 
             <div
               className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
@@ -1049,8 +938,17 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                         <h2 className="font-semibold hidden md:block">GlobalCareer</h2>
                       </div>
                     </NavLink>
+                    <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/postcareersdatas"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <h2 className="font-semibold hidden md:block">GetCareerdata</h2>
+                      </div>
+                    </NavLink>
 
-                    
+
                   </div>
 
                     
@@ -1153,8 +1051,8 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
           {/* logout start */}
           <NavLink className="fw-bold" to={'/'} style={({ isActive }) => ({
                                       color: isActive ? "black" : "black",
-                                  })}><li onClick={userLogOut} className=' flex ms-5 ' style={{fontSize:"20px"}}>
-                                  <FaSignOutAlt className='me-1' /> Log Out
+                                  })}><li onClick={userLogOut} className=' flex ms-5 font-bold' style={{fontSize:"20px"}}>
+                                  <FaSignOutAlt className='me-1 mt-2 ' /> Log Out
                               </li></NavLink>
 
           {/* logout end */}
@@ -1164,6 +1062,10 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
       <div className="w-full h-[2px] bg-white mt-5"></div>
     </>
   );
+};
+
+DashboardSideBar.propTypes = {
+  setIsOpenSidebar: PropTypes.node.isRequired,
 };
 
 export default DashboardSideBar;

@@ -15,7 +15,7 @@ const RecruitmentProcessTime = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getrecruitmentprocess`
+          `https://webi-bacend.onrender.com/getrecruitmentprocess`
         );
         const result = await response.json();
         setData(result);
@@ -41,7 +41,7 @@ const RecruitmentProcessTime = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/recruitmentprocessdelete/${id}`)
+          .delete(`https://webi-bacend.onrender.com/recruitmentprocessdelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

@@ -18,7 +18,7 @@ const EditMember = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`http://localhost:5000/editaboutboard/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editaboutboard/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -77,7 +77,7 @@ const EditMember = () => {
     }
 
     // Send the updated data to the server
-    fetch(`http://localhost:5000/aboutboardmemberupdate/${id}`, {
+    fetch(`https://webi-bacend.onrender.com/aboutboardmemberupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBanner),

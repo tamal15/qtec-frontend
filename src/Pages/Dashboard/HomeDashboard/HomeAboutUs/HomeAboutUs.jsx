@@ -10,7 +10,7 @@ const HomeAboutUs = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/gethomeabout`
+          `https://webi-bacend.onrender.com/gethomeabout`
         );
         const result = await response.json();
         setData(result);
@@ -37,7 +37,7 @@ const HomeAboutUs = () => {
   //   }).then((result) => {
   //     if (result.isConfirmed) {
   //       axios
-  //         .delete(`http://localhost:5000/homeaboutdelete/${id}`)
+  //         .delete(`https://webi-bacend.onrender.com/homeaboutdelete/${id}`)
   //         .then((response) => {
   //           response.status === 204 &&
   //             Swal.fire("Deleted!", "Your file has been deleted.", "success");

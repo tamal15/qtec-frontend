@@ -20,7 +20,7 @@ const EditContactTeam = () => {
 
   // Fetch contact data
   useEffect(() => {
-    fetch(`http://localhost:5000/editcontactTeam/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editcontactTeam/${id}`)
       .then((res) => res.json())
       .then((data) => setContact(data))
       .catch((error) => console.error("Error fetching contact data:", error));
@@ -80,7 +80,7 @@ const EditContactTeam = () => {
       }
 
       // Send the updated data to the server
-      const response = await fetch(`http://localhost:5000/contactteamupdate/${id}`, {
+      const response = await fetch(`https://webi-bacend.onrender.com/contactteamupdate/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedContact),

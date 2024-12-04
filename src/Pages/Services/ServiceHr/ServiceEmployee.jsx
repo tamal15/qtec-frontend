@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes
+import Swal from 'sweetalert2';
 
 const MultiStepModal = ({ onClose }) => {
   const [step, setStep] = useState(1);
@@ -22,10 +23,28 @@ const MultiStepModal = ({ onClose }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
-    // Add form submission logic here
-    console.log('Form Data Submitted:', formData);
-    onClose(); // Ensure modal closes after submission if desired
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("https://webi-bacend.onrender.com/postdatarecruitment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to submit data");
+      }
+  
+      const result = await response.json();
+      console.log("Data submitted successfully:", result);
+      Swal.fire("done!", "Your file has been deleted.", "success");
+      onClose(); // Close the modal
+    } catch (error) {
+      console.error("Error submitting data:", error);
+      alert("Failed to submit data. Please try again.");
+    }
   };
 
   return (
@@ -160,7 +179,7 @@ const ServiceEmployee = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getserviceemployee`
+          `https://webi-bacend.onrender.com/getserviceemployee`
         );
         const result = await response.json();
         setData(result);

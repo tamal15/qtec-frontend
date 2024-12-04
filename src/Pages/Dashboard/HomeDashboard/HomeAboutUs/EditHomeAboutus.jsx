@@ -19,7 +19,7 @@ const EditHomeAboutus = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`http://localhost:5000/editaboutusHome/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editaboutusHome/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -38,7 +38,7 @@ const EditHomeAboutus = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/homeaboutsupdate/${id}`, {
+    fetch(`https://webi-bacend.onrender.com/homeaboutsupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(banner),

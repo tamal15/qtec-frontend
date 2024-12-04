@@ -24,7 +24,7 @@ const Toggle = () => {
     //   data.image1 = imageFiles[0] || "";
 
       // Make the request to add the banner
-      const response = await fetch(`http://localhost:5000/addbanner`, {
+      const response = await fetch(`https://webi-bacend.onrender.com/addbanner`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

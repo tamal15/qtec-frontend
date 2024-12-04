@@ -15,7 +15,7 @@ const GalleryMedia = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getmediagallery`
+          `https://webi-bacend.onrender.com/getmediagallery`
         );
         const result = await response.json();
         setData(result);
@@ -42,7 +42,7 @@ const GalleryMedia = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/mediagallerydelete/${id}`)
+          .delete(`https://webi-bacend.onrender.com/mediagallerydelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

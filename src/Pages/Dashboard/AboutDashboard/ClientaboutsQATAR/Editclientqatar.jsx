@@ -14,7 +14,7 @@ const Editclientqatar = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`http://localhost:5000/editclienteteaboutsqatar/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editclienteteaboutsqatar/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -41,7 +41,7 @@ const Editclientqatar = () => {
 
     
     // Send the updated data to the server
-    fetch(`http://localhost:5000/clientsqatarsdates/${id}`, {
+    fetch(`https://webi-bacend.onrender.com/clientsqatarsdates/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBanner),

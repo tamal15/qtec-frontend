@@ -7,7 +7,7 @@ const HomeAbout = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/gethomeabout`
+          `https://webi-bacend.onrender.com/gethomeabout`
         );
         const result = await response.json();
         setDatas(result);

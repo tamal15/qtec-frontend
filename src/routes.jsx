@@ -95,7 +95,16 @@ import CategoryKuwaits from "./Pages/Dashboard/AboutDashboard/Clienteteaboutskuw
 import EditCategoryskuwaits from "./Pages/Dashboard/AboutDashboard/Clienteteaboutskuwaits/EdirCategoryskuwaits";
 import Login from "./Pages/Shared/Login/Login";
 import PrivetRoute from "./Pages/Shared/PrivetRoute/PrivetRoute";
-import Signup from "./Pages/Shared/Signup/Signup";
+import CliensHomes from "./Pages/Dashboard/HomeDashboard/CliensHomes/CliensHomes";
+import EditclientsHomes from "./Pages/Dashboard/HomeDashboard/CliensHomes/EditClientsHomes";
+import Categoryclientshomes from "./Pages/Dashboard/HomeDashboard/CliensHomes/Categoryclientshomes";
+import EditCategoryclinthome from "./Pages/Dashboard/HomeDashboard/CliensHomes/EditCategoryclinthome";
+import GetFormdata from "./Pages/AboutPages/AboutRecruitment/RecruitmentBanner/GetFormdata";
+import PostCareerdata from "./Pages/CareersPages/PostCareerdata";
+import GetFormdatahome from "./Pages/HomePages/HomeContact/GetFormdatahome";
+import Awardbanners from "./Pages/AboutPages/AboutUs/AwardAbout/AwardBanner/Awardbanners";
+import EditAwardbanners from "./Pages/AboutPages/AboutUs/AwardAbout/AwardBanner/EditAwardbanners";
+import ErrorPage from "./Pages/Shared/Errorpage";
 
 const router = createBrowserRouter([
   {
@@ -103,7 +112,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: (
       <>
-        <h2>400</h2>
+       <ErrorPage/>
       </>
     ),
     children: [
@@ -177,10 +186,10 @@ const router = createBrowserRouter([
 
 
 
-      {
-        path: "/signup",
-        element: <Signup/>,
-      },
+      // {
+      //   path: "/signup",
+      //   element: <Signup/>,
+      // },
       {
         path: "/login",
         element: <Login/>,
@@ -213,6 +222,10 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/projectshome",
             element: <ProjectHome />,
+          },
+          {
+            path: "/dashboard/getformdatas",
+            element: <GetFormdata />,
           },
           {
             path: "/dashboard/awardclient",
@@ -259,8 +272,16 @@ const router = createBrowserRouter([
             element: <ContactTeam />,
           },
           {
+            path: "/dashboard/getformhomedatas",
+            element: <GetFormdatahome />,
+          },
+          {
             path: "/dashboard/careecentbanner",
             element: <CareEventBanner />,
+          },
+          {
+            path: "/dashboard/postcareersdatas",
+            element: <PostCareerdata />,
           },
           {
             path: "/dashboard/videocares",
@@ -350,6 +371,18 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/categorykuwaitssdatas",
             element: <CategoryKuwaits />,
+          },
+          {
+            path: "/dashboard/clientshomes",
+            element: <CliensHomes />,
+          },
+          {
+            path: "/dashboard/categoryhomesclints",
+            element: <Categoryclientshomes />,
+          },
+          {
+            path: "/dashboard/aboutawardsbanners",
+            element: <Awardbanners />,
           },
          
           
@@ -505,6 +538,18 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/editscategoryskuwaits/:id",
             element: <EditCategoryskuwaits/>,
+          },
+          {
+            path: "/dashboard/editshomesclintdata/:id",
+            element: <EditclientsHomes/>,
+          },
+          {
+            path: "/dashboard/editshomesclintdataparts/:id",
+            element: <EditCategoryclinthome/>,
+          },
+          {
+            path: "/dashboard/editsaboutsawrdbanners/:id",
+            element: <EditAwardbanners/>,
           },
     
     ],

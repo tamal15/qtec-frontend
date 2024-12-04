@@ -78,7 +78,7 @@ const Navber = () => {
           >
             <span className="cursor-pointer">About</span>
             <ul
-              className={`absolute bg-gradient-to-r from-[#182533] to-[#427BB1] text-white mt-2 py-2 w-40 rounded shadow-lg transition-opacity duration-300 ease-in-out ${
+              className={`absolute navbarsidecolor text-white mt-2 py-2 w-40 rounded shadow-lg transition-opacity duration-300 ease-in-out ${
                 isDropdownOpen ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
             >
@@ -132,7 +132,7 @@ const Navber = () => {
           >
             <span className="cursor-pointer">Event</span>
             <ul
-              className={`absolute bg-gradient-to-r from-[#182533] to-[#427BB1] text-white mt-2 py-2 w-40 rounded shadow-lg transition-opacity duration-300 ease-in-out ${
+              className={`absolute navbarsidecolor text-white mt-2 py-2 w-40 rounded shadow-lg transition-opacity duration-300 ease-in-out ${
                 isDropdownOpens ? "opacity-100 visible" : "opacity-0 invisible"
               }`}
             >

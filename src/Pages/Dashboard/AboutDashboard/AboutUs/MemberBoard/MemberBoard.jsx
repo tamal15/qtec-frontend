@@ -15,7 +15,7 @@ const MemberBoard = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getaboutboardmember`
+          `https://webi-bacend.onrender.com/getaboutboardmember`
         );
         const result = await response.json();
         setData(result);
@@ -41,7 +41,7 @@ const MemberBoard = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/aboutmemberdelete/${id}`)
+          .delete(`https://webi-bacend.onrender.com/aboutmemberdelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

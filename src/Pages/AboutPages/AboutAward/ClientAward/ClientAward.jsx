@@ -10,7 +10,7 @@ const ClientAward = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://localhost:5000/getawardsclients");
+        const response = await axios.get("https://webi-bacend.onrender.com/getawardsclients");
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

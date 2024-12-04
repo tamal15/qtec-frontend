@@ -10,7 +10,7 @@ const ManagementService = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getservicemanagement`
+          `https://webi-bacend.onrender.com/getservicemanagement`
         );
         const result = await response.json();
         setData(result);

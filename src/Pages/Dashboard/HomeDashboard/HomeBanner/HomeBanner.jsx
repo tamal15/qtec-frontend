@@ -1,14 +1,8 @@
-// import React from 'react';
 
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaPencilAlt } from "react-icons/fa";
-import { MdOutlineDeleteOutline } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-import Swal from "sweetalert2";
-// import Toggle from "./toggle";
 
-// import { useLoaderData } from "react-router-dom";
 const HomeBanner = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState([]);
@@ -16,7 +10,7 @@ const HomeBanner = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getbanner`
+          `https://webi-bacend.onrender.com/getbanner`
         );
         const result = await response.json();
         setData(result);
@@ -31,31 +25,7 @@ const HomeBanner = () => {
 
   
 
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios
-          .delete(`http://localhost:5000/bannersdelete/${id}`)
-          .then((response) => {
-            response.status === 204 &&
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
-            const deleted = data.filter((d) => d._id !== id);
-            setData(deleted);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    });
-  };
+ 
 
   return (
     <>
@@ -130,12 +100,7 @@ const HomeBanner = () => {
                           <FaPencilAlt />
                         </button>
                       </NavLink>
-                      <button
-                        onClick={() => handleDelete(d?._id)}
-                        className="w-10 h-10 ml-4 rounded-full flex items-center justify-center bg-[#007cde] text-white text-xl duration-300 active:scale-90"
-                      >
-                        <MdOutlineDeleteOutline />
-                      </button>
+                     
                     </div>
                   </div>
                 ))}

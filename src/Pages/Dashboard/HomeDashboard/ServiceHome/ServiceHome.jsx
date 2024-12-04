@@ -14,7 +14,7 @@ const ServiceHome = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/gethomeservice`
+          `https://webi-bacend.onrender.com/gethomeservice`
         );
         const result = await response.json();
         setData(result);
@@ -41,7 +41,7 @@ const ServiceHome = () => {
 //     }).then((result) => {
 //       if (result.isConfirmed) {
 //         axios
-//           .delete(`http://localhost:5000/bannersdelete/${id}`)
+//           .delete(`https://webi-bacend.onrender.com/bannersdelete/${id}`)
 //           .then((response) => {
 //             response.status === 204 &&
 //               Swal.fire("Deleted!", "Your file has been deleted.", "success");

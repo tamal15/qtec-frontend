@@ -15,7 +15,7 @@ const BlogPart = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getblogpart`
+          `https://webi-bacend.onrender.com/getblogpart`
         );
         const result = await response.json();
         setData(result);
@@ -42,7 +42,7 @@ const BlogPart = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/blogpartdelete/${id}`)
+          .delete(`https://webi-bacend.onrender.com/blogpartdelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

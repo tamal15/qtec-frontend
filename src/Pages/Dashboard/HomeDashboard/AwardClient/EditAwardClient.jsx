@@ -16,7 +16,7 @@ const EditAwardClient = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`http://localhost:5000/editawardckient/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editawardckient/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -75,7 +75,7 @@ const EditAwardClient = () => {
     }
 
     // Send the updated data to the server
-    fetch(`http://localhost:5000/awardclientupdate/${id}`, {
+    fetch(`https://webi-bacend.onrender.com/awardclientupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBanner),

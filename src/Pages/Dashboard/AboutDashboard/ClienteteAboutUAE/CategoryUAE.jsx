@@ -15,7 +15,7 @@ const CategoryUAE  = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getcategoryUSE`
+          `https://webi-bacend.onrender.com/getcategoryUSE`
         );
         const result = await response.json();
         setData(result);
@@ -42,7 +42,7 @@ const CategoryUAE  = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/clientcategoryuaedelete/${id}`)
+          .delete(`https://webi-bacend.onrender.com/clientcategoryuaedelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

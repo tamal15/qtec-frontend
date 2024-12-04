@@ -59,7 +59,7 @@ const AddGalleryMedia = () => {
     const formData = { image: imageUrl };
 
     try {
-      await axios.post("http://localhost:5000/postmediagalllery", formData);
+      await axios.post("https://webi-bacend.onrender.com/postmediagalllery", formData);
       Swal.fire({
         icon: "success",
         title: "Success",

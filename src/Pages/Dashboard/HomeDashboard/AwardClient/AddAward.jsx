@@ -44,7 +44,7 @@ const AddAward = () => {
     };
 
     try {
-      await axios.post("http://localhost:5000/postaward", formData);  // Adjust the URL to your backend API
+      await axios.post("https://webi-bacend.onrender.com/postaward", formData);  // Adjust the URL to your backend API
       Swal.fire({
         icon: "success",
         title: "Post Success",

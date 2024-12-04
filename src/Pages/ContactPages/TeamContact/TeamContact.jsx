@@ -7,7 +7,7 @@ const TeamContact = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getcontactteam`
+          `https://webi-bacend.onrender.com/getcontactteam`
         );
         const result = await response.json();
         setData(result);

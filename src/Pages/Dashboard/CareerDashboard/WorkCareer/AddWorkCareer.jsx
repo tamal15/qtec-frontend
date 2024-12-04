@@ -46,7 +46,7 @@ const AddWorkCareer = () => {
     };
 
     try {
-      await axios.post("http://localhost:5000/postcareer", formData);  // Adjust the URL to your backend API
+      await axios.post("https://webi-bacend.onrender.com/postcareer", formData);  // Adjust the URL to your backend API
       Swal.fire({
         icon: "success",
         title: "Post Success",

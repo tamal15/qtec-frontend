@@ -16,7 +16,7 @@ const EditAwardsClients = () => {
 
   // Fetch award client data
   useEffect(() => {
-    fetch(`http://localhost:5000/editawrdsclients/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editawrdsclients/${id}`)
       .then((res) => res.json())
       .then((data) => setAwardClient(data))
       .catch((error) =>
@@ -89,7 +89,7 @@ const EditAwardsClients = () => {
     const updatedAwardClient = { ...awardClient, awards: updatedAwards };
 
     // Send the updated data to the server
-    fetch(`http://localhost:5000/awardsclientsupdate/${id}`, {
+    fetch(`https://webi-bacend.onrender.com/awardsclientsupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedAwardClient),

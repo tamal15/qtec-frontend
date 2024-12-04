@@ -15,7 +15,7 @@ const GlobalCareer = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getcareerglobal`
+          `https://webi-bacend.onrender.com/getcareerglobal`
         );
         const result = await response.json();
         setData(result);
@@ -42,7 +42,7 @@ const GlobalCareer = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/careerglobaldelete/${id}`)
+          .delete(`https://webi-bacend.onrender.com/careerglobaldelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

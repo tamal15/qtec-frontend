@@ -10,7 +10,7 @@ const ClienteleKuwait = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getcategorysdataskuwaits`
+          `https://webi-bacend.onrender.com/getcategorysdataskuwaits`
         );
         const result = await response.json();
         setCategory(result);

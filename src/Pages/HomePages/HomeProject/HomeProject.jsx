@@ -9,42 +9,30 @@ import 'swiper/css/autoplay';
 
 // Import Swiper core and required modules
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { useEffect, useState } from 'react';
 
-const projects = [
-  {
-    title: "SBG Mataf",
-    candidates: "15,000+",
-    imageUrl: "https://img.freepik.com/premium-vector/technological-background-gears-blue-gradient_760443-103.jpg", // Replace with actual image path
-  },
-  {
-    title: "FIFA World Cup",
-    candidates: "3226+",
-    imageUrl: "https://img.freepik.com/premium-vector/technological-background-gears-blue-gradient_760443-103.jpg", // Replace with actual image path
-  },
-  {
-    title: "Hyper Panda",
-    candidates: "1000+",
-    imageUrl: "https://img.freepik.com/premium-vector/technological-background-gears-blue-gradient_760443-103.jpg", // Replace with actual image path
-  },
-  {
-    title: "SBG Mataf",
-    candidates: "15,000+",
-    imageUrl: "https://img.freepik.com/premium-vector/technological-background-gears-blue-gradient_760443-103.jpg", // Replace with actual image path
-  },
-  {
-    title: "FIFA World Cup",
-    candidates: "3226+",
-    imageUrl: "https://img.freepik.com/premium-vector/technological-background-gears-blue-gradient_760443-103.jpg", // Replace with actual image path
-  },
-  {
-    title: "Hyper Panda",
-    candidates: "1000+",
-    imageUrl: "https://img.freepik.com/premium-vector/technological-background-gears-blue-gradient_760443-103.jpg", // Replace with actual image path
-  },
-  // Add more items as needed up to 15
-];
+
 
 const HomeProject = () => {
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `https://webi-bacend.onrender.com/getprojecthome`
+        );
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+
+
   return (
     <section className="bg-gray-100 py-12">
       <div className="max-w-6xl mx-auto px-4">
@@ -65,13 +53,13 @@ const HomeProject = () => {
             1024: { slidesPerView: 3 },
           }}
         >
-          {projects.map((project, index) => (
+          {data.map((project, index) => (
             <SwiperSlide key={index} className="flex justify-center">
               <div className="bg-white rounded-lg shadow-md overflow-hidden max-w-sm">
-                <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover" />
+                <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
                 <div className="p-6 text-center">
                   <h3 className="text-lg font-semibold text-gray-700">{project.title}</h3>
-                  <p className="text-red-600 text-xl font-bold mt-2">{project.candidates}</p>
+                  <p className="text-red-600 text-xl font-bold mt-2">{project.description}</p>
                   <p className="text-gray-600">Candidates Deployed</p>
                 </div>
               </div>

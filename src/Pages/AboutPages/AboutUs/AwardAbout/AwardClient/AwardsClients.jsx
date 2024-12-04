@@ -10,7 +10,7 @@ const AwardsClients = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://localhost:5000/getawardsclients");
+        const response = await axios.get("https://webi-bacend.onrender.com/getawardsclients");
         setData(response.data);
         setLoading(false);
       } catch (error) {
@@ -33,7 +33,7 @@ const AwardsClients = () => {
   //   }).then((result) => {
   //     if (result.isConfirmed) {
   //       axios
-  //         .delete(`http://localhost:5000/awardsclientsdelete/${id}`)
+  //         .delete(`https://webi-bacend.onrender.com/awardsclientsdelete/${id}`)
   //         .then((response) => {
   //           if (response.status === 204) {
   //             Swal.fire("Deleted!", "Your award card has been deleted.", "success");

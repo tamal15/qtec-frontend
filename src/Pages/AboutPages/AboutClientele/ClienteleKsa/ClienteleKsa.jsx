@@ -30,7 +30,7 @@ const ClienteleKsa = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getclientcategories`
+          `https://webi-bacend.onrender.com/getclientcategories`
         );
         const result = await response.json();
         setDatas(result);
@@ -46,7 +46,7 @@ const ClienteleKsa = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:5000/getclientetedatas`
+          `https://webi-bacend.onrender.com/getclientetedatas`
         );
         const result = await response.json();
         setCategory(result);

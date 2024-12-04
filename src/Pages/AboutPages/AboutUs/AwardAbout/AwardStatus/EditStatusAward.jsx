@@ -17,7 +17,7 @@ const EditStatusAward = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`http://localhost:5000/editawrdsstatus/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editawrdsstatus/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -36,7 +36,7 @@ const EditStatusAward = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/statusawrdupdate/${id}`, {
+    fetch(`https://webi-bacend.onrender.com/statusawrdupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(banner),

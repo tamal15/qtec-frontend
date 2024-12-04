@@ -16,7 +16,7 @@ const EditClienteteAbout = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`http://localhost:5000/editclienteteabout/${id}`)
+    fetch(`https://webi-bacend.onrender.com/editclienteteabout/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -75,7 +75,7 @@ const EditClienteteAbout = () => {
     }
 
     // Send the updated data to the server
-    fetch(`http://localhost:5000/clienteteaboutupdate/${id}`, {
+    fetch(`https://webi-bacend.onrender.com/clienteteaboutupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBanner),
