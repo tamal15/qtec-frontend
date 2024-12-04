@@ -1,37 +1,21 @@
+import { useEffect, useState } from "react";
 
 const TeamMember = () => {
-  const members = [
-    {
-      name: "Muzammil Dadan",
-      role: "VP Operations - India",
-      image: "https://soundlinesgroup.com/wp-content/uploads/2022/08/Untitled-design-39.jpg", // Replace with the actual path
-    },
-    {
-      name: "Toyendra Giri",
-      role: "Country Head UAE & Qatar",
-      image: "https://soundlinesgroup.com/wp-content/uploads/2022/08/Untitled-design-39.jpg",
-    },
-    {
-      name: "Tirtha Raj Khatri",
-      role: "Director Sales UAE",
-      image: "https://soundlinesgroup.com/wp-content/uploads/2024/03/Mr.-Giri.jpg",
-    },
-    {
-      name: "Noor Iqbal",
-      role: "Regional Director KSA",
-      image: "https://soundlinesgroup.com/wp-content/uploads/2024/03/Mr.-Giri.jpg",
-    },
-    {
-      name: "Kaleem Mohammad",
-      role: "General Manager Eastern Province",
-      image: "https://soundlinesgroup.com/wp-content/uploads/2024/03/Mr.-Giri.jpg",
-    },
-    {
-      name: "Mohamed Ameen",
-      role: "Regional Manager Central Province",
-      image: "https://soundlinesgroup.com/wp-content/uploads/2024/03/Mr.-Giri.jpg",
-    },
-  ];
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/getaboutteam`
+        );
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <section className="py-12 mb-20">
@@ -40,7 +24,7 @@ const TeamMember = () => {
         <div className="mt-1 h-1 bg-blue-400 w-16 mx-auto"></div>
       </div>
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-6 md:px-12">
-        {members.map((member, index) => (
+        {data?.map((member, index) => (
           <div
             key={index}
             className="flex flex-col items-center text-center"
@@ -58,7 +42,7 @@ const TeamMember = () => {
               {member.name}
             </h3>
             {/* Role */}
-            <p className="mt-2 text-sm text-gray-500">{member.role}</p>
+            <p className="mt-2 text-sm text-gray-500">{member.title}</p>
           </div>
         ))}
       </div>

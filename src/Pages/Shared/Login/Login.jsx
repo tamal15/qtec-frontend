@@ -1,0 +1,125 @@
+import { useForm } from "react-hook-form";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useFirebase from "../../Hooks/useFirebase";
+
+const Login = () => {
+  const { loginWithGoogle, loginWithOwnEmailAndPass, authError } = useFirebase();
+
+  // Location & Navigate
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Handle Google Login
+  const handleGoogleLogin = () => {
+    loginWithGoogle(location, navigate);
+  };
+
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    loginWithOwnEmailAndPass(data.email, data.password, location, navigate);
+  };
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Function to handle the visibility toggle
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
+
+  return (
+    <div>
+      <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+        <div className="py-5">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-10">
+            {/* Left Section */}
+            <div className="flex-shrink-0">
+              <img
+                className="rounded-lg"
+                src="https://i.ibb.co/PYRQwwP/1622955529676.png"
+                alt="Login Illustration"
+                width={360}
+                height={340}
+              />
+            </div>
+
+            {/* Right Section */}
+            <div className="bg-blue-900 text-black p-8 rounded-lg w-full max-w-lg">
+              <h2 className="text-2xl font-bold mb-6 text-center">
+                Login to SARONG
+              </h2>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                {/* Email Input */}
+                <div className="mb-4">
+                  <input
+                    type="email"
+                    {...register("email", { required: true })}
+                    placeholder="Enter Email"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                {/* Password Input */}
+                <div className="mb-4 relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    {...register("password", { required: true })}
+                    placeholder="Enter Password"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span
+                    onClick={togglePasswordVisibility}
+                    className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-500"
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition duration-300"
+                >
+                  Login
+                </button>
+              </form>
+
+              {/* Meta Links */}
+              <div className="text-center mt-4">
+                <p>
+                  New to Education?{" "}
+                  <Link
+                    to="/register"
+                    className="text-blue-400 hover:underline"
+                  >
+                    Create a free Account
+                  </Link>
+                </p>
+                <span
+                  onClick={handleGoogleLogin}
+                  className="inline-flex items-center mt-4 cursor-pointer text-xl"
+                >
+                  Continue with <FcGoogle className="ml-2" />
+                </span>
+              </div>
+
+              {/* Error Alert */}
+              {authError && (
+                <div
+                  className="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded"
+                  role="alert"
+                >
+                  <span>{authError}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;

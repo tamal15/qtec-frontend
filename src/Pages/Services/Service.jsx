@@ -1,4 +1,5 @@
 import ContactBanner from "../AboutPages/AboutAward/ContactBanner/ContactBanner";
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import ServiceBanner from "./ServiceBanner/ServiceBanner";
 import HrService from "./ServiceHr/HrService";
 import ServiceAdmin from "./ServiceHr/ServiceAdmin";
@@ -9,6 +10,7 @@ import ServiceManagement from "./ServiceHr/ServiceManagement";
 const Service = () => {
     return (
         <div>
+            <ScrollToTop />
             <ServiceBanner/>
             <HrService/>
             <ServiceAdmin/>

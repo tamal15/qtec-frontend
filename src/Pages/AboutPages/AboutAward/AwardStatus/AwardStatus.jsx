@@ -1,5 +1,24 @@
+import { useEffect, useState } from "react";
 
 const AwardStatus = () => {
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/getawardstatus`
+        );
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+
   return (
     <div
       className="relative flex items-center justify-center bg-cover bg-center h-[400px] md:h-[400px] bg-fixed"
@@ -11,18 +30,18 @@ const AwardStatus = () => {
 
       <div className="relative z-10 flex justify-around w-full max-w-5xl text-center text-white px-4">
         <div className="space-y-2">
-          <h2 className="text-4xl md:text-5xl font-semibold text-red-500">500+</h2>
-          <p className="text-lg md:text-xl">Awards</p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-red-500">{data[0]?.number1}</h2>
+          <p className="text-lg md:text-xl">{data[0]?.title1}</p>
         </div>
 
         <div className="space-y-2">
-          <h2 className="text-4xl md:text-5xl font-semibold text-red-500">900+</h2>
-          <p className="text-lg md:text-xl">Client Testimonials</p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-red-500">{data[0]?.number2}</h2>
+          <p className="text-lg md:text-xl">{data[0]?.title2}</p>
         </div>
 
         <div className="space-y-2">
-          <h2 className="text-4xl md:text-5xl font-semibold text-red-500">1000+</h2>
-          <p className="text-lg md:text-xl">Satisfied Clients</p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-red-500">{data[0]?.number3}</h2>
+          <p className="text-lg md:text-xl">{data[0]?.title3}</p>
         </div>
       </div>
     </div>

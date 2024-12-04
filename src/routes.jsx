@@ -67,6 +67,35 @@ import GroupTestimonial from "./Pages/Dashboard/AboutDashboard/AboutTestimonial/
 import EditGroupTestimonial from "./Pages/Dashboard/AboutDashboard/AboutTestimonial/GroupTestimonial/EditGroupTestimonial";
 import ClientTestimonial from "./Pages/Dashboard/AboutDashboard/AboutTestimonial/ClientTestimonial/ClientTestimonial";
 import EditClientTestimonial from "./Pages/Dashboard/AboutDashboard/AboutTestimonial/ClientTestimonial/EditClientTestimonial";
+import WhyAboutUs from "./Pages/Dashboard/AboutDashboard/AboutUs/WhyAboutUs/WhyAboutUs";
+import EditAboutwhyus from "./Pages/Dashboard/AboutDashboard/AboutUs/WhyAboutUs/EditAboutwhyus";
+import MemberBoard from "./Pages/Dashboard/AboutDashboard/AboutUs/MemberBoard/MemberBoard";
+import EditMember from "./Pages/Dashboard/AboutDashboard/AboutUs/MemberBoard/EditMember";
+import EditMemberTeam from "./Pages/Dashboard/AboutDashboard/AboutUs/MemberTeam/EditMemberTeam";
+import MemberTeam from "./Pages/Dashboard/AboutDashboard/AboutUs/MemberTeam/MemberTeam";
+import AwardCard from "./Pages/AboutPages/AboutUs/AwardAbout/AwardCard/AwardCard";
+import EditAwardCard from "./Pages/AboutPages/AboutUs/AwardAbout/AwardCard/EditAwardCard";
+import AwardsClients from "./Pages/AboutPages/AboutUs/AwardAbout/AwardClient/AwardsClients";
+import EditAwardsClients from "./Pages/AboutPages/AboutUs/AwardAbout/AwardClient/EditAwardsClients";
+import StatusAward from "./Pages/AboutPages/AboutUs/AwardAbout/AwardStatus/StatusAward";
+import EditStatusAward from "./Pages/AboutPages/AboutUs/AwardAbout/AwardStatus/EditStatusAward";
+import ClienteteAbouts from "./Pages/Dashboard/AboutDashboard/ClienteteAbouts/ClienteteAbouts";
+import EditClienteteAbout from "./Pages/Dashboard/AboutDashboard/ClienteteAbouts/EditClienteteAbout";
+import ClientKSA from "./Pages/Dashboard/AboutDashboard/ClienteteAbouts/ClientKSA";
+import EditClientKSA from "./Pages/Dashboard/AboutDashboard/ClienteteAbouts/EditClientKSA";
+import ClienteteAboutUAE from "./Pages/Dashboard/AboutDashboard/ClienteteAboutUAE/ClienteteAboutUAE";
+import EditClientUAE from "./Pages/Dashboard/AboutDashboard/ClienteteAboutUAE/EditClientUAE";
+import CategoryUAE from "./Pages/Dashboard/AboutDashboard/ClienteteAboutUAE/CategoryUAE";
+import EditCategoryUAE from "./Pages/Dashboard/AboutDashboard/ClienteteAboutUAE/EditCategoryUAE";
+import ClientaboutsQATAR from "./Pages/Dashboard/AboutDashboard/ClientaboutsQATAR/ClientaboutsQATAR";
+import Editclientqatar from "./Pages/Dashboard/AboutDashboard/ClientaboutsQATAR/Editclientqatar";
+import CategoryQatar from "./Pages/Dashboard/AboutDashboard/ClientaboutsQATAR/CategoryQatar";
+import EditCategoryqatar from "./Pages/Dashboard/AboutDashboard/ClientaboutsQATAR/EditCategoryqatar";
+import CategoryKuwaits from "./Pages/Dashboard/AboutDashboard/Clienteteaboutskuwaits/Categorykuwaits";
+import EditCategoryskuwaits from "./Pages/Dashboard/AboutDashboard/Clienteteaboutskuwaits/EdirCategoryskuwaits";
+import Login from "./Pages/Shared/Login/Login";
+import PrivetRoute from "./Pages/Shared/PrivetRoute/PrivetRoute";
+import Signup from "./Pages/Shared/Signup/Signup";
 
 const router = createBrowserRouter([
   {
@@ -143,14 +172,26 @@ const router = createBrowserRouter([
         element: <AboutUs />,
       },
 
-      // dashboard start
+        ],
+      },
+
+
+
+      {
+        path: "/signup",
+        element: <Signup/>,
+      },
+      {
+        path: "/login",
+        element: <Login/>,
+      },
 
       {
         path: "/dashboard",
         element: (
-          // <UserRoute>
+          <PrivetRoute>
             <Dashboard />
-          // </UserRoute>
+           </PrivetRoute>
         ),
         children: [
           {
@@ -257,6 +298,60 @@ const router = createBrowserRouter([
             path: "/dashboard/clienttestimonial",
             element: <ClientTestimonial />,
           },
+          {
+            path: "/dashboard/whyaboutus",
+            element: <WhyAboutUs />,
+          },
+          {
+            path: "/dashboard/addmemberboard",
+            element: <MemberBoard />,
+          },
+          {
+            path: "/dashboard/addmemberteam",
+            element: <MemberTeam />,
+          },
+          
+          {
+            path: "/dashboard/awardcard",
+            element: <AwardCard />,
+          },
+          {
+            path: "/dashboard/awardsclients",
+            element: <AwardsClients />,
+          },
+          {
+            path: "/dashboard/statusawards",
+            element: <StatusAward />,
+          },
+          {
+            path: "/dashboard/clienteteaboutus",
+            element: <ClienteteAbouts />,
+          },
+          {
+            path: "/dashboard/clienteteaboutksa",
+            element: <ClientKSA />,
+          },
+          {
+            path: "/dashboard/clienteteaboutuae",
+            element: <ClienteteAboutUAE />,
+          },
+          {
+            path: "/dashboard/clientcategoryuae",
+            element: <CategoryUAE />,
+          },
+          {
+            path: "/dashboard/clientaboutsqatars",
+            element: <ClientaboutsQATAR />,
+          },
+          {
+            path: "/dashboard/addcategoryqatars",
+            element: <CategoryQatar />,
+          },
+          {
+            path: "/dashboard/categorykuwaitssdatas",
+            element: <CategoryKuwaits />,
+          },
+         
           
           {
             path: "/dashboard/banneredit/:id",
@@ -358,22 +453,60 @@ const router = createBrowserRouter([
             path: "/dashboard/editclientstestimonial/:id",
             element: <EditClientTestimonial />,
           },
+          {
+            path: "/dashboard/editaboutwhyus/:id",
+            element: <EditAboutwhyus />,
+          },
+          {
+            path: "/dashboard/editmember/:id",
+            element: <EditMember />,
+          },
+          {
+            path: "/dashboard/editmemberteam/:id",
+            element: <EditMemberTeam />,
+          },
+          {
+            path: "/dashboard/editawardcards/:id",
+            element: <EditAwardCard />,
+          },
+          {
+            path: "/dashboard/editawardsclintss/:id",
+            element: <EditAwardsClients />,
+          },
+          {
+            path: "/dashboard/editawardsstatus/:id",
+            element: <EditStatusAward />,
+          },
+          {
+            path: "/dashboard/editclienteteabouts/:id",
+            element: <EditClienteteAbout />,
+          },
+          {
+            path: "/dashboard/editclientksa/:id",
+            element: <EditClientKSA/>,
+          },
     
-        
-       
-        
-       
-         
-          
-         
-        
-         
-         
-         
-         
-        
-        ],
-      },
+          {
+            path: "/dashboard/editclientUAE/:id",
+            element: <EditClientUAE/>,
+          },
+          {
+            path: "/dashboard/editscategoryUAE/:id",
+            element: <EditCategoryUAE/>,
+          },
+          {
+            path: "/dashboard/editsclientqatars/:id",
+            element: <Editclientqatar/>,
+          },
+          {
+            path: "/dashboard/editscategorysqatars/:id",
+            element: <EditCategoryqatar/>,
+          },
+          {
+            path: "/dashboard/editscategoryskuwaits/:id",
+            element: <EditCategoryskuwaits/>,
+          },
+    
     ],
   },
 ]);

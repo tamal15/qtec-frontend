@@ -1,27 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Sample data with company logos
-const companies = [
-  { id: 1,  logo: "https://soundlinesgroup.com/wp-content/uploads/2023/05/01_01-1.gif", category: "All" },
-  { id: 2,  logo: "https://soundlinesgroup.com/wp-content/uploads/2023/05/01_09.gif", category: "All" },
-  { id: 3,  logo: "https://soundlinesgroup.com/wp-content/uploads/2023/05/01_01-1.gif", category: "All" },
-  { id: 4,  logo: "https://soundlinesgroup.com/wp-content/uploads/2023/05/01_09.gif", category: "All" },
-  { id: 5,  logo: "https://soundlinesgroup.com/wp-content/uploads/2023/05/01_01-1.gif", category: "All" },
-  { id: 6, logo: "https://soundlinesgroup.com/wp-content/uploads/2023/05/01_09.gif", category: "All" },
-  { id: 7,  logo: "https://soundlinesgroup.com/wp-content/uploads/2023/05/01_01-1.gif", category: "All" },
-  { id: 8,  logo: "https://soundlinesgroup.com/wp-content/uploads/2023/05/01_09.gif", category: "All" },
-  { id: 9,  logo: "https://soundlinesgroup.com/wp-content/uploads/2023/05/01_01-1.gif", category: "All" },
-  { id: 10,  logo: "https://soundlinesgroup.com/wp-content/uploads/2023/05/01_09.gif", category: "All" },
-  // Add more companies with appropriate categories as needed
-];
+
 
 const ClienteleKuwait = () => {
+
+  const [category, setCategory] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/getcategorysdataskuwaits`
+        );
+        const result = await response.json();
+        setCategory(result);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+
   const [activeCategory, setActiveCategory] = useState("All");
 
   // Filtered companies based on active category
   const filteredCompanies = activeCategory === "All"
-    ? companies
-    : companies.filter(company => company.category === activeCategory);
+    ? category
+    : category?.filter(company => company.category === activeCategory);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -46,7 +52,7 @@ const ClienteleKuwait = () => {
             key={company.id}
             className="flex items-center justify-center border p-2 rounded-lg shadow-sm bg-white"
           >
-            <img src={company.logo} alt={company.name} className="h-24 w-44" />
+            <img src={company.image} alt={company.name} className="h-24 w-44" />
           </div>
         ))}
       </div>

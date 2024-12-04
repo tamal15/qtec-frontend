@@ -1,3 +1,4 @@
+import ScrollToTop from "../../ScrollToTop/ScrollToTop";
 import ContactBanner from "../AboutAward/ContactBanner/ContactBanner";
 import ClienteleAbout from "./ClienteleAbout/ClienteleAbout";
 import ClienteleBanner from "./ClienteleBanner/ClienteleBanner";
@@ -9,6 +10,7 @@ import ClienteleUae from "./ClienteleKsa/ClienteleUae";
 const AboutClientele = () => {
     return (
         <div>
+            <ScrollToTop />
             <ClienteleBanner/>
             
             <div className="pt-10 w-full  mx-auto px-10 md:px-16">

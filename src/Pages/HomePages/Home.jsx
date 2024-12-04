@@ -1,3 +1,4 @@
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import Banner from "./Banner/Banner";
 import HomeAbout from "./HomeAbout/HomeAbout";
 import HomeAward from "./HomeAward/HomeAward";
@@ -11,6 +12,7 @@ const Home = () => {
     return (
         <section>
             <div>
+            <ScrollToTop />
             <Banner/>
             <div className="pt-28 w-full   mx-auto px-10 md:px-16">
             <HomeAbout/>

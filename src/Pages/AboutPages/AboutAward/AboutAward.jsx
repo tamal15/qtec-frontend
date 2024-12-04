@@ -1,3 +1,4 @@
+import ScrollToTop from "../../ScrollToTop/ScrollToTop";
 import AwardRecognition from "./AwardRecognition/AwardRecognition";
 import AwardStatus from "./AwardStatus/AwardStatus";
 import BannerAward from "./BannerAward";
@@ -7,6 +8,7 @@ import ContactBanner from "./ContactBanner/ContactBanner";
 const AboutAward = () => {
     return (
         <div>
+            <ScrollToTop />
             <BannerAward/>
             <div className="pt-28 w-full  mx-auto px-10 md:px-16">
             <AwardRecognition/>

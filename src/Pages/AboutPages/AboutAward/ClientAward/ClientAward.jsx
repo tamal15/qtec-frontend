@@ -1,72 +1,28 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-// Updated data with actual image URLs
-const awardsData = [
-  {
-    region: "KSA",
-    awards: [
-      {
-        title: "Mando",
-        description: "Mando Giving Award to Soundlines Group for Excellent Service",
-        image: "https://soundlinesgroup.com/wp-content/uploads/2022/12/Untitled-design-40.png"
-      },
-      {
-        title: "Seder Group",
-        description: "Seder Group Giving Award to Soundlines Group for Efficient Work",
-        image: "https://soundlinesgroup.com/wp-content/uploads/2022/12/Untitled-design-40.png" // Replace with actual image paths
-      },
-      {
-        title: "Little Caesars",
-        description: "Little Caesars Giving Award to Soundlines Group for Timely Commitments",
-        image: "https://soundlinesgroup.com/wp-content/uploads/2022/12/Untitled-design-40.png"
-      },
-    ],
-  },
-  {
-    region: "Qatar",
-    awards: [
-      {
-        title: "Abdulrahman Abdulaziz Al Thani Business Services",
-        description: "Award for Timely Commitments",
-        image: "https://soundlinesgroup.com/wp-content/uploads/2022/12/Untitled-design-40.png"
-      },
-      {
-        title: "Al Bader Construction and Steel Works WLL",
-        description: "Award for Excellent Service",
-        image: "https://soundlinesgroup.com/wp-content/uploads/2022/12/Untitled-design-40.png"
-      },
-      {
-        title: "Almufath Group",
-        description: "Award for On-Time Manpower Recruitment",
-        image: "https://soundlinesgroup.com/wp-content/uploads/2022/12/Untitled-design-40.png"
-      },
-    ],
-  },
-  {
-    region: "UAE",
-    awards: [
-      {
-        title: "Closaill",
-        description: "Award for Excellent Service",
-        image: "https://soundlinesgroup.com/wp-content/uploads/2022/12/Untitled-design-40.png"
-      },
-      {
-        title: "Control & Applications",
-        description: "Award for Efficient Work",
-        image: "https://soundlinesgroup.com/wp-content/uploads/2022/12/Untitled-design-40.png"
-      },
-      {
-        title: "Sia Landscaping",
-        description: "Award for Timely Deployment",
-        image: "https://soundlinesgroup.com/wp-content/uploads/2022/12/Untitled-design-40.png"
-      },
-    ],
-  },
-];
+
 
 const ClientAward = () => {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get("http://localhost:5000/getawardsclients");
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  
   return (
     <div className="container mx-auto p-6">
-      {awardsData.map((regionData, index) => (
+      {data.map((regionData, index) => (
         <div key={index} className="mb-12">
           <h2 className="text-2xl font-semibold text-center mb-6">
             Awards from clients ({regionData.region})
