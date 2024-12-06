@@ -105,6 +105,14 @@ import GetFormdatahome from "./Pages/HomePages/HomeContact/GetFormdatahome";
 import Awardbanners from "./Pages/AboutPages/AboutUs/AwardAbout/AwardBanner/Awardbanners";
 import EditAwardbanners from "./Pages/AboutPages/AboutUs/AwardAbout/AwardBanner/EditAwardbanners";
 import ErrorPage from "./Pages/Shared/Errorpage";
+import ClienteteBanners from "./Pages/Dashboard/AboutDashboard/ClienteteAbouts/ClienteteBanners";
+import EditClientetebanners from "./Pages/Dashboard/AboutDashboard/ClienteteAbouts/EditClientetebanners";
+import Aboutusbannerspart from "./Pages/Dashboard/AboutDashboard/AboutUs/Aboutusbanners/Aboutusbannerspart";
+import EditAboutbannerpart from "./Pages/Dashboard/AboutDashboard/AboutUs/Aboutusbanners/EditAboutbannerpart";
+import DetailsAboutpart from "./Pages/Dashboard/AboutDashboard/AboutUs/Aboutusbanners/DetailsAboutpart";
+import EditAboutdetails from "./Pages/Dashboard/AboutDashboard/AboutUs/Aboutusbanners/Editaboutdetails";
+import EditAddressContacts from "./Pages/ContactPages/AddressContact/EdirAddressContacts";
+import ShowAddresscontact from "./Pages/ContactPages/AddressContact/ShowAddresscontact";
 
 const router = createBrowserRouter([
   {
@@ -316,6 +324,10 @@ const router = createBrowserRouter([
             element: <GroupTestimonial />,
           },
           {
+            path: "/dashboard/aboutbannersparts",
+            element: <Aboutusbannerspart />,
+          },
+          {
             path: "/dashboard/clienttestimonial",
             element: <ClientTestimonial />,
           },
@@ -384,6 +396,18 @@ const router = createBrowserRouter([
             path: "/dashboard/aboutawardsbanners",
             element: <Awardbanners />,
           },
+          {
+            path: "/dashboard/cleintetesbanners",
+            element: <ClienteteBanners />,
+          },
+          {
+            path: "/dashboard/detailsaboutsparts",
+            element: <DetailsAboutpart />,
+          },
+          {
+            path: "/dashboard/showaddresscontacts",
+            element: <ShowAddresscontact />,
+          },
          
           
           {
@@ -393,6 +417,10 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/edithomeaboutus/:id",
             element: <EditHomeAboutus />,
+          },
+          {
+            path: "/dashboard/editsdetailsaboutparts/:id",
+            element: <EditAboutdetails />,
           },
           {
             path: "/dashboard/editservicehome/:id",
@@ -437,6 +465,14 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/editworkcareers/:id",
             element: <EditWorkCareer />,
+          },
+          {
+            path: "/dashboard/editaddresscontactss/:id",
+            element: <EditAddressContacts />,
+          },
+          {
+            path: "/dashboard/editclientetesbanners/:id",
+            element: <EditClientetebanners />,
           },
           {
             path: "/dashboard/editglobalcareers/:id",
@@ -550,6 +586,10 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/editsaboutsawrdbanners/:id",
             element: <EditAwardbanners/>,
+          },
+          {
+            path: "/dashboard/editsaboutbannerspart/:id",
+            element: <EditAboutbannerpart/>,
           },
     
     ],

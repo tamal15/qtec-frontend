@@ -337,7 +337,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                   <div className="overflow-hidden">
                     <NavLink
                       onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/about"}
+                      to={"/dashboard/cleintetesbanners"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
                         <FaSellcast className="text-xl text-[#01c0c9]" />
@@ -522,10 +522,28 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                   <div className="overflow-hidden">
                     <NavLink
                       onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/aboutbannersparts"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
+                        <h2 className="font-semibold hidden md:block">AboutBanner</h2>
+                      </div>
+                    </NavLink>
+                    <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/detailsaboutsparts"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
+                        <h2 className="font-semibold hidden md:block">AboutDetails</h2>
+                      </div>
+                    </NavLink>
+                    <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
                       to={"/dashboard/whyaboutus"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">WhyAbout</h2>
                       </div>
                     </NavLink>
@@ -534,7 +552,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/addmemberboard"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">BoardMember</h2>
                       </div>
                     </NavLink>
@@ -543,7 +561,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/addmemberteam"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">TeamMember</h2>
                       </div>
                     </NavLink>
@@ -588,7 +606,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/recruitmentbanners"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">RecruitmentBanner</h2>
                       </div>
                     </NavLink>
@@ -597,7 +615,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/recruitmentprocesstime"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">RecruitmentProcess</h2>
                       </div>
                     </NavLink>
@@ -606,7 +624,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/getformdatas"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">GetFormData</h2>
                       </div>
                     </NavLink>
@@ -653,7 +671,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/blogpart"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">BlogCard</h2>
                       </div>
                     </NavLink>
@@ -697,7 +715,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/bannerservice"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaRegEye className="text-xl text-[#FF6600]" />
+                        <FaRegEye className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">
                           ServiceBanner
                         </h2>
@@ -708,7 +726,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/serviceHr"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaEye className="text-xl text-[#FF6600]" />
+                        <FaEye className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">
                           ServiceHr
                         </h2>
@@ -719,7 +737,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/serviceadmins"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaMehRollingEyes className="text-xl text-[#FF6600]" />
+                        <FaMehRollingEyes className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">
                           ServiceAdmin
                         </h2>
@@ -731,7 +749,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/employeeservices"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaUsers className="text-xl text-[#FF6600]" />
+                        <FaUsers className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">
                           ServiceEmployee
                         </h2>
@@ -743,7 +761,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/managementservices"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaQuestionCircle className="text-xl text-[#FF6600]" />
+                        <FaQuestionCircle className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">
                           {" "}
                           ServiceManagement
@@ -789,10 +807,19 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                   <div className="overflow-hidden">
                     <NavLink
                       onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/showaddresscontacts"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
+                        <h2 className="font-semibold hidden md:block">ContactAddress</h2>
+                      </div>
+                    </NavLink>
+                    <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
                       to={"/dashboard/contactTeam"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">TeamContact</h2>
                       </div>
                     </NavLink>
@@ -842,7 +869,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/careecentbanner"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">CareBanner</h2>
                       </div>
                     </NavLink>
@@ -851,7 +878,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/videocares"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">Videocare</h2>
                       </div>
                     </NavLink>
@@ -860,7 +887,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/eventmedia"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">EventMedia</h2>
                       </div>
                     </NavLink>
@@ -869,7 +896,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/gallerymedia"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">Gallerymedia</h2>
                       </div>
                     </NavLink>
@@ -915,7 +942,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/bannercareers"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">CareerBanner</h2>
                       </div>
                     </NavLink>
@@ -925,7 +952,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/workcareers"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">WorkCareer</h2>
                       </div>
                     </NavLink>
@@ -934,7 +961,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/globalcareers"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">GlobalCareer</h2>
                       </div>
                     </NavLink>
@@ -943,7 +970,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                       to={"/dashboard/postcareersdatas"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <BiLogoBlogger className="text-xl text-[#FF6600]" />
+                        <BiLogoBlogger className="text-xl text-[#01c0c9]" />
                         <h2 className="font-semibold hidden md:block">GetCareerdata</h2>
                       </div>
                     </NavLink>

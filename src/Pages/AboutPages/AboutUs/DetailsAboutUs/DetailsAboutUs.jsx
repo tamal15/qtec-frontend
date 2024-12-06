@@ -1,4 +1,23 @@
+import { useEffect, useState } from "react";
+
 const DetailsAboutUs = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          `https://webi-bacend.onrender.com/getdetailssaboutpart`
+        );
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  console.log(data)
     return (
       <div className="container mx-auto p-6 lg:px-20">
         {/* Section Header */}
@@ -10,49 +29,22 @@ const DetailsAboutUs = () => {
         {/* Content Section */}
         <div className="text-gray-700">
           <p className="mb-4">
-            Soundlines was founded more than 20 years ago with a pioneering spirit and lofty objective: to
-            navigate the changing human resource landscape and create a positive business impact for our
-            clients by delivering unmatched <span className="text-red-500 font-semibold">comprehensive HR services</span>.
+           {data[0]?.text} <span className="text-red-500 font-semibold">{data[0]?.highlightedText1}</span>.
           </p>
           <p className="mb-6">
-            In pursuit of our ambition to become the one-stop solution for all your <span className="text-red-500 font-semibold">
-            human resources and manpower needs</span>, we have undergone remarkable development over the past few years.
+          {data[0]?.text}r <span className="text-red-500 font-semibold">
+            </span>, {data[0]?.highlightedText2}
           </p>
   
           {/* List Section */}
-          <h3 className="font-semibold mb-3">Here’s what sets us apart:</h3>
+          <h3 className="font-semibold mb-3">{data[0]?.listTitle}</h3>
           <ol className="list-decimal ml-6">
-            <li className="mb-2">
-              We currently have our presence across India, Nepal, Morocco, Bangladesh, the Philippines, Sri Lanka,
-              Nigeria, Kenya, Uganda, Ghana, Indonesia, and Egypt.
+          {data[0]?.list?.map((item, index) => (
+            <li key={index} className="mb-2">
+              {item}
             </li>
-            <li className="mb-2">
-              We are a UAE and KSA-based recruitment, outsourcing, fit-out, and construction firm with an
-              NSDC-approved evaluation center.
-            </li>
-            <li className="mb-2">
-              We are a UAE and KSA-based MEP contracting company with two decades of experience.
-            </li>
-            <li className="mb-2">
-              Enhanced relationship with MEGA Recruitment Companies and Government Bodies in Saudi Arabia
-              has allowed us to give exceptional services to our clients with cost optimization, rapid turnarounds,
-              and faster growth.
-            </li>
-            <li className="mb-2">
-              Established end-to-end consultancy services in the GCC, where we advise enterprises on
-              business setup and workforce needs (right from visas and work permits to legal compliances).
-            </li>
-            <li className="mb-2">
-              Soundlines serves the Chinese Gulf companies with manpower supply. During the Covid19 pandemic,
-              we deployed Indian medical staff to the Gulf.
-            </li>
-            <li className="mb-2">
-              Soundlines Recruitment is approved by Qatar’s Supreme Committee, to recruit.
-            </li>
-            <li className="mb-2">
-              We have provided labor for iconic projects like Expo 2020, FIFA World Cup 2022, and Vision 2030.
-            </li>
-          </ol>
+          ))}
+        </ol>
         </div>
       </div>
     );
