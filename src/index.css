@@ -10,13 +10,13 @@
 
 .backgroundsnavbar {
   /* background-image: linear-gradient(to right, #182533, #427BB1); */
-  background-color: rgb(17 24 39);
-  color: white;
+  background-color: white;
+  color: black;
 }
 
-.navbarsidecolor{
-  background-color: rgb(17 24 39);
-}
+
+
+
 
 .login-form {
   padding: 20px; /* Add padding for better spacing */
@@ -78,19 +78,19 @@
 
 
 
-@media (max-width: 779px) {
+/* @media (max-width: 779px) {
   .smallscreen {
       background-color: rgb(17 24 39);
   }
-}
+} */
 
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .backgroundsnavbar {
       background-color: rgb(17 24 39);
       color: white;
   }
-}
+} */
 
 
 

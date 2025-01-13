@@ -1,13 +1,13 @@
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBjEhlz-vhsBX0r2qZ-_GCLpOUy4sGOitk",
-    authDomain: "co-overseas.firebaseapp.com",
-    projectId: "co-overseas",
-    storageBucket: "co-overseas.firebasestorage.app",
-    messagingSenderId: "963508849114",
-    appId: "1:963508849114:web:17d4a6e26065e55eee58e3"
-  };
+  apiKey: "AIzaSyDdVr0IwbI8mKLGmgW6FNGJGnpJ0ISbN4I",
+  authDomain: "tocash-4af3a.firebaseapp.com",
+  projectId: "tocash-4af3a",
+  storageBucket: "tocash-4af3a.firebasestorage.app",
+  messagingSenderId: "670030261673",
+  appId: "1:670030261673:web:2912d4181cb22ecb2228b8"
+};
   
   
   export default firebaseConfig;

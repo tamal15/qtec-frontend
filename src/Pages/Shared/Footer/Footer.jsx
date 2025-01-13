@@ -1,117 +1,179 @@
-import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
-import { FiPhone, FiMail, FiGlobe, FiChevronRight } from 'react-icons/fi';
-import { MdLocationOn } from 'react-icons/md';
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-10">
+    <footer className="bg-gray-100 text-gray-600 py-8 md:px-24 mt-10 md:mt-0">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Contact Section */}
+        {/* Footer Content */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          {/* Column 1 */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
-              Contact <span className="ml-2 text-blue-500">▲</span>
-            </h3>
-            <p className="text-sm mb-2 flex items-start">
-              <MdLocationOn className=" text-lg" /> 
-              <span>
-                <strong>Head Quarters:</strong><br />
-                <p className='-ms-4'>Kamal Mansion, 4/58 A, Haji N. A. Azmi Marg,<br />
-                Colaba, Mumbai, Maharashtra 400005</p>
-              </span>
-            </p>
-            <p className="text-sm mb-2">
-              Co. Name – M/S Soundlines<br />
-              License no – B-0886/Mum/Per/1000+/5/5396/99<br />
-              DOI - 27.10.2000 DOE-26.7.2026
-            </p>
-            <hr className='mt-16'/>
-            <p className="text-sm mb-2 flex items-center mt-12">
-              <FiPhone className="mr-2" /> Phone: +91 22 66283333
-            </p>
-            <p className="text-sm mb-2 flex items-center">
-              <FiMail className="mr-2" /> Email: marketing@soundlinesgroup.com
-            </p>
-            <p className="text-sm flex items-center">
-              <FiGlobe className="mr-2" /> Website: soundlinesgroup.com
-            </p>
-           
-          </div>
-
-          {/* Important Links Section */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
-              Important Links <span className="ml-2 text-blue-500">▲</span>
-            </h3>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-center"><FiChevronRight className="mr-2" /> <a href="#" className="hover:underline">Privacy Policy</a></li>
-              <li className="flex items-center"><FiChevronRight className="mr-2" /> <a href="#" className="hover:underline">Terms & Conditions</a></li>
-              <li className="flex items-center"><FiChevronRight className="mr-2" /> <a href="#" className="hover:underline">Candidates Info</a></li>
-              <li className="flex items-center"><FiChevronRight className="mr-2" /> <a href="#" className="hover:underline">Registration Details</a></li>
-              <li className="flex items-center"><FiChevronRight className="mr-2" /> <a href="#" className="hover:underline">Emigrant Details</a></li>
-              <li className="flex items-center"><FiChevronRight className="mr-2" /> <a href="#" className="hover:underline">Sitemap</a></li>
+            <h3 className="text-gray-800 font-bold mb-4">More from Bikroy</h3>
+            <ul>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  Sell Fast
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  Membership
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  Banner Ads
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  Boost Ad
+                </a>
+              </li>
             </ul>
+          </div>
 
-            <div className="flex space-x-2 mt-4">
-              <a href="#" className="bg-gray-700 p-2 rounded text-white hover:bg-gray-600">
-                <FaFacebookF />
+          {/* Column 2 */}
+          <div>
+            <h3 className="text-gray-800 font-bold mb-4">Help & Support</h3>
+            <ul>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  FAQ
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  Stay safe
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3 */}
+          <div>
+            <h3 className="text-gray-800 font-bold mb-4">About Bikroy</h3>
+            <ul>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  About Us
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  Careers
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  Terms and Conditions
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  Privacy policy
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  Sitemap
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4 */}
+          <div>
+            <h3 className="text-gray-800 font-bold mb-4">Blog & Guides</h3>
+            <ul>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  CarsGuide
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  BikesGuide
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  PropertyGuide
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-gray-800">
+                  Official Blog
+                </a>
+              </li>
+            </ul>
+            <div className="flex space-x-4 mt-4">
+              <a href="#" className="hover:text-gray-800">
+                <i className="fab fa-facebook"></i>
               </a>
-              <a href="#" className="bg-gray-700 p-2 rounded text-white hover:bg-gray-600">
-                <FaInstagram />
+              <a href="#" className="hover:text-gray-800">
+                <i className="fab fa-x-twitter"></i>
               </a>
-              <a href="#" className="bg-gray-700 p-2 rounded text-white hover:bg-gray-600">
-                <FaTwitter />
+              <a href="#" className="hover:text-gray-800">
+                <i className="fab fa-tiktok"></i>
               </a>
-              <a href="#" className="bg-gray-700 p-2 rounded text-white hover:bg-gray-600">
-                <FaYoutube />
-              </a>
-              <a href="#" className="bg-gray-700 p-2 rounded text-white hover:bg-gray-600">
-                <FaLinkedinIn />
+              <a href="#" className="hover:text-gray-800">
+                <i className="fab fa-youtube"></i>
               </a>
             </div>
           </div>
-          
 
-          {/* Newsletter Section */}
+          {/* Column 5 */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
-              Newsletter <span className="ml-2 text-blue-500">▲</span>
-            </h3>
-            <p className="text-sm mb-4">
-              To receive latest news, events & updates about Soundlines Group, sign up to our newsletter.
-            </p>
-            <div>
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full px-4 py-2 mb-2 bg-gray-800 border border-gray-700 text-gray-300 focus:outline-none rounded"
+            <h3 className="text-gray-800 font-bold mb-4">Download our app</h3>
+            <div className="space-y-2">
+              <Link href="#">
+                <img
+                  src="https://i.ibb.co.com/W2ZVDQQ/google-play.png"
+                  alt="Google Play"
+                  className="w-32"
+                />
+              </Link>
+              <Link href="#">
+                <img src="https://i.ibb.co.com/5sXXSvq/app.png" alt="App Store" className="w-32" />
+              </Link>
+            </div>
+            <h3 className="text-gray-800 font-bold mt-6">Other countries</h3>
+            <a
+              href="#"
+              className="flex items-center mt-2 hover:text-gray-800 space-x-2"
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Flag_of_Sri_Lanka.svg/2560px-Flag_of_Sri_Lanka.svg.png"
+                alt="Sri Lanka"
+                className="w-6 h-6 rounded-xl"
               />
-              <button className="w-full px-4 py-2 bg-gray-700 text-white font-semibold rounded hover:bg-gray-600">
-                Send
-              </button>
-            </div>
+              <span>Sri Lanka</span>
+            </a>
+          </div>
+        </div>
+
+        <hr className="my-6 border-gray-300" />
+
+        {/* Footer Bottom */}
+        <div className="flex justify-between items-center">
+          {/* Left Side Text */}
+          <div className="text-sm text-gray-500">
+            © 2025. All rights reserved. Component It
           </div>
 
-          {/* Certifications Section */}
+          {/* Right Side Image */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
-              Certifications <span className="ml-2 text-blue-500">▲</span>
-            </h3>
-            <div className="grid grid-cols-3 gap-2">
-              {/* Replace src with actual certification image URLs */}
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/acs.jpg" alt="Certification 1" className="w-full" />
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/acs.jpg" alt="Certification 2" className="w-full" />
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/jas-anz-256x256.jpg" alt="Certification 3" className="w-full" />
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/jas-anz-256x256.jpg" alt="Certification 4" className="w-full" />
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/jas-anz-256x256.jpg" alt="Certification 5" className="w-full" />
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/jas-anz-256x256.jpg" alt="Certification 6" className="w-full" />
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/jas-anz-256x256.jpg" alt="Certification 7" className="w-full" />
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/ccl-256x256.jpg" alt="Certification 8" className="w-full" />
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/ccl-256x256.jpg" alt="Certification 9" className="w-full" />
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/ccl-256x256.jpg" alt="Certification 10" className="w-full" />
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/ccl-256x256.jpg" alt="Certification 11" className="w-full" />
-              <img src="https://soundlinesgroup.com/wp-content/uploads/2022/12/ccl-256x256.jpg" alt="Certification 12" className="w-full" />
-            </div>
+            <img
+              src="https://i.ibb.co.com/ctzhvV3/cash-icon-removebg-preview.png"
+              alt="Bikroy Logo"
+              className="w-20 md:w-24 h-16 me-8"
+            />
           </div>
         </div>
       </div>

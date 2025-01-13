@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import useFirebase from "../../Hooks/useFirebase";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
-  const {  loginWithOwnEmailAndPass, authError } = useFirebase();
+  const {  loginWithOwnEmailAndPass, authError } = useAuth();
 
   // Location & Navigate
   const location = useLocation();
@@ -44,7 +44,7 @@ const Login = () => {
             {/* Right Section */}
             <div className="bg-blue-900 text-black p-8 rounded-lg w-full max-w-lg">
               <h2 className="text-2xl font-bold mb-6 text-center text-white mt-10">
-                Login to  c.o overseas
+                Login to ToCash
               </h2>
               <form className="h-64 w-96" onSubmit={handleSubmit(onSubmit)}>
                 {/* Email Input */}
@@ -80,6 +80,16 @@ const Login = () => {
                 >
                   Login
                 </button>
+
+                <div className="login-meta mt-3">
+                                    <p className="text-white">
+                                        New to Education?{" "}
+                                        <Link to="/signup">
+                                            <span className="login-links">Create a free Account</span>
+                                        </Link>
+                                    </p>
+                                    {/* <p className='text-white cursor-pointer' onClick={() => setShowResetForm(!showResetForm)}>Forget Password?</p> */}
+                                </div>
               </form>
 
              
