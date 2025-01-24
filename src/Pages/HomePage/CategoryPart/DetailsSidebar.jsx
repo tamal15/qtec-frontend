@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { FaAngleDoubleRight } from "react-icons/fa";
 
 
 const DetailsSidebar = ({ data, setSelectedSubCategory, setSelectedDivision }) => {
@@ -25,25 +26,32 @@ const DetailsSidebar = ({ data, setSelectedSubCategory, setSelectedDivision }) =
       {/* Category Section */}
       <div className="mt-8">
         <h2 className="font-bold text-lg mb-4">Category</h2>
-        <ul className="space-y-2 ms-5 ">
-          {uniqueCategories.map((category, index) => (
-            <li key={index} className="hover:underline cursor-pointer font-normal text-lg">
-              {category}
-            </li>
-          ))}
-        </ul>
+        <ul className="space-y-2 ms-5">
+  {uniqueCategories.map((category, index) => (
+    <li
+      key={index}
+      className="flex items-center hover:underline cursor-pointer font-normal text-lg space-x-2"
+    >
+      <FaAngleDoubleRight className="text-gray-500" />
+      <span>{category}</span>
+      
+    </li>
+  ))}
+</ul>
+
       </div>
 
       {/* Subcategory Section */}
       <div className="mt-8">
-        <h2 className="font-bold text-lg mb-4">Subcategory</h2>
+        <h2 className="font-bold text-lg mb-4 ">Subcategory</h2>
         <ul className="space-y-2">
           {Object.entries(subcategoryCounts).map(([subCategory, count], index) => (
             <li
               key={index}
-              className="hover:underline cursor-pointer ms-5"
+              className="hover:underline cursor-pointer ms-5 flex"
               onClick={() => setSelectedSubCategory(subCategory)}
             >
+              <FaAngleDoubleRight className="text-gray-500 mt-1 me-2" />
               {subCategory} <span className="text-gray-500">({count})</span>
             </li>
           ))}
@@ -57,9 +65,10 @@ const DetailsSidebar = ({ data, setSelectedSubCategory, setSelectedDivision }) =
           {uniqueDivisions.map((division, index) => (
             <li
               key={index}
-              className="hover:underline cursor-pointer"
+              className="hover:underline cursor-pointer flex ms-5"
               onClick={() => setSelectedDivision(division)}
             >
+                <FaAngleDoubleRight className="text-gray-500 mt-1 me-2" />
               {division}
             </li>
           ))}

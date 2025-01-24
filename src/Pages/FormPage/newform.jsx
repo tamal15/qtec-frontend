@@ -286,47 +286,8 @@ const FormPage = () => {
       };
     
 
-      const handleNextStep = () => {
-        // Check if all required fields are filled for Step 1
-        if (
-          !selectedCategory ||
-          !selectedSubcategory ||
-          !selectedDivision ||
-          !selectedDistrict ||
-          !selectedUpazila ||
-          !selectedThana ||
-          !formData.localArea
-        ) {
-          alert("Please fill out all required fields before proceeding.");
-          return;
-        }
-      
-        setStep(2); // Proceed to the next step only if validation passes
-      };
-
-      const handleFinalSubmit = async (e) => {
-        e.preventDefault();
-      
-        // Check if all required fields for Step 2 are filled
-        if (
-          !formDatas.name ||
-          !formDatas.email ||
-          !formDatas.phone ||
-          !formDatas.description ||
-          !formDatas.price ||
-          !formDatas.condition ||
-          !formDatas.images.length
-        ) {
-          alert("Please fill out all required fields before submitting.");
-          return;
-        }
-      
-        // Submit form if validation passes
-        handleSubmit(e);
-      };
-
   return (
-    <div className="container mx-auto p-4 mt-10">
+    <div className="container mx-auto p-4">
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6">
         {/* Step 1: Select Category */}
         {step === 1 && (
@@ -473,7 +434,7 @@ const FormPage = () => {
           </div>
             <button
               type="button"
-              onClick={handleNextStep}
+              onClick={() => setStep(2)}
               className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md"
             >
               পরবর্তী
@@ -644,7 +605,6 @@ const FormPage = () => {
     
             <button
               type="submit"
-              onClick={handleFinalSubmit}
               className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
             >
               বিজ্ঞাপন পোস্ট করুন

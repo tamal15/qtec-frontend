@@ -33,32 +33,33 @@ const Categoryspart = () => {
   };
 
   return (
-    <div className="min-h-screen  p-4 md:px-20 mt-20">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">
-        Browse items by category
-      </h1>
-      <div className="grid grid-cols-1 h-24 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {Object.keys(categoryCounts).map((category, index) => (
-          <div
-            key={index}
-            onClick={() => handleCategoryClick(category)}
-            className="flex items-center p-4 bg-white shadow-[0_4px_10px_rgba(0,0,0,0.1)] rounded-lg hover:shadow-[0_6px_12px_rgba(0,0,0,0.15)] transition cursor-pointer"
-          >
-            <span className="text-3xl mr-4">
-              {data.find((item) => item.category === category)?.icon || "📦"}
-            </span>
-            <div>
-              <h2 className="text-lg font-semibold text-gray-700">
-                {category}
-              </h2>
-              <p className="text-sm text-gray-500">
-                {categoryCounts[category]} ads
-              </p>
-            </div>
+    <div className=" p-6 md:px-24 mt-20 bg-gray-50">
+    <h1 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">
+      Browse Items by Category
+    </h1>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      {Object.keys(categoryCounts).map((category, index) => (
+        <div
+          key={index}
+          onClick={() => handleCategoryClick(category)}
+          className="group flex flex-row md:flex-row items-center p-6 bg-white h-32 shadow-lg rounded-xl hover:shadow-xl transition transform hover:scale-105 cursor-pointer border border-gray-200"
+        >
+          <span className="text-5xl text-indigo-600 mb-4 group-hover:text-indigo-800">
+            {data.find((item) => item.category === category)?.icon || "📦"}
+          </span>
+          <div className="text-center">
+            <h2 className="text-lg font-semibold text-gray-800 group-hover:text-gray-900">
+              {category}
+            </h2>
+            <p className="text-sm text-gray-500 text-left group-hover:text-gray-700">
+              {categoryCounts[category]} ads
+            </p>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
+  </div>
+  
   );
 };
 

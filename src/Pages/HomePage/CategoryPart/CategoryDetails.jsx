@@ -1,4 +1,4 @@
-import DetailsHeader from "./DetailsHeader";
+// import DetailsHeader from "./DetailsHeader";
 import DetailsSidebar from "./DetailsSidebar";
 import MainContent from "./MainContent";
 import { useLocation } from "react-router-dom";
@@ -20,9 +20,9 @@ const CategoryDetails = () => {
   });
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className=" min-h-screen md:mt-12 mt-20">
       {/* Header Section */}
-      <DetailsHeader />
+      {/* <DetailsHeader /> */}
 
       {/* Main Content Section */}
       <div className="flex flex-col md:flex-row p-4 gap-4">

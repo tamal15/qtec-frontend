@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 // import Navber from "./Pages/Shared/Navber/Navber";
 import Footer from "./Pages/Shared/Footer/Footer";
-import AllNavber from "./Pages/Shared/Navber/AllNavber";
+import Navber from "./Pages/Shared/Navber/Navber";
 
 const Layout = () => {
   const location = useLocation();
@@ -10,7 +10,7 @@ const Layout = () => {
 
   return (
     <>
-      {!isDashboardRoute && !isHomeRoute && <AllNavber />}
+      {!isDashboardRoute && !isHomeRoute && <Navber />}
       <Outlet />
       {!isDashboardRoute && <Footer />}
     </>

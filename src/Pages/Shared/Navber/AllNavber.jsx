@@ -19,9 +19,9 @@ const AllNavber = () => {
             ☰
           </button>
           <div className="text-2xl font-bold flex items-center">
-           <Link className="flex" to="/">
-           <span className="mr-1"><img className="w-12 h-12" src="https://i.ibb.co.com/ctzhvV3/cash-icon-removebg-preview.png"></img></span> 
-           <span className="mt-2">To-Cash</span></Link>
+          <Link className="flex" to="/">
+                      <span className="-mr-2"><img className="w-16 h-12" src="https://i.ibb.co.com/ctzhvV3/cash-icon-removebg-preview.png"></img></span> 
+                      <span className="mt-2"></span></Link>
           </div>
           <div className="hidden md:flex items-center space-x-6 ml-4">
             <button className="bg-transparent text-white ms-5">All ads</button>

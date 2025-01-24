@@ -1,106 +1,223 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
+import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 import { IoLogoWechat } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
-import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Navber = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpens, setIsDropdownOpens] = useState(false);
+  const { user } = useAuth();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+
+
+ 
+
+ 
+
+  // Toggle navigation menu (hamburger menu)
+  const toggleNav = () => setIsNavOpen(!isNavOpen);
 
   return (
-    <header className="bg-teal-500 text-white py-4 px-6 md:h-56 ">
-      <div className="container mx-auto px-4 lg:px-16 flex justify-between items-center">
-        {/* Logo and All ads + Bangla section */}
-        <div className="flex items-center space-x-4">
-          <button onClick={toggleMenu} className="md:hidden text-2xl">
-            ☰
-          </button>
-          <div className="text-2xl font-bold flex items-center">
-           <Link className="flex" to="/">
-                      <span className="mr-1"><img className="w-12 h-12" src="https://i.ibb.co.com/ctzhvV3/cash-icon-removebg-preview.png"></img></span> 
-                      <span className="mt-2">To-Cash</span></Link>
-          </div>
-          <div className="hidden md:flex items-center space-x-6 ml-4">
-            <button className="bg-transparent text-white ms-5">All ads</button>
-            <button className="bg-gray-800 text-white py-1 px-3 rounded-full">বাংলা</button>
-          </div>
-        </div>
+    <>
+      {/* Header Bar */}
+      <div className="bg-gradient-to-r from-[#01c0c9] to-[#007cde] text-white text-sm py-2 fixed top-0 left-0 right-0 z-[9999]">
+        <div className="container mx-auto flex flex-wrap items-center justify-between px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center space-x-4">
+            <a
+              href="https://www.facebook.com/C.O.Overseas?mibextid=ZbWKwL"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-orange-400"
+            >
+              <FaFacebookF />
+            </a>
 
-        {/* Chat, Account, and Post Ad buttons */}
-        <div className="flex items-center space-x-2">
-          <button className="md:hidden text-white text-xl"><IoLogoWechat className="text-xl mt-1"/></button>
-          <button className="md:hidden text-white text-xl"> <MdAccountCircle className="text-xl mt-1"/></button>
-          <div className="hidden md:flex items-center space-x-6">
-            <div className="flex">
-                     <Link to="/viewchats" className="flex">
-                     <IoLogoWechat className="text-xl mt-1"/>
-                     <button className="bg-transparent text-white ms-2">Chat</button></Link>
-                     </div>
-          <div>
-                  <Link to="/accounts" className="flex">
-                  <MdAccountCircle className="text-xl mt-1"/>
-                  <button className="bg-transparent text-white ms-2">Account</button></Link>
-                   </div>
-            <button className="bg-yellow-400 text-teal-900 px-4 py-2 rounded-full font-bold">POST FREE AD</button>
+            <a href="#" className="text-white hover:text-orange-400">
+              <FaTwitter />
+            </a>
+            <a href="#" className="text-white hover:text-orange-400">
+              <FaInstagram />
+            </a>
+            <a href="#" className="text-white hover:text-orange-400">
+              <FaLinkedinIn />
+            </a>
+          </div>
+          <div className="flex flex-wrap items-center space-x-6">
+            <div className="flex items-center">
+              <FiPhone className="mr-1 text-white" />
+              +880 1680-564154
+            </div>
+            <div className="flex items-center">
+              <FiMapPin className="mr-1 text-white" />
+              Purana Paltan,Dhaka-1200, Dhaka, Bangladesh
+            </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            <a
+              href="#"
+              className="flex items-center text-white hover:text-orange-400"
+            >
+              <FiMail className="mr-1" /> ethanfaisul@gmail.com
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="container mx-auto mt-6 md:mt-16 px-4 lg:px-16 ">
-        <div className="flex justify-center">
-          <div className="w-full max-w-2xl relative">
-            <input
-              type="text"
-              className="w-full py-3 px-4 rounded-full shadow-md focus:outline-none"
-              placeholder="What are you looking for?"
-            />
-            <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-yellow-400 text-teal-900 p-2 rounded-full shadow-md">
-              🔍
-            </button>
+      {/* Navbar */}
+      <div className="w-full inset-x-0 m-auto sticky top-[80px] md:top-[30px] z-[998]">
+        <nav className="flex justify-between items-center p-2 backdrop-blur-sm backgroundsnavbar w-full px-4 shadow-lg">
+          <div className="flex items-center">
+            <Link to="/">
+              <img
+                src="https://i.ibb.co.com/RgTgTkj/Sellfo-01.png"
+                alt="Logo Image"
+                className="w-[80px] h-[70px] text-white"
+              />
+            </Link>
           </div>
-        </div>
-      </div>
 
-      {/* Sidebar Menu */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 z-50">
-          <div className="w-3/4 max-w-sm bg-gray-900 text-white h-full shadow-md p-6 flex flex-col space-y-4">
-            <button onClick={toggleMenu} className="text-right text-xl mb-4">&times;</button>
-            <nav className="flex flex-col space-y-4">
-              <a href="#" className="flex items-center space-x-2">
-                <span>🏷</span>
-                <span>All ads in Bikroy</span>
-              </a>
-              <a href="#" className="flex items-center space-x-2">
-                <span>👤</span>
-                <span>Account</span>
-              </a>
-              <a href="#" className="flex items-center space-x-2">
-                <span>⚙️</span>
-                <span>Settings</span>
-              </a>
-              <a href="#" className="flex items-center space-x-2">
-                <span>🛡️</span>
-                <span>Stay safe</span>
-              </a>
-              <a href="#" className="flex items-center space-x-2">
-                <span>❓</span>
-                <span>FAQ</span>
-              </a>
-              <a href="#" className="flex items-center space-x-2">
-                <span>💸</span>
-                <span>How to sell fast?</span>
-              </a>
-            </nav>
-            <button className="bg-gray-800 text-white py-2 px-4 rounded-full mt-auto">বাংলা</button>
+          {/* Center Navigation Links */}
+          <ul className={`hidden md:flex md:items-center md:gap-10`}>
+            <li className="font-medium text-black text-xl">
+              <Link to="/">Home</Link>
+            </li>
+          
+            {user?.email ? (
+      <>
+        {/* If user is logged in, show Chat and Account */}
+        <li className="font-medium text-black text-xl">
+          <Link to="/viewchats" className="flex">
+            <IoLogoWechat className="text-xl mt-1" />
+            <button className="ms-2">Chat</button>
+          </Link>
+        </li>
+
+        <li className="font-medium text-black text-xl">
+          <Link to="/accounts" className="flex">
+            <MdAccountCircle className="text-xl mt-1" />
+            <button className="ms-2">Account</button>
+          </Link>
+        </li>
+      </>
+    ) : (
+      <>
+        {/* If user is not logged in, show only Login */}
+        <li className="font-medium text-black text-xl">
+          <Link to="/login" className="flex">
+            <button className="ms-2">Login</button>
+          </Link>
+        </li>
+      </>
+    )}
+            <li className="font-medium text-black text-xl">
+            <button className=" ms-1">All ads</button>
+            </li>
+            <li className="font-medium text-black text-xl">
+            <button className="bg-[#007cde] text-white py-1 px-3 rounded-full">বাংলা</button>
+            </li>
+            
+          </ul>
+
+          {/* Contact Us Link */}
+          <div className="hidden md:block">
+          <button className="bg-[#007cde] text-white px-4 py-2 rounded-full font-bold">POST FREE AD</button>
           </div>
-        </div>
-      )}
-    </header>
+
+          {/* Mobile Menu Toggle */}
+          <div
+            className={`md:hidden cursor-pointer ${isNavOpen ? "toggle" : ""}`}
+            onClick={toggleNav}
+          >
+            <div className="line1 w-6 h-1 bg-black mb-1"></div>
+            <div className="line2 w-6 h-1 bg-black mb-1"></div>
+            <div className="line3 w-6 h-1 bg-black"></div>
+          </div>
+
+          {/* Mobile Menu */}
+          <ul
+            className={`absolute top-20 left-0 w-full bg-white transition-all duration-500 ease-in md:hidden flex flex-col items-center ${
+              isNavOpen ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}
+          >
+            <li className="font-medium text-black py-2">
+              <Link to="/" onClick={toggleNav}>
+                Home
+              </Link>
+            </li>
+            <li
+              className="font-medium text-black py-2 relative"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <span className="cursor-pointer">About</span>
+              {isDropdownOpen && (
+                <ul className="bg-white text-black mt-2 py-2 w-full rounded shadow-lg">
+                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
+                    <Link to="/aboutuspage">About Us</Link>
+                  </li>
+                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
+                    <Link to="/award">Award</Link>
+                  </li>
+                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
+                    <Link to="/aboutclientele">Clientele</Link>
+                  </li>
+                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
+                    <Link to="/aboutrecruitment">Recruitment</Link>
+                  </li>
+                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
+                    <Link to="/aboutTestimonial">Testimonial</Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li className="font-medium text-black py-2">
+              <Link to="/services" onClick={toggleNav}>
+                Our Services
+              </Link>
+            </li>
+            <li className="font-medium text-black py-2">
+              <Link to="/career" onClick={toggleNav}>
+                Career
+              </Link>
+            </li>
+            <li className="font-medium text-black py-2">
+              <Link to="/blogpage" onClick={toggleNav}>
+                Blog
+              </Link>
+            </li>
+            <li
+              className="font-medium text-black py-2 relative"
+              onClick={() => setIsDropdownOpens(!isDropdownOpens)}
+            >
+              <span className="cursor-pointer">Event</span>
+              {isDropdownOpens && (
+                <ul className="bg-white text-black mt-2 py-2 w-full rounded shadow-lg">
+                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
+                    <Link to="/eventcare">We Care</Link>
+                  </li>
+                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
+                    <Link to="/eventmedia">Gallery</Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li className="font-medium text-black py-2">
+              <Link to="/contactUs" onClick={toggleNav}>
+                Contact Us
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </>
   );
 };
 

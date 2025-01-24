@@ -22,6 +22,12 @@ import Home from "./Pages/HomePage/Home/Home";
 import AccountDetails from "./Pages/AccountDetails/AccountDetails";
 import PostAdPage from "./Pages/AccountDetails/PostAdPage";
 import ContactUs from "./Pages/AccountDetails/ContactUs";
+import MakeAdmin from "./Pages/Dashboard/MakeAdmin/MakeAdmin";
+import UserAllData from "./Pages/Dashboard/UserAllData/UserAllData";
+import PendingProduct from "./Pages/Dashboard/PendingProduct/PendingProduct";
+import BoostAdPage from "./Pages/AccountDetails/AddsShow/BoostAdPage";
+import UpdatePackage from "./Pages/Dashboard/UpdatePackage/UpdatePackage";
+import LocationSelector from "./Pages/LocationSelector/LocationSelector";
 
 
 const router = createBrowserRouter([
@@ -47,6 +53,10 @@ const router = createBrowserRouter([
         element: <AccountDetails />,
       },
       {
+        path:"/boost-ad/:productId",
+        element: <BoostAdPage />,
+      },
+      {
         path: "/contactus",
         element: <ContactUs />,
       },
@@ -63,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "/viewchats",
         element: <ViewChat />,
+      },
+      {
+        path: "/location",
+        element: <LocationSelector />,
       },
       // {
       //   path: "/category/:catego",
@@ -92,14 +106,30 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          <PrivetRoute>
+          // <PrivetRoute>
             <Dashboard />
-           </PrivetRoute>
+          //  </PrivetRoute>
         ),
         children: [
           {
             path: "/dashboard",
             element: <DashboardHome />,
+          },
+          {
+            path: "/dashboard/makeadmin",
+            element: <MakeAdmin />,
+          },
+          {
+            path: "/dashboard/useralldata",
+            element: <UserAllData />,
+          },
+          {
+            path: "/dashboard/pendingproduct",
+            element: <PendingProduct />,
+          },
+          {
+            path: "/dashboard/updatepackage",
+            element: <UpdatePackage />,
           },
          
     

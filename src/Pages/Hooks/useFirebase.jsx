@@ -53,18 +53,32 @@ import {
     };
   
     // Login with email and password
-    const loginWithOwnEmailAndPass = (email, password, location, navigate) => {
+    // Login with email and password
+    // Login with email and password
+    const loginWithOwnEmailAndPass = async (email, password, location, navigate) => {
       setIsLoading(true);
-      signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          const destination = location?.state?.from || '/dashboard';
-          navigate(destination); // Use navigate here
-          setAuthError('');
-        })
-        .catch((error) => {
-          setAuthError(error.message);
-        })
-        .finally(() => setIsLoading(false));
+      try {
+        // Check user status from database
+        const response = await fetch(`http://localhost:5000/usersblock/${email}`);
+        const userData = await response.json();
+        console.log(userData)
+  
+        if (userData.status === "blocked") {
+          setAuthError("Your account is blocked. Contact support.");
+          setIsLoading(false);
+          return;
+        }
+  
+        // Proceed with login if not blocked
+        await signInWithEmailAndPassword(auth, email, password);
+        const destination = location?.state?.from || "/dashboard";
+        navigate(destination);
+        setAuthError("");
+      } catch (error) {
+        setAuthError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
   
     // Verify email

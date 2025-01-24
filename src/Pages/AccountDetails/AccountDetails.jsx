@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { FaAd, FaUser, FaSearch, FaStar, FaCog, FaPhone, FaAngleDoubleRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { IoMdCloudUpload } from "react-icons/io";
+// import { IoMdCloudUpload } from "react-icons/io";
 import { MdCardMembership } from "react-icons/md";
-import { FcSmartphoneTablet } from 'react-icons/fc';
+import AddsShow from './AddsShow/AddsShow';
+import SearchList from './SearchList/SearchList';
+import FavouriteProduct from './FavouriteProduct/FavouriteProduct';
+import PhoneNumber from './PhoneNumber/PhoneNumber';
+import Setting from './Setting/Setting';
 
 // FaBriefcase 
 const AccountDetails = () => {
@@ -25,19 +29,9 @@ const AccountDetails = () => {
     switch (activeTab) {
       case 'My ads':
         return (
-          <div className="flex flex-col md:flex-row gap-10 items-center justify-center h-full">
-           <div>
-           <IoMdCloudUpload className='text-8xl' />
-           </div>
-          <div>
-          <h2 className="text-2xl font-bold">You don’t have any ads yet.</h2>
-            <p className="text-gray-500 mb-4 text-center text-xl">
-              Click the Post an ad now! button to post your ad.
-            </p>
-           <Link to="/postadpages">
-           <button  className="bg-yellow-500 text-white px-4 py-2 rounded">Post your ad now!</button>
-           </Link>
-          </div>
+          <div className="w-full">
+
+          <AddsShow/>
           </div>
         );
       case 'My membership':
@@ -59,134 +53,30 @@ const AccountDetails = () => {
         );
         case 'Saved searches':
           return (
-            <div className="text-center p-8">
-              <h2 className="text-2xl font-bold mb-4">You have no saved searches.</h2>
-              <p className="text-gray-600 mb-4 text-xl">
-                To save a search, click on “Saved search” in your list of search results and we will update you when there is a new item added.
-              </p>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded flex items-center mx-auto">
-                <span className="mr-2">Save search</span>
-              </button>
+            <div className="text-center p-8 w-full">
+            
+              <SearchList/>
             </div>
           );
           case 'Favourite':
             return (
-              <div className="text-center p-8 flex  flex-col md:flex-row gap-10">
-                <div>
-                  <FaStar className='text-8xl'/>
-                </div>
-               <div>
-                 <h2 className="text-xl font-bold mb-4">You haven’t marked any ads as favorite yet.</h2>
-                <p className="text-gray-600 mb-2">
-                  Click on the star symbol on any ad to save it as a favorite.
-                </p>
-                <p className="text-gray-600 mb-4">
-                  Start to browse ads to find ads you would like to favorite.
-                </p>
-                <Link to="/browse">
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded">
-                    Browse ads
-                  </button>
-                </Link>
-               </div>
-              </div>
+             <div className='w-full'>
+              <FavouriteProduct/>
+             </div>
             );
             case 'Settings':
               return (
-                <div className="p-8 flex flex-col lg:flex-row gap-8">
-                {/* Left side for heading or description */}
-                <div className="w-full lg:w-1/3 bg-gray-100 p-6 shadow rounded-lg">
-                  <h2 className="text-2xl font-bold mb-4">Settings</h2>
-                  <p className="text-gray-600">
-                    Manage your account information, update personal details, and secure your password.
-                  </p>
-                  <div className="mt-8">
-                    <img
-                      src="/path/to/your/image.png"
-                      alt="Settings illustration"
-                      className="w-full h-auto rounded-lg"
-                    />
-                  </div>
-                </div>
-              
-                {/* Right side for the form */}
-                <div className="w-full lg:w-2/3 bg-white p-6 shadow rounded-lg">
-                  <h3 className="text-xl font-bold mb-4">Personal Details</h3>
-                  <div className="mb-6">
-                    <label className="block text-gray-700 font-medium mb-2">Email</label>
-                    <input
-                      type="email"
-                      value="car22711@gmail.com"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                      readOnly
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <label className="block text-gray-700 font-medium mb-2">Name</label>
-                    <input
-                      type="text"
-                      placeholder="Enter your name"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <label className="block text-gray-700 font-medium mb-2">Location</label>
-                    <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
-                      <option value="">Select your location</option>
-                      <option value="location1">Location</option>
-                      <option value="sublocation">Sub location</option>
-                    </select>
-                  </div>
-                  <button className="w-full lg:w-auto bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition">
-                    Update Details
-                  </button>
-              
-                  <h3 className="text-xl font-bold mt-8 mb-4">Change Password</h3>
-                  <div className="mb-6">
-                    <label className="block text-gray-700 font-medium mb-2">New Password</label>
-                    <input
-                      type="password"
-                      placeholder="Enter new password"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <label className="block text-gray-700 font-medium mb-2">Confirm New Password</label>
-                    <input
-                      type="password"
-                      placeholder="Confirm new password"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    />
-                  </div>
-                  <button className="w-full lg:w-auto bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition">
-                    Change Password
-                  </button>
-                </div>
-              </div>
+               <div className='w-full'>
+                <Setting/>
+               </div>
               
               );
             
               case 'Phone number':
                 return (
-                  <div className="flex flex-col items-center justify-center h-full  p-4">
-                    {/* Image with red slash */}
-                    <div className="relative mb-4">
-                    <FcSmartphoneTablet className='text-8xl'/>
-                      <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-                        <div className="h-[2px] w-full bg-red-500 rotate-45 origin-center"></div>
-                      </div>
-                    </div>
-              
-                    {/* Text content */}
-                    <h2 className="text-3xl font-bold">Phone Numbers</h2>
-                    <p className="text-xl font-bold text-center mt-2">
-                      There are currently no phone numbers associated with your account.
-                    </p>
-                    <p className="text-lg  text-center mt-2">
-                      Phone numbers are unique to your account and will be collected while
-                      you are posting ads or ordering products on Bikroy.
-                    </p>
-                  </div>
+                 <div className='w-full'>
+                  <PhoneNumber/>
+                 </div>
                 );
               
       case 'Jobs':
@@ -222,7 +112,7 @@ const AccountDetails = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row gap-4 p-4">
+    <div className="min-h-screen flex flex-col md:flex-row gap-4 p-4 md:mt-10 mt-20">
       {/* Sidebar */}
       <div className="bg-gray-100 w-full md:w-1/4 p-4 rounded-lg shadow">
         <h2 className="text-xl font-bold mb-4">Account</h2>

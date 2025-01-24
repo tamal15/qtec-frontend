@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const MainContent = ({ data }) => {
   return (
-    <div className="flex-1 p-4">
+    <div className="flex-1 p-4 ">
       <Slider />
       <DetailsProduct data={data} />
     </div>
