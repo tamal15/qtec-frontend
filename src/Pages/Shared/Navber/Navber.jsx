@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaFacebookF,
@@ -6,19 +6,28 @@ import {
   FaInstagram,
   FaLinkedinIn,
 } from "react-icons/fa";
-import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
+import { FiMail, FiPhone } from "react-icons/fi";
 import { IoLogoWechat } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
 import useAuth from "../../Hooks/useAuth";
+import { useTranslationContext } from "../Context/TranslationContext";
+import { useTranslation } from "react-i18next";
 
 const Navber = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isDropdownOpens, setIsDropdownOpens] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [isDropdownOpens, setIsDropdownOpens] = useState(false);
   const { user } = useAuth();
 
+ 
+  const { switchLanguage } = useTranslationContext(); // Using the custom context function
+  const { t, i18n } = useTranslation(); // Using react-i18next hook
+  const [language, setLanguage] = useState(i18n.language); // Keep track of the current language
 
-
+  // Update language state when the language changes
+  useEffect(() => {
+    setLanguage(i18n.language);
+  }, [i18n.language]);
  
 
  
@@ -56,10 +65,10 @@ const Navber = () => {
               <FiPhone className="mr-1 text-white" />
               +880 1680-564154
             </div>
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <FiMapPin className="mr-1 text-white" />
               Purana Paltan,Dhaka-1200, Dhaka, Bangladesh
-            </div>
+            </div> */}
           </div>
           <div className="flex items-center space-x-4">
             <a
@@ -73,14 +82,14 @@ const Navber = () => {
       </div>
 
       {/* Navbar */}
-      <div className="w-full inset-x-0 m-auto sticky top-[80px] md:top-[30px] z-[998]">
+      <div className="w-full inset-x-0 m-auto sticky top-[30px] md:top-[30px] z-[998]">
         <nav className="flex justify-between items-center p-2 backdrop-blur-sm backgroundsnavbar w-full px-4 shadow-lg">
-          <div className="flex items-center">
+          <div className="flex items-center mt-5 md:mt-0">
             <Link to="/">
               <img
                 src="https://i.ibb.co.com/RgTgTkj/Sellfo-01.png"
                 alt="Logo Image"
-                className="w-[80px] h-[70px] text-white"
+                className="w-[80px] md:h-[70px] h-[50px] text-white"
               />
             </Link>
           </div>
@@ -88,7 +97,7 @@ const Navber = () => {
           {/* Center Navigation Links */}
           <ul className={`hidden md:flex md:items-center md:gap-10`}>
             <li className="font-medium text-black text-xl">
-              <Link to="/">Home</Link>
+              <Link to="/">{t("home")}</Link>
             </li>
           
             {user?.email ? (
@@ -97,14 +106,14 @@ const Navber = () => {
         <li className="font-medium text-black text-xl">
           <Link to="/viewchats" className="flex">
             <IoLogoWechat className="text-xl mt-1" />
-            <button className="ms-2">Chat</button>
+            <button className="ms-2">{t("chat")}</button>
           </Link>
         </li>
 
         <li className="font-medium text-black text-xl">
           <Link to="/accounts" className="flex">
             <MdAccountCircle className="text-xl mt-1" />
-            <button className="ms-2">Account</button>
+            <button className="ms-2">{t("account")}</button>
           </Link>
         </li>
       </>
@@ -113,28 +122,36 @@ const Navber = () => {
         {/* If user is not logged in, show only Login */}
         <li className="font-medium text-black text-xl">
           <Link to="/login" className="flex">
-            <button className="ms-2">Login</button>
+            <button className="ms-2">{t("logins")}</button>
           </Link>
         </li>
       </>
     )}
             <li className="font-medium text-black text-xl">
-            <button className=" ms-1">All ads</button>
+              <Link to="/allads">
+              <button className=" ms-1">{t("allAds")}</button>
+              </Link>
+           
             </li>
             <li className="font-medium text-black text-xl">
-            <button className="bg-[#007cde] text-white py-1 px-3 rounded-full">বাংলা</button>
+            <button className="bg-[#007cde] text-white py-1 px-3 rounded-full" onClick={() => switchLanguage(language === "en" ? "bn" : "en")}>
+        {language === "en" ? "বাংলা" : "English"}
+      </button>
             </li>
             
           </ul>
 
           {/* Contact Us Link */}
           <div className="hidden md:block">
-          <button className="bg-[#007cde] text-white px-4 py-2 rounded-full font-bold">POST FREE AD</button>
+            <Link to="/uploadcategory">
+            <button className="bg-[#007cde] text-white px-4 py-2 rounded-full font-bold">{t("postFreeAd")}</button>
+            </Link>
+          
           </div>
 
           {/* Mobile Menu Toggle */}
           <div
-            className={`md:hidden cursor-pointer ${isNavOpen ? "toggle" : ""}`}
+            className={`md:hidden mt-3 cursor-pointer ${isNavOpen ? "toggle" : ""}`}
             onClick={toggleNav}
           >
             <div className="line1 w-6 h-1 bg-black mb-1"></div>
@@ -144,77 +161,60 @@ const Navber = () => {
 
           {/* Mobile Menu */}
           <ul
-            className={`absolute top-20 left-0 w-full bg-white transition-all duration-500 ease-in md:hidden flex flex-col items-center ${
+            className={`absolute top-24 left-0 w-full bg-white transition-all duration-500 ease-in md:hidden flex flex-col items-center ${
               isNavOpen ? "opacity-100 visible" : "opacity-0 invisible"
             }`}
           >
-            <li className="font-medium text-black py-2">
-              <Link to="/" onClick={toggleNav}>
-                Home
+            <li className="font-medium text-black text-xl py-2">
+              <Link to="/">{t("home")}</Link>
+            </li>
+          
+            {user?.email ? (
+      <>
+        {/* If user is logged in, show Chat and Account */}
+        <li className="font-medium text-black text-xl py-2">
+          <Link to="/viewchats" className="flex">
+            <IoLogoWechat className="text-xl mt-1" />
+            <button className="ms-2">{t("chat")}</button>
+          </Link>
+        </li>
+
+        <li className="font-medium text-black text-xl py-2">
+          <Link to="/accounts" className="flex">
+            <MdAccountCircle className="text-xl mt-1" />
+            <button className="ms-2">{t("account")}</button>
+          </Link>
+        </li>
+      </>
+    ) : (
+      <>
+        {/* If user is not logged in, show only Login */}
+        <li className="font-medium text-black text-xl py-2">
+          <Link to="/login" className="flex">
+            <button className="ms-2">{t("logins")}</button>
+          </Link>
+        </li>
+      </>
+    )}
+            <li className="font-medium text-black text-xl py-2">
+              <Link to="/allads">
+              <button className=" ms-1">{t("allAds")}</button>
               </Link>
+            
             </li>
-            <li
-              className="font-medium text-black py-2 relative"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            >
-              <span className="cursor-pointer">About</span>
-              {isDropdownOpen && (
-                <ul className="bg-white text-black mt-2 py-2 w-full rounded shadow-lg">
-                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
-                    <Link to="/aboutuspage">About Us</Link>
-                  </li>
-                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
-                    <Link to="/award">Award</Link>
-                  </li>
-                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
-                    <Link to="/aboutclientele">Clientele</Link>
-                  </li>
-                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
-                    <Link to="/aboutrecruitment">Recruitment</Link>
-                  </li>
-                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
-                    <Link to="/aboutTestimonial">Testimonial</Link>
-                  </li>
-                </ul>
-              )}
+            <li className="font-medium text-black text-xl py-2">
+            <button className="bg-[#007cde] text-white py-1 px-3 rounded-full" onClick={() => switchLanguage(language === "en" ? "bn" : "en")}>
+        {language === "en" ? "বাংলা" : "English"}
+      </button>
             </li>
-            <li className="font-medium text-black py-2">
-              <Link to="/services" onClick={toggleNav}>
-                Our Services
+            <div className=" md:block py-2">
+              <Link to="/uploadcategory">
+              <button className="bg-[#007cde] text-white px-4 py-2 rounded-full font-bold">{t("postFreeAd")}</button>
               </Link>
-            </li>
-            <li className="font-medium text-black py-2">
-              <Link to="/career" onClick={toggleNav}>
-                Career
-              </Link>
-            </li>
-            <li className="font-medium text-black py-2">
-              <Link to="/blogpage" onClick={toggleNav}>
-                Blog
-              </Link>
-            </li>
-            <li
-              className="font-medium text-black py-2 relative"
-              onClick={() => setIsDropdownOpens(!isDropdownOpens)}
-            >
-              <span className="cursor-pointer">Event</span>
-              {isDropdownOpens && (
-                <ul className="bg-white text-black mt-2 py-2 w-full rounded shadow-lg">
-                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
-                    <Link to="/eventcare">We Care</Link>
-                  </li>
-                  <li className="py-1 px-4 hover:bg-gray-700 hover:text-white font-medium">
-                    <Link to="/eventmedia">Gallery</Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-            <li className="font-medium text-black py-2">
-              <Link to="/contactUs" onClick={toggleNav}>
-                Contact Us
-              </Link>
-            </li>
+         
+          </div>
           </ul>
+          
         </nav>
       </div>
     </>

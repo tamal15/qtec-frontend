@@ -58,7 +58,7 @@ const FormPage = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch("/locations.json"); // Adjust path if needed
+          const response = await fetch("/newpert.json"); // Adjust path if needed
           const data = await response.json();
           setDivisions(data.divisions); // Set divisions data
         } catch (error) {
@@ -244,7 +244,7 @@ const FormPage = () => {
         const combinedData = { ...formData, ...formDatas };
     
         try {
-          const response = await axios.post("http://localhost:5000/api/form-submit", combinedData);
+          const response = await axios.post("https://to-cash-backend.onrender.com/api/form-submit", combinedData);
     
           if (response.status === 200) {
             alert("ডেটা সফলভাবে জমা হয়েছে!");

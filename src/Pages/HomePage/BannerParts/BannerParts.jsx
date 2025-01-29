@@ -1,18 +1,23 @@
-const BannerParts = () => {
+import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types";
+const BannerParts = ({ searchQuery, setSearchQuery }) => {
+    const { t } = useTranslation();
     return (
-      <div style={{background:"linear-gradient(to bottom, #01c0c9, #01c0c9, #007cde)"}} className=" text-white min-h-screen flex items-center justify-center px-4">
-        <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+      <div style={{background:"linear-gradient(to bottom, #01c0c9, #01c0c9, #007cde)"}} className=" text-white md:h-[500px] h-[350px]  flex items-center justify-center px-4">
+        <div className="max-w-6xl w-full   md:mt-0 grid grid-cols-1 md:grid-cols-2 items-center gap-8">
           {/* Left Section: Text and Search Bar */}
           <div className="text-center md:text-left">
-            <h1 className="text-4xl sm:text-5xl font-bold mt-16 mb-4">#1 Community-Backed Product Success</h1>
-            <p className="text-lg sm:text-xl font-medium mb-8">From People Like You</p>
+            <h1 className="md:text-5xl text-xl  font-bold -mt-4 md:mt-8 md:mb-4 mb-2">{t("communitySuccess")}</h1>
+            <p className="text-lg sm:text-xl font-medium md:mb-8 mb-4">{t("fromPeople")}</p>
   
             {/* Search Bar */}
             <div className="relative max-w-md">
               <input
                 type="text"
+                value={searchQuery} // Bind search query state
+              onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search for a Category or Product"
-                className="w-full px-6 py-3 rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full px-4 md:px-6 md:py-3 py-3 rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
               />
               <button className="absolute right-1 top-1 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full">
                 <svg
@@ -35,19 +40,20 @@ const BannerParts = () => {
   
           {/* Right Section: Illustration */}
           <div className="flex justify-center items-center relative">
-            {/* Background Elements */}
-            <div className="absolute -top-8 -left-8 w-64 h-64 bg-[#01c0c9] rounded-full blur-2xl opacity-30"></div>
+            <div className="absolute md:-top-1 -top-10 md:-left-8 md:w-64 w-52 h-32 bg-[#01c0c9] rounded-full blur-2xl opacity-30"></div>
   
-            {/* Image */}
             <img
               src="https://i.ibb.co.com/4KpcbnT/component-it.webp"
               alt="Illustration"
-              className="w-full h-[430px] max-w-xs md:max-w-sm"
+              className="w-full -mt-5 md:-mt-10 md:h-[400px] h-[100px] max-w-xs md:max-w-sm"
             />
           </div>
         </div>
       </div>
     );
   };
-  
+  BannerParts.propTypes = {
+    searchQuery: PropTypes.string.isRequired, // Must be a string and required
+    setSearchQuery: PropTypes.func.isRequired, // Must be a function and required
+  };
   export default BannerParts;

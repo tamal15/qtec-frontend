@@ -103,7 +103,7 @@ const DetailsProduct = ({ data }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/save-search", {
+      const response = await fetch("https://to-cash-backend.onrender.com/api/save-search", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -125,6 +125,10 @@ const DetailsProduct = ({ data }) => {
 
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
 
+  const handleRefreshData = () => {
+    window.location.reload(); // This will reload the entire page
+  };
+
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4 text-left">
@@ -135,8 +139,15 @@ const DetailsProduct = ({ data }) => {
 
        {/* Search Section */}
  {/* Search Section */}
- <div className="flex items-center justify-between mb-20 mt-16">
+ <div className="flex md:flex-row flex-col items-center justify-between mb-20 mt-16">
         {/* Left Text */}
+        <button
+        onClick={handleRefreshData} // Ensure the click handler is applied correctly
+        className="bg-blue-600 mb-5 text-white md:px-6 md:py-3 md:mt-4 px-4 py-2 rounded-full shadow-md hover:bg-blue-700"
+        type="button" // Ensure this button does not cause a page reload
+      >
+        Data Refresh
+      </button>
         <div className="text-lg font-semibold text-gray-700"></div>
 
         {/* Right Search Field */}
@@ -173,7 +184,8 @@ const DetailsProduct = ({ data }) => {
               className="w-full h-32 object-cover rounded mb-4"
             />
             <h3 className="text-lg font-bold text-blue-600">
-              {product.brand} {product.model}{" "}
+              {product.title} 
+              {/* {product.model}{" "} */}
               <span className="text-gray-500">({product.condition})</span>
             </h3>
             <p className="text-lg text-gray-500 ">

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
+import ScrollToTop from "../../ScrollToTop/ScrollToTop";
 
 const ViewChat = () => {
   const { user } = useAuth();
@@ -15,7 +16,7 @@ const ViewChat = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/chatlist?userEmail=${loginuser}`)
+      .get(`https://to-cash-backend.onrender.com/chatlist?userEmail=${loginuser}`)
       .then((res) => {
         setChatList(res.data);
       })
@@ -26,13 +27,13 @@ const ViewChat = () => {
     if (selectedUser) {
       axios
         .get(
-          `http://localhost:5000/conversation?userEmail=${loginuser}&otherUserEmail=${selectedUser}`
+          `https://to-cash-backend.onrender.com/conversation?userEmail=${loginuser}&otherUserEmail=${selectedUser}`
         )
         .then((res) => setMessages(res.data))
         .catch((err) => console.error(err));
 
       axios
-        .get(`http://localhost:5000/user?email=${selectedUser}`)
+        .get(`https://to-cash-backend.onrender.com/user?email=${selectedUser}`)
         .then((res) => setSelectedUserName(res.data.name || selectedUser))
         .catch((err) => console.error(err));
     }
@@ -41,7 +42,7 @@ const ViewChat = () => {
   const sendMessage = () => {
     if (newMessage.trim() && selectedUser) {
       axios
-        .post("http://localhost:5000/send", {
+        .post("https://to-cash-backend.onrender.com/send", {
           productId: "product123",
           senderEmail: loginuser,
           receiverEmail: selectedUser,
@@ -56,9 +57,10 @@ const ViewChat = () => {
   };
 
   return (
-    <div className="flex h-screen mt-10">
+    <div className="flex md:h-screen md:mt-10 mt-28 flex-col md:flex-row mb-20">
+       <ScrollToTop />
       {/* Left Panel */}
-      <div className="w-1/3 shadow p-4 ">
+      <div className="md:w-1/3 shadow p-4 w-full">
         <div className="mb-4 p-4 bg-gradient-to-r from-[#01c0c9] to-[#007cde] text-white rounded shadow">
           <h2 className="text-lg font-bold">{loginUserName}</h2>
           <p>{loginuser}</p>
@@ -82,7 +84,7 @@ const ViewChat = () => {
       </div>
 
       {/* Right Panel */}
-      <div className="w-2/3 p-4 flex flex-col">
+      <div className="md:w-2/3 p-4 flex flex-col w-full mt-20 md:mt-0 ">
         {selectedUser ? (
           <>
             {/* Header for Selected User */}
@@ -92,7 +94,7 @@ const ViewChat = () => {
             </div>
 
             {/* Conversation Section */}
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto h-44 md:h-0">
               {messages.length === 0 ? (
                 <p>No messages yet.</p>
               ) : (

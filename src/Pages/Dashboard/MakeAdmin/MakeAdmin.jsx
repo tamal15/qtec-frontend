@@ -7,7 +7,7 @@ const MakeAdmin = () => {
 
   // Fetch admin list
   useEffect(() => {
-    fetch('http://localhost:5000/getadminlist')
+    fetch('https://to-cash-backend.onrender.com/getadminlist')
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -28,7 +28,7 @@ const MakeAdmin = () => {
     e.preventDefault();
     const user = { email };
 
-    fetch('http://localhost:5000/userLogin/admin', {
+    fetch('https://to-cash-backend.onrender.com/userLogin/admin', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const MakeAdmin = () => {
           });
 
           // Refresh admin list
-          fetch('http://localhost:5000/getadminlist')
+          fetch('https://to-cash-backend.onrender.com/getadminlist')
             .then((res) => res.json())
             .then((updatedAdmins) => {
               const adminList = updatedAdmins.filter((user) => user.role === 'admin');
@@ -78,11 +78,11 @@ const MakeAdmin = () => {
           onBlur={handleOnBlur}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="flex-1 p-2 border border-gray-600 rounded focus:outline-none focus:ring focus:ring-blue-500"
+          className="flex-1 p-2 text-black border border-gray-600 rounded focus:outline-none focus:ring focus:ring-blue-500"
         />
         <button
           type="submit"
-          className="bg-black hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded"
+          className="bg-[#007cde] hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded"
         >
           Make Admin
         </button>
@@ -92,7 +92,7 @@ const MakeAdmin = () => {
 
       <table className="w-full table-auto border-collapse border border-gray-700">
         <thead>
-          <tr className="bg-gray-800 text-left">
+          <tr className="bg-gradient-to-r from-[#01c0c9] to-[#007cde]  text-left">
             <th className="border border-gray-700 px-4 py-2">Name</th>
             <th className="border border-gray-700 px-4 py-2">Email</th>
             <th className="border border-gray-700 px-4 py-2">Role</th>

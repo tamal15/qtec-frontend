@@ -1,10 +1,10 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types'; 
-import useFirebase from '../../Hooks/useFirebase';
+import useAuth from '../../Hooks/useAuth';
 
 const PrivetRoute = ({ children }) => {
   const location = useLocation();
-  const { user, isLoading } = useFirebase();
+  const { user, isLoading } = useAuth();
 
   if (isLoading) {
     return (

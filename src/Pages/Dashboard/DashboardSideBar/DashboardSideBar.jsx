@@ -15,7 +15,11 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
   // const [isOpen, setIsOpen] = useState(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isAboutawardOpen, setAboutawardOpen] = useState(false);
+  const [ispendingOpen, setPendingOpen] = useState(false);
   const [isAboutclienteleOpen, setAboutclienteleOpen] = useState(false);
+  const [isbannerOpen, setbannerOpen] = useState(false);
+  const [isallproductOpen, setallproductOpen] = useState(false);
+  const [ishomepartOpen, sethomepartOpen] = useState(false);
   const { userLogOut } = useAuth();
 
 
@@ -29,6 +33,19 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
   };
   const handleAboutclientele = () => {
     setAboutclienteleOpen(!isAboutclienteleOpen);
+  };
+  const handlepending = () => {
+    setPendingOpen(!ispendingOpen);
+  };
+  
+  const handlebanner = () => {
+    setbannerOpen(!isbannerOpen);
+  };
+  const handleallproduct = () => {
+    setallproductOpen(!isallproductOpen);
+  };
+  const handlehomepart = () => {
+    sethomepartOpen(!ishomepartOpen);
   };
   
   
@@ -157,6 +174,43 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                     </NavLink>
                    
                   
+                  
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* about award end  */}
+
+            <div
+              className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
+            >
+              <div className="overflow-hidden">
+                <div
+                  onClick={handlepending}
+                  className={`border-orange-500 border-l-[3px] cursor-pointer`}
+                >
+                  <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
+                    <span className="overflow-hidden">
+                      <FaUsers
+                        className={`text-xl text-[#007cde] ${
+                            ispendingOpen ? "transform rotate-180" : ""
+                        }`}
+                      />
+                    </span>
+                    <h4 className="font-semibold hidden md:block">Pending</h4>
+                  </div>
+                </div>
+                <div
+                  className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
+                    ispendingOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                   
+                  
                     <NavLink
                       onClick={() => setIsOpenSidebar(false)}
                       to={"/dashboard/pendingproduct"}
@@ -171,7 +225,6 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                 </div>
               </div>
             </div>
-            {/* about award end  */}
 
 
             {/* about clientele start  */}
@@ -218,14 +271,14 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                    
                     {/* <NavLink
                       onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/clientcategoryuae"}
+                      to={"/dashboard/bannerpost"}
                     >
                       <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
                         <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">ClienteleUae</h2>
+                        <h2 className="font-semibold hidden md:block">BannerPost</h2>
                       </div>
-                    </NavLink>
-                    <NavLink
+                    </NavLink> */}
+                    {/* <NavLink
                       onClick={() => setIsOpenSidebar(false)}
                       to={"/dashboard/clientaboutsqatars"}
                     >
@@ -244,10 +297,176 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
             {/* about clientele end  */}
 
 
+            <div
+              className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
+            >
+              <div className="overflow-hidden">
+                <div
+                  onClick={handlebanner}
+                  className={`border-orange-500 border-l-[3px] cursor-pointer`}
+                >
+                  <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
+                    <span className="overflow-hidden">
+                      <FaUsers
+                        className={`text-xl text-[#007cde] ${
+                            isbannerOpen ? "transform rotate-180" : ""
+                        }`}
+                      />
+                    </span>
+                    <h4 className="font-semibold hidden md:block">Banner</h4>
+                  </div>
+                </div>
+                <div
+                  className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
+                    isbannerOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                   
+                   
+                    <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/bannerpost"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <FaSellcast className="text-xl text-[#01c0c9]" />
+                        <h2 className="font-semibold hidden md:block">BannerPost</h2>
+                      </div>
+                    </NavLink>
+                    {/* <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/clientaboutsqatars"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <FaSellcast className="text-xl text-[#01c0c9]" />
+                        <h2 className="font-semibold hidden md:block">CategoryQatar</h2>
+                      </div>
+                    </NavLink> */}
+                   
+                   
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
             {/* about testimonial start  */}
+
+            <div
+              className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
+            >
+              <div className="overflow-hidden">
+                <div
+                  onClick={handleallproduct}
+                  className={`border-orange-500 border-l-[3px] cursor-pointer`}
+                >
+                  <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
+                    <span className="overflow-hidden">
+                      <FaUsers
+                        className={`text-xl text-[#007cde] ${
+                            isallproductOpen ? "transform rotate-180" : ""
+                        }`}
+                      />
+                    </span>
+                    <h4 className="font-semibold hidden md:block">AllProduct</h4>
+                  </div>
+                </div>
+                <div
+                  className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
+                    isallproductOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                   
+                   
+                    <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/allproductshows"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <FaSellcast className="text-xl text-[#01c0c9]" />
+                        <h2 className="font-semibold hidden md:block">AllProductList</h2>
+                      </div>
+                    </NavLink>
+                    {/* <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/clientaboutsqatars"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <FaSellcast className="text-xl text-[#01c0c9]" />
+                        <h2 className="font-semibold hidden md:block">CategoryQatar</h2>
+                      </div>
+                    </NavLink> */}
+                   
+                   
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
 
             
             {/* about testimonial end   */}
+
+            <div
+              className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
+            >
+              <div className="overflow-hidden">
+                <div
+                  onClick={handlehomepart}
+                  className={`border-orange-500 border-l-[3px] cursor-pointer`}
+                >
+                  <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
+                    <span className="overflow-hidden">
+                      <FaUsers
+                        className={`text-xl text-[#007cde] ${
+                            ishomepartOpen ? "transform rotate-180" : ""
+                        }`}
+                      />
+                    </span>
+                    <h4 className="font-semibold hidden md:block">Home</h4>
+                  </div>
+                </div>
+                <div
+                  className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
+                    ishomepartOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                   
+                   
+                    <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/bannerpost"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <FaSellcast className="text-xl text-[#01c0c9]" />
+                        <h2 className="font-semibold hidden md:block">HomeBanner</h2>
+                      </div>
+                    </NavLink>
+                    {/* <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/clientaboutsqatars"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <FaSellcast className="text-xl text-[#01c0c9]" />
+                        <h2 className="font-semibold hidden md:block">CategoryQatar</h2>
+                      </div>
+                    </NavLink> */}
+                   
+                   
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
             {/* about us sttart  */}

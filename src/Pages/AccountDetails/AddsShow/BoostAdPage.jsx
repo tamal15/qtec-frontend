@@ -39,7 +39,7 @@ const BoostAdPage = () => {
     }
 
     try {
-      await axios.put("http://localhost:5000/api/updateBoost", {
+      await axios.put("https://to-cash-backend.onrender.com/api/updateBoost", {
         productId,
         packageName: selectedPackage.name,
         amount: selectedPackage.price,
@@ -92,8 +92,8 @@ const BoostAdPage = () => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Boost Ad Modal"
-        className="p-6 bg-white rounded-md shadow-md max-w-md mx-auto mt-10"
-        overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+        className="p-6 bg-white rounded-md shadow-md max-w-md mx-auto md:mt-32 mt-48 overflow-y-auto md:h-96 h-[300px]"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center "
       >
         {selectedPackage && (
           <div>

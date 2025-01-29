@@ -1,9 +1,11 @@
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
 const ContactUs = () => {
   return (
     <div className=" py-12">
+      <ScrollToTop/>
       <div className="max-w-4xl mx-auto bg-white shadow-[0_2px_18px_rgba(0,0,0,0.15)] rounded-lg p-6">
         <div className="flex flex-col items-center text-center">
           <div className=" mb-4">
@@ -36,7 +38,7 @@ const ContactUs = () => {
              <FaPhone className="mt-2 text-xl"/>
              <p className="text-lg font-semibold ms-2">Call us</p>
              </div>
-              <p className="text-gray-600 mt-2">09609 555444</p>
+              <p className="text-gray-600 mt-2">0 1680-564154</p>
             </div>
 
             <div className="flex flex-col items-center">
@@ -60,7 +62,7 @@ const ContactUs = () => {
               <MdEmail className="mt-1 text-xl"/>
               <p className="text-lg font-semibold ms-2">Email us</p>
               </div>
-              <p className="text-gray-600">support@bikroy.com</p>
+              <p className="text-gray-600">ethanfaisul@gmail.com</p>
             </div>
           </div>
         </div>

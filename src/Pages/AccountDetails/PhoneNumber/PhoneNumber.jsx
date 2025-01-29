@@ -2,18 +2,21 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 import { FcSmartphoneTablet } from "react-icons/fc";
+import { useTranslation } from "react-i18next";
 
 const PhoneNumber = () => {
   const { user } = useAuth();
   const userEmail = user?.email;
   const [firstPhoneNumber, setFirstPhoneNumber] = useState(null);
   const [loading, setLoading] = useState(true);
+      const { t } = useTranslation();
+  
 
   useEffect(() => {
     const fetchFirstPhoneNumber = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:5000/api/addsproducts", {
+        const response = await axios.get("https://to-cash-backend.onrender.com/api/addsproducts", {
           params: { email: userEmail },
         });
         if (response.data && response.data.length > 0) {
@@ -51,13 +54,12 @@ const PhoneNumber = () => {
           </div>
 
           {/* Text content */}
-          <h2 className="text-3xl font-bold">Phone Numbers</h2>
+          <h2 className="text-3xl font-bold">{t("phoneNumbersTitle")}</h2>
           <p className="text-xl font-bold text-center mt-2">
-            There are currently no phone numbers associated with your account.
+          {t("noPhoneNumbers")}
           </p>
           <p className="text-lg text-center mt-2">
-            Phone numbers are unique to your account and will be collected while
-            you are posting ads or ordering products on Bikroy.
+          {t("phoneNumbersDescription")}
           </p>
         </div>
       ) : (

@@ -28,6 +28,14 @@ import PendingProduct from "./Pages/Dashboard/PendingProduct/PendingProduct";
 import BoostAdPage from "./Pages/AccountDetails/AddsShow/BoostAdPage";
 import UpdatePackage from "./Pages/Dashboard/UpdatePackage/UpdatePackage";
 import LocationSelector from "./Pages/LocationSelector/LocationSelector";
+import AllAds from "./Pages/AllAds/AllAds";
+import BannerPost from "./Pages/Dashboard/BannerPost/BannerPost";
+import EditBanners from "./Pages/Dashboard/BannerPost/EditBanners";
+import SellFast from "./Pages/HomePage/SellFast/SellFast";
+import MemberShip from "./Pages/FormPage/MemberShip/MemberShip";
+import AllProductShow from "./Pages/Dashboard/AllProductShow/AllProductShow";
+import AboutWhy from "./Pages/HomePage/AboutWhy/AboutWhy";
+import Phone from "./Pages/HomePage/Phone/Phone";
 
 
 const router = createBrowserRouter([
@@ -50,7 +58,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/accounts",
-        element: <AccountDetails />,
+        element: 
+        <PrivetRoute>
+          <AccountDetails />
+        </PrivetRoute>
+       
       },
       {
         path:"/boost-ad/:productId",
@@ -64,6 +76,10 @@ const router = createBrowserRouter([
         path: "/postadpages",
         element: <PostAdPage />,
       },
+      {
+        path: "/allads",
+        element: <AllAds />,
+      },
       
      
       {
@@ -72,11 +88,31 @@ const router = createBrowserRouter([
       },
       {
         path: "/viewchats",
-        element: <ViewChat />,
+        element: 
+        <PrivetRoute>
+          <ViewChat />
+        </PrivetRoute>
+       
       },
       {
         path: "/location",
         element: <LocationSelector />,
+      },
+      {
+        path: "/sellfast",
+        element: <SellFast />,
+      },
+      {
+        path: "/membership",
+        element: <MemberShip />,
+      },
+      {
+        path: "/phone",
+        element: <Phone />,
+      },
+      {
+        path: "/aboutwhy",
+        element: <AboutWhy />,
       },
       // {
       //   path: "/category/:catego",
@@ -106,9 +142,9 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          // <PrivetRoute>
+          <PrivetRoute>
             <Dashboard />
-          //  </PrivetRoute>
+          </PrivetRoute>
         ),
         children: [
           {
@@ -128,8 +164,20 @@ const router = createBrowserRouter([
             element: <PendingProduct />,
           },
           {
+            path: "/dashboard/allproductshows",
+            element: <AllProductShow />,
+          },
+          {
             path: "/dashboard/updatepackage",
             element: <UpdatePackage />,
+          },
+          {
+            path: "/dashboard/bannerpost",
+            element: <BannerPost />,
+          },
+          {
+            path: "/dashboard/editbanners/:id",
+            element: <EditBanners/>,
           },
          
     

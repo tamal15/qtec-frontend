@@ -22,7 +22,7 @@ const Setting = () => {
     const fetchUserData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:5000/getuserdats", {
+        const response = await axios.get("https://to-cash-backend.onrender.com/getuserdats", {
           params: { email }, // Send email as query param
         });
 
@@ -61,7 +61,7 @@ const Setting = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put("http://localhost:5000/api/update-user", formData);
+      const response = await axios.put("https://to-cash-backend.onrender.com/api/update-user", formData);
 
       // Show success message with SweetAlert
       Swal.fire({

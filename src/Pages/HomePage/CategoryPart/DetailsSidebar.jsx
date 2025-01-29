@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { FaAngleDoubleRight } from "react-icons/fa";
 
 
-const DetailsSidebar = ({ data, setSelectedSubCategory, setSelectedDivision }) => {
+const DetailsSidebar = ({ data, setSelectedSubCategory, setSelectedDivision , onFilterChange, }) => {
   // Calculate subcategory counts
   const subcategoryCounts = data.reduce((acc, item) => {
     acc[item.subCategory] = (acc[item.subCategory] || 0) + 1;
@@ -16,12 +16,46 @@ const DetailsSidebar = ({ data, setSelectedSubCategory, setSelectedDivision }) =
   return (
     <aside className="bg-white p-4 ">
       {/* Sort By Section */}
-      <h2 className="font-bold text-lg mb-4">Sort by</h2>
+      {/* <h2 className="font-bold text-lg mb-4">Sort by</h2>
       <select className="border border-gray-300 rounded p-2 w-full">
         <option>Date: Newest on top</option>
         <option>Price: High to Low</option>
         <option>Price: Low to High</option>
-      </select>
+      </select> */}
+
+{/* condition  */}
+      <div>
+      <h2 className="font-bold text-lg mb-4 mt-8">Filter by Condition</h2>
+      <div className="space-y-2">
+        {/* Used Filter */}
+        <div className="flex items-center space-x-2">
+          <input
+            type="radio"
+            id="used"
+            name="condition"
+            onChange={() => onFilterChange("used")}
+            className="h-5 w-5 border-gray-300 focus:ring-blue-500 text-blue-600 rounded"
+          />
+          <label htmlFor="used" className="cursor-pointer">
+            Used
+          </label>
+        </div>
+
+        {/* New Filter */}
+        <div className="flex items-center space-x-2">
+          <input
+            type="radio"
+            id="new"
+            name="condition"
+            onChange={() => onFilterChange("new")}
+            className="h-5 w-5 border-gray-300 focus:ring-green-500 text-green-600 rounded"
+          />
+          <label htmlFor="new" className="cursor-pointer">
+            New
+          </label>
+        </div>
+      </div>
+      </div>
 
       {/* Category Section */}
       <div className="mt-8">
@@ -82,6 +116,7 @@ DetailsSidebar.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired, 
   setSelectedSubCategory: PropTypes.arrayOf(PropTypes.object).isRequired, 
   setSelectedDivision: PropTypes.arrayOf(PropTypes.object).isRequired, 
+  onFilterChange: PropTypes.func.isRequired,
 };
 
 export default DetailsSidebar;

@@ -4,18 +4,20 @@ import ProductCard from "./ProductCard";
 import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router-dom";
 import { IoMdCloudUpload } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
 const AddsShow = () => {
   const { user } = useAuth();
   const userEmail = user?.email;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:5000/api/addsproducts", {
+        const response = await axios.get("https://to-cash-backend.onrender.com/api/addsproducts", {
           params: { email: userEmail },
         });
         setProducts(response.data);
@@ -35,6 +37,9 @@ const AddsShow = () => {
     return <div className="text-center mt-10">Loading...</div>;
   }
 
+    
+  
+
   return (
     <div className="w-full">
       {products.length === 0 ? (
@@ -43,13 +48,11 @@ const AddsShow = () => {
             <IoMdCloudUpload className="text-8xl" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold">You don’t have any ads yet.</h2>
-            <p className="text-gray-500 mb-4 text-center text-xl">
-              Click the Post an ad now! button to post your ad.
-            </p>
+          <h2 className="text-2xl font-bold">{t("youHaveNoAds")}</h2>
+            <p className="text-gray-500 mb-4 text-xl">{t("clickPostAdNow")}</p>
             <Link to="/postadpages">
               <button className="bg-yellow-500 text-white px-4 py-2 rounded">
-                Post your ad now!
+                {t("postYourAdNow")}
               </button>
             </Link>
           </div>

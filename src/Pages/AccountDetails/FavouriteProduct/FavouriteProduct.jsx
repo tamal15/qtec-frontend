@@ -4,18 +4,21 @@ import useAuth from "../../Hooks/useAuth";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import ListProduct from "./ListProduct";
+import { useTranslation } from "react-i18next";
 
 const FavouriteProduct = () => {
   const { user } = useAuth();
   const userEmail = user?.email;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+    const { t } = useTranslation();
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:5000/api/lovelistproduct", {
+        const response = await axios.get("https://to-cash-backend.onrender.com/api/lovelistproduct", {
           params: { email: userEmail },
         });
         setProducts(response.data);
@@ -43,18 +46,14 @@ const FavouriteProduct = () => {
           <FaStar className='text-8xl'/>
         </div>
        <div>
-         <h2 className="text-xl font-bold mb-4">You havent marked any ads as favorite yet.</h2>
-        <p className="text-gray-600 mb-2">
-          Click on the star symbol on any ad to save it as a favorite.
-        </p>
-        <p className="text-gray-600 mb-4">
-          Start to browse ads to find ads you would like to favorite.
-        </p>
-        <Link to="/browse">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">
-            Browse ads
-          </button>
-        </Link>
+       <h2 className="text-xl font-bold mb-4">{t("noFavorites")}</h2>
+            <p className="text-gray-600 mb-2">{t("clickStarToFavorite")}</p>
+            <p className="text-gray-600 mb-4">{t("browseAdsHint")}</p>
+            <Link to="/browse">
+              <button className="bg-blue-500 text-white px-4 py-2 rounded">
+                {t("browseAds")}
+              </button>
+            </Link>
        </div>
       </div>
       ) : (

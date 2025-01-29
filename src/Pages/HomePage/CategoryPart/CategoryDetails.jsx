@@ -11,13 +11,19 @@ const CategoryDetails = () => {
   // States to track selected filters
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const [selectedDivision, setSelectedDivision] = useState(null);
+  const [selectedCondition, setSelectedCondition] = useState(null);
 
   // Filtered data based on selected subcategory and division
   const filteredData = data.filter((item) => {
     const matchesSubCategory = selectedSubCategory ? item.subCategory === selectedSubCategory : true;
     const matchesDivision = selectedDivision ? item.division === selectedDivision : true;
-    return matchesSubCategory && matchesDivision;
+    const matchesCondition = selectedCondition ? item.condition === selectedCondition : true;
+    return matchesSubCategory && matchesDivision && matchesCondition;
   });
+
+  const handleFilterChange = (condition) => {
+    setSelectedCondition(condition);
+  };
 
   return (
     <div className=" min-h-screen md:mt-12 mt-20">
@@ -32,6 +38,7 @@ const CategoryDetails = () => {
             data={data}
             setSelectedSubCategory={setSelectedSubCategory}
             setSelectedDivision={setSelectedDivision}
+            onFilterChange={handleFilterChange}
           />
         </div>
 

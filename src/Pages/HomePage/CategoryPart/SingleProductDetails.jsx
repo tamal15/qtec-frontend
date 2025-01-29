@@ -26,7 +26,7 @@ const SingleProductDetails = ({ product, onClose }) => {
   const [chatVisible, setChatVisible] = useState(false);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-
+  const [selectedImage, setSelectedImage] = useState(product.images[0]);
 
   const handleFacebookShare = () => {
     const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
@@ -53,7 +53,7 @@ const SingleProductDetails = ({ product, onClose }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/saved-products", {
+      const response = await fetch("https://to-cash-backend.onrender.com/api/saved-products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +87,7 @@ const SingleProductDetails = ({ product, onClose }) => {
       const fetchMessages = async () => {
         try {
           const response = await fetch(
-            `http://localhost:5000/api/chats?productId=${productId}&userEmail=${useremail}`
+            `https://to-cash-backend.onrender.com/api/chats?productId=${productId}&userEmail=${useremail}`
           );
           const data = await response.json();
           setMessages(Array.isArray(data) ? data : []);
@@ -129,7 +129,7 @@ const SingleProductDetails = ({ product, onClose }) => {
 
     try {
       // Save the message to the database
-      const response = await fetch("http://localhost:5000/api/chats", {
+      const response = await fetch("https://to-cash-backend.onrender.com/api/chats", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(message),
@@ -172,7 +172,7 @@ const SingleProductDetails = ({ product, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-gray-100 flex  items-center justify-center z-50 overflow-y-auto">
-      <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-5xl relative mt-[1200px] md:mt-[800px] mb-20">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-5xl relative mt-[1600px] md:mt-[970px] mb-20">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -188,8 +188,8 @@ const SingleProductDetails = ({ product, onClose }) => {
           {/* Left Section */}
           <div>
             <h3 className="text-xl font-bold text-blue-600 mt-6 mb-1">
-              {product.brand} {product.model}{" "}
-              <span className="text-gray-500">({product.condition})</span>
+              {product.title}
+              {/* <span className="text-gray-500">({product.condition})</span> */}
             </h3>
             <p className="mb-10">
               পোস্ট করা হয়েছে {product.upazila}, {product.district},{" "}
@@ -251,13 +251,29 @@ const SingleProductDetails = ({ product, onClose }) => {
         </div>
         {/* Product Details */}
         <div className="grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-6">
-          <div className="">
-            <img
-              src={product.images[0]}
-              alt={product.model}
-              className="w-[800px] h-[300px] object-cover rounded"
-            />
-          </div>
+        <div className="flex flex-col items-center space-y-4">
+      {/* Large Image */}
+      <div className="">
+        <img
+          src={selectedImage}
+          alt={product.model}
+          className="w-[800px] h-[300px] object-cover rounded"
+        />
+      </div>
+
+      {/* Small Images */}
+      <div className="flex space-x-4">
+        {product.images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`${product.model}-thumbnail-${index}`}
+            className="w-[120px] h-[70px] object-cover rounded cursor-pointer hover:opacity-80"
+            onClick={() => setSelectedImage(image)}
+          />
+        ))}
+      </div>
+    </div>
 
           {/* Chat Button */}
 
@@ -342,6 +358,14 @@ const SingleProductDetails = ({ product, onClose }) => {
 
           <div className="text-gray-700 space-y-2 mb-4">
             <p>
+              Tittle:{" "}
+              <span className="font-medium">{product.title}</span>
+            </p>
+            <p>
+              Category:{" "}
+              <span className="font-medium">{product.category}</span>
+            </p>
+            <p>
               Condition:{" "}
               <span className="font-medium">{product.condition}</span>
             </p>
@@ -351,10 +375,10 @@ const SingleProductDetails = ({ product, onClose }) => {
             <p className="text-lg text-gray-500 ">
               Address: {product.division || "N/A"}, {product.category || "N/A"}
             </p>
-            <p>
+            {/* <p>
               Authenticity:{" "}
               <span className="font-medium">{product.authenticity}</span>
-            </p>
+            </p> */}
           </div>
 
           <div className="bg-gray-50 p-4 rounded-lg mb-4">
@@ -459,6 +483,7 @@ SingleProductDetails.propTypes = {
   product: PropTypes.shape({
     images: PropTypes.arrayOf(PropTypes.string).isRequired,
     model: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     upazila: PropTypes.string.isRequired,
     district: PropTypes.string.isRequired,
     division: PropTypes.string.isRequired,

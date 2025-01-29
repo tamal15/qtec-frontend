@@ -78,6 +78,67 @@
 
 
 
+/* category icon  */
+ /* Default styles for mobile-first design */
+ .icon-span {
+ 
+  margin-left: 12px; /* Default margin-left for mobile */
+}
+
+ /* Small devices (400px to 465px) */
+@media (min-width: 400px) and (max-width: 465px) {
+  .icon-span {
+    margin-left: 30px; /* Adjusted margin-left for 400px to 465px */
+  }
+}
+
+/* Devices between 466px and 639px */
+@media (min-width: 466px) and (max-width: 598px) {
+  .icon-span {
+    margin-left: 48px; /* Adjusted margin-left for 466px to 639px */
+  }
+}
+@media (min-width: 599px) and (max-width: 639px) {
+  .icon-span {
+    margin-left: 58px; /* Adjusted margin-left for 466px to 639px */
+  }
+}
+/* Small devices (sm: >=640px) */
+@media (min-width: 640px) {
+  .icon-span {
+    margin-left: 60px; /* Adjust margin-left for small screens */
+  }
+}
+
+/* Medium devices (md: >=768px) */
+@media (min-width: 768px) {
+  .icon-span {
+    margin-left: 60px; /* Adjust margin-left for medium screens */
+  }
+}
+
+/* Large devices (lg: >=1024px) */
+@media (min-width: 1024px) {
+  .icon-span {
+    margin-left: 2.5rem; /* Adjust margin-left for large screens */
+  }
+}
+
+/* Extra-large devices (xl: >=1280px) */
+@media (min-width: 1280px) {
+  .icon-span {
+    margin-left: 3rem; /* Adjust margin-left for extra-large screens */
+  }
+}
+
+/* 2XL devices (2xl: >=1536px) */
+@media (min-width: 1536px) {
+  .icon-span {
+    margin-left: 3.5rem; /* Adjust margin-left for 2XL screens */
+  }
+}
+
+
 /* @media (max-width: 779px) {
   .smallscreen {
       background-color: rgb(17 24 39);
@@ -120,3 +181,6 @@
     border-radius: 0;
   }
 }
+
+
+

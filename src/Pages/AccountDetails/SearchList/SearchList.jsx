@@ -2,19 +2,21 @@ import { useState, useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
 import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
+import { useTranslation } from "react-i18next";
 
 const SearchList = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
   const email = user.email;
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Fetch only the logged-in user's data
         const response = await axios.get(
-          `http://localhost:5000/api/search-terms?email=${email}`
+          `https://to-cash-backend.onrender.com/api/search-terms?email=${email}`
         );
         setData(response.data); // Set the data for the logged-in user
         setLoading(false);
@@ -31,7 +33,7 @@ const SearchList = () => {
   const handleDelete = async (id) => {
     try {
       // Replace with your actual delete API endpoint
-      await axios.delete(`http://localhost:5000/api/search-terms/${id}`);
+      await axios.delete(`https://to-cash-backend.onrender.com/api/search-terms/${id}`);
       setData(data.filter((item) => item._id !== id)); // Remove item from state
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -47,14 +49,11 @@ const SearchList = () => {
       {data.length === 0 ? (
         // Show this message if there are no saved searches
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">You have no saved searches.</h2>
-          <p className="text-gray-600 mb-4 text-xl">
-            To save a search, click on “Saved search” in your list of search results and we
-            will update you when there is a new item added.
-          </p>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded flex items-center mx-auto">
-            <span className="mr-2">Save search</span>
-          </button>
+           <h2 className="text-2xl font-bold mb-4">{t("noSavedSearches")}</h2>
+            <p className="text-gray-600 mb-4 text-xl">{t("savedSearchHint")}</p>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded flex items-center mx-auto">
+              <span className="mr-2">{t("saveSearch")}</span>
+            </button>
         </div>
       ) : (
         // Render saved searches

@@ -1,33 +1,39 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import ScrollToTop from '../../ScrollToTop/ScrollToTop';
 
 const AboutWhy = () => {
   const [activeIndex, setActiveIndex] = useState(null);
-  const [data] = useState([
+  const { t } = useTranslation();
+
+  // Memoizing the data array to prevent unnecessary recalculations
+  const data = useMemo(() => [
     {
-      title: "ONE-STOP SOLUTION",
-      description: "Providing a comprehensive range of services tailored to client needs."
+      titleKey: "oneStopSolutionTitle",
+      descriptionKey: "oneStopSolutionDesc",
     },
     {
-      title: "TRACK RECORD",
-      description: "Proven history of successful projects across various industries."
+      titleKey: "trackRecordTitle",
+      descriptionKey: "trackRecordDesc",
     },
     {
-      title: "GLOBAL SERVICE REACH",
-      description: "Extending services worldwide with localized expertise."
+      titleKey: "globalServiceReachTitle",
+      descriptionKey: "globalServiceReachDesc",
     },
     {
-      title: "EXCELLENCE",
-      description: "Commitment to delivering top-quality service that exceeds client expectations."
+      titleKey: "excellenceTitle",
+      descriptionKey: "excellenceDesc",
     },
     {
-      title: "EXTENSIVE WORLDWIDE NETWORK",
-      description: "Connected through a robust global network of partners and professionals."
+      titleKey: "extensiveNetworkTitle",
+      descriptionKey: "extensiveNetworkDesc",
     },
     {
-      title: "A STRATEGIC PARTNERSHIP",
-      description: "Dedicated to fostering long-term, mutually beneficial partnerships."
-    }
-  ]);
+      titleKey: "strategicPartnershipTitle",
+      descriptionKey: "strategicPartnershipDesc",
+    },
+  ], []);  // Empty array means the 'data' array will be memoized and won't change unless explicitly updated.
+
   const contentRefs = useRef([]);
 
   // Calculate the height of content for smooth animation
@@ -43,8 +49,9 @@ const AboutWhy = () => {
 
   return (
     <div className="max-w-5xl mx-auto p-4 mt-20">
+      <ScrollToTop/>
       <h2 className="text-3xl font-light mb-4 border-b-2 pb-2 inline-block">
-        Why Us?
+        {t("whyUs")}
       </h2>
       {data.length > 0 ? (
         data.map((item, index) => (
@@ -53,7 +60,7 @@ const AboutWhy = () => {
               className="w-full text-left py-3 flex justify-between items-center hover:text-red-500"
               onClick={() => handleToggle(index)}
             >
-              <span className="text-lg font-medium">{item?.title}</span>
+              <span className="text-lg font-medium">{t(item.titleKey)}</span>
               <span>{activeIndex === index ? '-' : '+'}</span>
             </button>
             <div
@@ -66,13 +73,13 @@ const AboutWhy = () => {
               className="text-gray-600"
             >
               <div className="py-2">
-                <p>{item?.description}</p>
+                <p>{t(item.descriptionKey)}</p>
               </div>
             </div>
           </div>
         ))
       ) : (
-        <p className="text-gray-500">Loading content...</p>
+        <p className="text-gray-500">{t("loadingContent")}</p>
       )}
     </div>
   );

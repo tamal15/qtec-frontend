@@ -15,7 +15,7 @@ const ViewChat = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/chatlist?userEmail=${loginuser}`)
+      .get(`https://to-cash-backend.onrender.com/chatlist?userEmail=${loginuser}`)
       .then((res) => {
         setChatList(res.data);
       })
@@ -26,13 +26,13 @@ const ViewChat = () => {
     if (selectedUser) {
       axios
         .get(
-          `http://localhost:5000/conversation?userEmail=${loginuser}&otherUserEmail=${selectedUser}`
+          `https://to-cash-backend.onrender.com/conversation?userEmail=${loginuser}&otherUserEmail=${selectedUser}`
         )
         .then((res) => setMessages(res.data))
         .catch((err) => console.error(err));
 
       axios
-        .get(`http://localhost:5000/user?email=${selectedUser}`)
+        .get(`https://to-cash-backend.onrender.com/user?email=${selectedUser}`)
         .then((res) => setSelectedUserName(res.data.name || selectedUser))
         .catch((err) => console.error(err));
     }
@@ -41,7 +41,7 @@ const ViewChat = () => {
   const sendMessage = () => {
     if (newMessage.trim() && selectedUser) {
       axios
-        .post("http://localhost:5000/send", {
+        .post("https://to-cash-backend.onrender.com/send", {
           productId: "product123",
           senderEmail: loginuser,
           receiverEmail: selectedUser,

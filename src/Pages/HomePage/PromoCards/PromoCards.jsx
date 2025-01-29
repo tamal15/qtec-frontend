@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 const PromoCards = () => {
+      const { t } = useTranslation();
+  
   return (
     <div className="max-w-6xl mx-auto mt-16 p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
       {/* First Card */}
@@ -14,14 +17,14 @@ const PromoCards = () => {
         </div>
         <div>
           <h3 className="text-xl font-semibold text-gray-800 mb-2">
-            অর্থ উপার্জন শুরু করুন!
+          {t("startEarning")}
           </h3>
           <p className="text-gray-600 mb-4">
-            আপনার কাছে বিক্রি করার কিছু আছে? আপনার প্রথম বিজ্ঞাপনটি পোস্ট করুন এবং অর্থ আয় করুন!
+          {t("sellSomething")}
           </p>
           <Link to="/uploadcategory">
           <button className="bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-yellow-600">
-            + ফ্রি বিজ্ঞাপন দিন
+            + {t("freeAd")}
           </button>
           </Link>
          
@@ -39,15 +42,14 @@ const PromoCards = () => {
         </div>
         <div>
           <h3 className="text-xl font-semibold text-gray-800 mb-2">
-            বিজ্ঞাপন বুস্ট করুন
+          {t("boostAd")}
           </h3>
           <p className="text-gray-600 mb-4">
-            আপনার বিজ্ঞাপনটি আরও বেশি মানুষকে দেখানোর জন্য এটি বুস্ট করুন এবং
-            দ্রুত বিক্রি করুন!
+          {t("boostDescription")}
           </p>
           <Link to="/accounts">
           <button className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-600">
-            আরও জানুন →
+          {t("learnMore")} 
           </button>
           </Link>
          

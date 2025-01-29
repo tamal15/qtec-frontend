@@ -4,11 +4,13 @@ import PropTypes from "prop-types";
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
+ 
+
   const handleBoostClick = () => {
     // Navigate to the boost page and pass the product ID
     navigate(`/boost-ad/${product._id}`);
   };
-
+  
   return (
     <div className="border rounded-lg shadow-sm p-4 bg-white">
       {/* Top Section */}
@@ -16,7 +18,7 @@ const ProductCard = ({ product }) => {
         <img
           src={product.images?.[0] || "https://via.placeholder.com/150"}
           alt={product.brand}
-          className="w-20 h-20 object-cover rounded-md"
+          className="w-20 md:h-20 h-44 object-cover rounded-md"
         />
         <div>
           <h3 className="text-lg font-bold text-blue-600">
@@ -44,6 +46,8 @@ const ProductCard = ({ product }) => {
       <hr className="my-4 border-gray-200" />
 
       {/* Promotion Section */}
+      
+      {product.productStatus === "approved" && (
       <div className="flex md:flex-row  flex-col justify-between items-center">
   <div>
     <p className="text-sm text-gray-400">
@@ -58,13 +62,13 @@ const ProductCard = ({ product }) => {
   <div className="ml-auto">
     <button
       onClick={handleBoostClick}
-      className="py-2 px-4 bg-[#007cde] text-white rounded-lg hover:bg-green-600 flex items-center justify-center"
+      className="py-2 px-4 bg-[#007cde] me-5 mt-3 md:me-0 md:mt-0 text-white rounded-lg hover:bg-green-600 flex items-center justify-center"
     >
       <span className="mr-2">⬆️</span> Boost this ad
     </button>
   </div>
 </div>
-
+)}
     </div>
   );
 };
@@ -74,6 +78,7 @@ ProductCard.propTypes = {
       _id: PropTypes.string.isRequired, // Product ID (required)
       images: PropTypes.arrayOf(PropTypes.string), // Array of image URLs
       brand: PropTypes.string.isRequired, // Product brand (required)
+      productStatus: PropTypes.string.isRequired, // Product brand (required)
       model: PropTypes.string, // Product model
       condition: PropTypes.string, // Product condition (e.g., "Used", "New")
       division: PropTypes.string, // Division/Region

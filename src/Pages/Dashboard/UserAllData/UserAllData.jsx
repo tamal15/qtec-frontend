@@ -8,7 +8,7 @@ const UserAllData = () => {
 
   // Fetch all users
   useEffect(() => {
-    fetch("http://localhost:5000/getadminlist")
+    fetch("https://to-cash-backend.onrender.com/getadminlist")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -33,7 +33,7 @@ const UserAllData = () => {
   const handleBlockUser = (email) => {
     if (window.confirm("Are you sure you want to block this user?")) {
       setLoading(true);
-      fetch(`http://localhost:5000/blockuser/${email}`, {
+      fetch(`https://to-cash-backend.onrender.com/blockuser/${email}`, {
         method: "PATCH",
       })
         .then((res) => res.json())
@@ -61,7 +61,7 @@ const UserAllData = () => {
   const handleUnblockUser = (email) => {
     if (window.confirm("Are you sure you want to unblock this user?")) {
       setLoading(true);
-      fetch(`http://localhost:5000/unblockuser/${email}`, {
+      fetch(`https://to-cash-backend.onrender.com/unblockuser/${email}`, {
         method: "PATCH",
       })
         .then((res) => res.json())
@@ -100,7 +100,7 @@ const UserAllData = () => {
       <div className="overflow-x-auto">
         <table className="table-auto w-full border border-gray-300 bg-white rounded-lg shadow-lg">
           <thead>
-            <tr className="bg-gray-800 text-white">
+            <tr className="bg-gradient-to-r from-[#01c0c9] to-[#007cde] text-white">
               <th className="px-4 py-2 border">Name</th>
               <th className="px-4 py-2 border">Email</th>
               <th className="px-4 py-2 border">Role</th>

@@ -9,7 +9,7 @@ const UpdatePackage = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/products"); // Adjust endpoint
+      const response = await axios.get("https://to-cash-backend.onrender.com/api/products"); // Adjust endpoint
       const filteredProducts = response.data.filter((product) =>
         ["Top Adds", "Bump Ups", "Urgents"].includes(product.boostingDetails?.packageName)
       );
@@ -25,7 +25,7 @@ const UpdatePackage = () => {
     try {
       const updatedPackage = { packageName: newPackageName };
       const response = await axios.put(
-        `http://localhost:5000/api/products/update-package/${productId}`,
+        `https://to-cash-backend.onrender.com/api/products/update-package/${productId}`,
         updatedPackage
       );
 
@@ -57,7 +57,7 @@ const UpdatePackage = () => {
         <div className="overflow-x-auto">
           <table className="table-auto w-full border-collapse border border-gray-200 bg-white rounded-lg shadow-md">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-gradient-to-r from-[#01c0c9] to-[#007cde] text-white">
                 <th className="border px-4 py-2 text-left">Image</th>
                 <th className="border px-4 py-2 text-left">Model</th>
                 <th className="border px-4 py-2 text-left">Bkash Number</th>
