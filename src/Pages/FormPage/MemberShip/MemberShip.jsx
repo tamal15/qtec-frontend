@@ -8,9 +8,15 @@ const MemberShip = () => {
         <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800 mb-4">Unlock SellFlit Membership Benefits</h1>
+              <h1 className="text-3xl font-bold text-gray-800 mb-4"> SellFlit Membership Benefits</h1>
               <p className="text-gray-600">
-                Explore our membership plans to access a range of benefits, including <span className="font-semibold">Automatic Bump Up</span> boosts, Free Top Ads Voucher designed to enhance your online visibility and accelerate your sales growth!
+              <div>
+              <h3 className="text-lg font-semibold text-gray-800">Our membership plans offers a attractive range of benefits.Exlplore by some easy steps : </h3>
+              <p className="text-gray-600 mt-2">*Select a business Category</p>
+              <p className="text-gray-600 mt-2">**Pick a Plan</p>
+              <p className="text-gray-600 mt-2">**Share yourdetails to us</p>
+            </div>
+            
               </p>
             </div>
             <div>

@@ -20,7 +20,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
   const [isbannerOpen, setbannerOpen] = useState(false);
   const [isallproductOpen, setallproductOpen] = useState(false);
   const [ishomepartOpen, sethomepartOpen] = useState(false);
-  const { userLogOut } = useAuth();
+  const {admin,subadmin, userLogOut } = useAuth();
 
 
 //   const { logOut, authReloader, setAuthReloader } = useContext(AuthContext);
@@ -72,6 +72,9 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
           {/* pages start features  */}
 
           <div>
+           {admin &&
+           <>
+            
             <div
               className={`grid overflow-hidden transition-all duration-300 ease-in-out`}
             >
@@ -107,6 +110,17 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                         <FaStreetView className="text-xl text-[#01c0c9] font-semibold" />
                         <h2 className="font-semibold hidden md:block">
                           Make Admin
+                        </h2>
+                      </div>
+                    </NavLink>
+                    <NavLink
+                      onClick={() => setIsOpenSidebar(false)}
+                      to={"/dashboard/subadmin"}
+                    >
+                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+                        <FaStreetView className="text-xl text-[#01c0c9] font-semibold" />
+                        <h2 className="font-semibold hidden md:block">
+                          Sub Admin
                         </h2>
                       </div>
                     </NavLink>
@@ -182,175 +196,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
             </div>
             {/* about award end  */}
 
-            <div
-              className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
-            >
-              <div className="overflow-hidden">
-                <div
-                  onClick={handlepending}
-                  className={`border-orange-500 border-l-[3px] cursor-pointer`}
-                >
-                  <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
-                    <span className="overflow-hidden">
-                      <FaUsers
-                        className={`text-xl text-[#007cde] ${
-                            ispendingOpen ? "transform rotate-180" : ""
-                        }`}
-                      />
-                    </span>
-                    <h4 className="font-semibold hidden md:block">Pending</h4>
-                  </div>
-                </div>
-                <div
-                  className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
-                    ispendingOpen
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                   
-                  
-                    <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/pendingproduct"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">pendingproduct</h2>
-                      </div>
-                    </NavLink>
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            {/* about clientele start  */}
-
-            <div
-              className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
-            >
-              <div className="overflow-hidden">
-                <div
-                  onClick={handleAboutclientele}
-                  className={`border-orange-500 border-l-[3px] cursor-pointer`}
-                >
-                  <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
-                    <span className="overflow-hidden">
-                      <FaUsers
-                        className={`text-xl text-[#007cde] ${
-                            isAboutclienteleOpen ? "transform rotate-180" : ""
-                        }`}
-                      />
-                    </span>
-                    <h4 className="font-semibold hidden md:block">Package</h4>
-                  </div>
-                </div>
-                <div
-                  className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
-                    isAboutclienteleOpen
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/updatepackage"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">UpdatePackage</h2>
-                      </div>
-                    </NavLink>
-                   
-                    
-                   
-                   
-                    {/* <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/bannerpost"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">BannerPost</h2>
-                      </div>
-                    </NavLink> */}
-                    {/* <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/clientaboutsqatars"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">CategoryQatar</h2>
-                      </div>
-                    </NavLink> */}
-                   
-                   
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* about clientele end  */}
-
-
-            <div
-              className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
-            >
-              <div className="overflow-hidden">
-                <div
-                  onClick={handlebanner}
-                  className={`border-orange-500 border-l-[3px] cursor-pointer`}
-                >
-                  <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
-                    <span className="overflow-hidden">
-                      <FaUsers
-                        className={`text-xl text-[#007cde] ${
-                            isbannerOpen ? "transform rotate-180" : ""
-                        }`}
-                      />
-                    </span>
-                    <h4 className="font-semibold hidden md:block">Banner</h4>
-                  </div>
-                </div>
-                <div
-                  className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
-                    isbannerOpen
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                   
-                   
-                    <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/bannerpost"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">BannerPost</h2>
-                      </div>
-                    </NavLink>
-                    {/* <NavLink
-                      onClick={() => setIsOpenSidebar(false)}
-                      to={"/dashboard/clientaboutsqatars"}
-                    >
-                      <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                        <FaSellcast className="text-xl text-[#01c0c9]" />
-                        <h2 className="font-semibold hidden md:block">CategoryQatar</h2>
-                      </div>
-                    </NavLink> */}
-                   
-                   
-                   
-                  </div>
-                </div>
-              </div>
-            </div>
+          
 
 
             {/* about testimonial start  */}
@@ -467,6 +313,8 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
                 </div>
               </div>
             </div>
+           
+           </>}
 
 
             {/* about us sttart  */}
@@ -487,6 +335,188 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
 
          
             {/* Blog section end  */}
+
+
+            { (admin || subadmin) && (
+
+<>
+           
+<div
+   className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
+ >
+   <div className="overflow-hidden">
+     <div
+       onClick={handlepending}
+       className={`border-orange-500 border-l-[3px] cursor-pointer`}
+     >
+       <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
+         <span className="overflow-hidden">
+           <FaUsers
+             className={`text-xl text-[#007cde] ${
+                 ispendingOpen ? "transform rotate-180" : ""
+             }`}
+           />
+         </span>
+         <h4 className="font-semibold hidden md:block">Pending</h4>
+       </div>
+     </div>
+     <div
+       className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
+         ispendingOpen
+           ? "grid-rows-[1fr] opacity-100"
+           : "grid-rows-[0fr] opacity-0"
+       }`}
+     >
+       <div className="overflow-hidden">
+        
+       
+         <NavLink
+           onClick={() => setIsOpenSidebar(false)}
+           to={"/dashboard/pendingproduct"}
+         >
+           <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+             <FaSellcast className="text-xl text-[#01c0c9]" />
+             <h2 className="font-semibold hidden md:block">pendingproduct</h2>
+           </div>
+         </NavLink>
+        
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+ {/* about clientele start  */}
+
+ <div
+   className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
+ >
+   <div className="overflow-hidden">
+     <div
+       onClick={handleAboutclientele}
+       className={`border-orange-500 border-l-[3px] cursor-pointer`}
+     >
+       <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
+         <span className="overflow-hidden">
+           <FaUsers
+             className={`text-xl text-[#007cde] ${
+                 isAboutclienteleOpen ? "transform rotate-180" : ""
+             }`}
+           />
+         </span>
+         <h4 className="font-semibold hidden md:block">Package</h4>
+       </div>
+     </div>
+     <div
+       className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
+         isAboutclienteleOpen
+           ? "grid-rows-[1fr] opacity-100"
+           : "grid-rows-[0fr] opacity-0"
+       }`}
+     >
+       <div className="overflow-hidden">
+         <NavLink
+           onClick={() => setIsOpenSidebar(false)}
+           to={"/dashboard/updatepackage"}
+         >
+           <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+             <FaSellcast className="text-xl text-[#01c0c9]" />
+             <h2 className="font-semibold hidden md:block">UpdatePackage</h2>
+           </div>
+         </NavLink>
+        
+         
+        
+        
+         {/* <NavLink
+           onClick={() => setIsOpenSidebar(false)}
+           to={"/dashboard/bannerpost"}
+         >
+           <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+             <FaSellcast className="text-xl text-[#01c0c9]" />
+             <h2 className="font-semibold hidden md:block">BannerPost</h2>
+           </div>
+         </NavLink> */}
+         {/* <NavLink
+           onClick={() => setIsOpenSidebar(false)}
+           to={"/dashboard/clientaboutsqatars"}
+         >
+           <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+             <FaSellcast className="text-xl text-[#01c0c9]" />
+             <h2 className="font-semibold hidden md:block">CategoryQatar</h2>
+           </div>
+         </NavLink> */}
+        
+        
+        
+       </div>
+     </div>
+   </div>
+ </div>
+ {/* about clientele end  */}
+
+
+ <div
+   className={`grid overflow-hidden transition-all duration-300 ease-in-out `}
+ >
+   <div className="overflow-hidden">
+     <div
+       onClick={handlebanner}
+       className={`border-orange-500 border-l-[3px] cursor-pointer`}
+     >
+       <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow overflow-hidden">
+         <span className="overflow-hidden">
+           <FaUsers
+             className={`text-xl text-[#007cde] ${
+                 isbannerOpen ? "transform rotate-180" : ""
+             }`}
+           />
+         </span>
+         <h4 className="font-semibold hidden md:block">Banner</h4>
+       </div>
+     </div>
+     <div
+       className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
+         isbannerOpen
+           ? "grid-rows-[1fr] opacity-100"
+           : "grid-rows-[0fr] opacity-0"
+       }`}
+     >
+       <div className="overflow-hidden">
+        
+        
+         <NavLink
+           onClick={() => setIsOpenSidebar(false)}
+           to={"/dashboard/bannerpost"}
+         >
+           <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+             <FaSellcast className="text-xl text-[#01c0c9]" />
+             <h2 className="font-semibold hidden md:block">BannerPost</h2>
+           </div>
+         </NavLink>
+         {/* <NavLink
+           onClick={() => setIsOpenSidebar(false)}
+           to={"/dashboard/clientaboutsqatars"}
+         >
+           <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
+             <FaSellcast className="text-xl text-[#01c0c9]" />
+             <h2 className="font-semibold hidden md:block">CategoryQatar</h2>
+           </div>
+         </NavLink> */}
+        
+        
+        
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+
+</>
+
+
+           )}
 
             {/* service section start  */}
 
@@ -522,42 +552,7 @@ const DashboardSideBar = ({ setIsOpenSidebar }) => {
 
           </div>
 
-          {/* settings part start  */}
-          {/* <div className="hidden">
-            <div
-              onClick={() => handleToggle(8)}
-              className={` border-orange-500 border-l-[3px] cursor-pointer`}
-            >
-              <div className="ml-2 dashboardNavLink flex items-center gap-2 bg-white p-3 hover:bg-white select-none duration-300 active:scale-75 shadow">
-                <span>
-                  <IoIosArrowDown className="text-xl text-[#FF6600]" />
-                </span>
-                <h4 className="font-semibold hidden md:block">Settings</h4>
-              </div>
-            </div>
-            <div
-              className={`grid overflow-hidden transition-all duration-300 ease-in-out   ${
-                isOpen === 8
-                  ? "grid-rows-[1fr] opacity-100"
-                  : "grid-rows-[0fr] opacity-0"
-              }`}
-            >
-              <div className="overflow-hidden">
-                <NavLink
-                  onClick={() => setIsOpenSidebar(false)}
-                  to={"/dashboard/addFooter"}
-                >
-                  <div className="dashboardNavLink border-l-[3px] flex items-center gap-2 bg-white p-3 ml-3 mt-2 hover:scale-110 duration-300 active:scale-75 pr-0">
-                    <FaClosedCaptioning className="text-xl text-[#FF6600]" />
-                    <h2 className="font-semibold hidden md:block">
-                      Profile Setting
-                    </h2>
-                  </div>
-                </NavLink>
-              </div>
-            </div>
-          </div> */}
-
+          
           {/* settings part end  */}
 
          

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 
-const MakeAdmin = () => {
+const SubAdmin = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [admins, setAdmins] = useState([]);
 
@@ -11,7 +11,7 @@ const MakeAdmin = () => {
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
-          const adminList = data.filter((user) => user.role === "admin");
+          const adminList = data.filter((user) => user.subrole === "subadmin");
           setAdmins(adminList);
         } else {
           console.error("Expected an array but got:", data);
@@ -28,7 +28,7 @@ const MakeAdmin = () => {
     e.preventDefault();
     const user = { phoneNumber };
 
-    fetch("https://to-cash-backend.onrender.com/userLogin/admin", {
+    fetch("https://to-cash-backend.onrender.com/userLogin/subadmin", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const MakeAdmin = () => {
   };
 
   const handleDeleteAdmin = (phoneNumber) => {
-    fetch(`https://to-cash-backend.onrender.com/userLogin/admin/${phoneNumber}`, {
+    fetch(`https://to-cash-backend.onrender.com/userLogin/subadmin/${phoneNumber}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" }, // Ensure JSON communication
     })
@@ -74,7 +74,7 @@ const MakeAdmin = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 mt-20 text-white rounded-lg shadow-md">
-      <h2 className="text-2xl text-black font-bold mb-4">Make an Admin</h2>
+      <h2 className="text-2xl text-black font-bold mb-4">Make an SubAdmin</h2>
 
       <form onSubmit={handleAdmin} className="flex gap-4 mb-6">
         <input
@@ -92,7 +92,7 @@ const MakeAdmin = () => {
         </button>
       </form>
 
-      <h3 className="text-xl font-semibold mb-3 text-black">Admin List</h3>
+      <h3 className="text-xl font-semibold mb-3 text-black">Sub Admin List</h3>
 
       <table className="w-full table-auto border border-gray-700">
         <thead>
@@ -106,7 +106,7 @@ const MakeAdmin = () => {
           {admins.map((admin) => (
             <tr key={admin.phoneNumber} className="bg-gray-100 hover:bg-gray-200">
               <td className="border px-4 py-2 text-black">{admin.phoneNumber}</td>
-              <td className="border px-4 py-2 text-black">Admin</td>
+              <td className="border px-4 py-2 text-black">{admin.subrole}</td>
               <td className="border px-4 py-2">
                 <button
                   onClick={() => handleDeleteAdmin(admin.phoneNumber)}
@@ -123,4 +123,4 @@ const MakeAdmin = () => {
   );
 };
 
-export default MakeAdmin;
+export default SubAdmin;

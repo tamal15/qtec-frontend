@@ -19,6 +19,14 @@ const Navber = () => {
   // const [isDropdownOpens, setIsDropdownOpens] = useState(false);
   const { user } = useAuth();
 
+  // ✅ Ensure user properties exist
+  const displayName = user?.displayName || "Guest";
+  const phoneNumber = user?.phoneNumber || "No Phone";
+
+  console.log("User Name:", displayName);
+  console.log("Phone Number:", phoneNumber);
+  
+  // Ens
  
   const { switchLanguage } = useTranslationContext(); // Using the custom context function
   const { t, i18n } = useTranslation(); // Using react-i18next hook
@@ -87,9 +95,9 @@ const Navber = () => {
           <div className="flex items-center mt-5 md:mt-0">
             <Link to="/">
               <img
-                src="https://i.ibb.co.com/RgTgTkj/Sellfo-01.png"
+                src="https://i.ibb.co.com/HQ5Q5jf/sellflit.png"
                 alt="Logo Image"
-                className="w-[80px] md:h-[70px] h-[50px] text-white"
+                className="w-[70px] md:h-[60px] h-[40px] md:mt-1 text-white"
               />
             </Link>
           </div>
@@ -100,7 +108,7 @@ const Navber = () => {
               <Link to="/">{t("home")}</Link>
             </li>
           
-            {user?.email ? (
+            {user?.phoneNumber ? (
       <>
         {/* If user is logged in, show Chat and Account */}
         <li className="font-medium text-black text-xl">
@@ -143,7 +151,7 @@ const Navber = () => {
 
           {/* Contact Us Link */}
           <div className="hidden md:block">
-            <Link to="/uploadcategory">
+            <Link to="/postadpages">
             <button className="bg-[#007cde] text-white px-4 py-2 rounded-full font-bold">{t("postFreeAd")}</button>
             </Link>
           
@@ -160,60 +168,73 @@ const Navber = () => {
           </div>
 
           {/* Mobile Menu */}
-          <ul
-            className={`absolute top-24 left-0 w-full bg-white transition-all duration-500 ease-in md:hidden flex flex-col items-center ${
-              isNavOpen ? "opacity-100 visible" : "opacity-0 invisible"
-            }`}
-          >
-            <li className="font-medium text-black text-xl py-2">
-              <Link to="/">{t("home")}</Link>
-            </li>
-          
-            {user?.email ? (
-      <>
-        {/* If user is logged in, show Chat and Account */}
-        <li className="font-medium text-black text-xl py-2">
-          <Link to="/viewchats" className="flex">
-            <IoLogoWechat className="text-xl mt-1" />
-            <button className="ms-2">{t("chat")}</button>
-          </Link>
-        </li>
+          {/* Mobile Menu */}
+<ul
+  className={`absolute top-20 left-0 w-full bg-white transition-all duration-500 ease-in md:hidden flex flex-col items-center ${
+    isNavOpen ? "opacity-100 visible" : "opacity-0 invisible"
+  }`}
+>
+  <li className="font-medium text-black text-xl py-2">
+    <Link to="/" onClick={() => setIsNavOpen(false)}>
+      {t("home")}
+    </Link>
+  </li>
 
-        <li className="font-medium text-black text-xl py-2">
-          <Link to="/accounts" className="flex">
-            <MdAccountCircle className="text-xl mt-1" />
-            <button className="ms-2">{t("account")}</button>
-          </Link>
-        </li>
-      </>
-    ) : (
-      <>
-        {/* If user is not logged in, show only Login */}
-        <li className="font-medium text-black text-xl py-2">
-          <Link to="/login" className="flex">
-            <button className="ms-2">{t("logins")}</button>
-          </Link>
-        </li>
-      </>
-    )}
-            <li className="font-medium text-black text-xl py-2">
-              <Link to="/allads">
-              <button className=" ms-1">{t("allAds")}</button>
-              </Link>
-            
-            </li>
-            <li className="font-medium text-black text-xl py-2">
-            <button className="bg-[#007cde] text-white py-1 px-3 rounded-full" onClick={() => switchLanguage(language === "en" ? "bn" : "en")}>
-        {language === "en" ? "বাংলা" : "English"}
+  {user?.phoneNumber ? (
+    <>
+      {/* If user is logged in, show Chat and Account */}
+      <li className="font-medium text-black text-xl py-2">
+        <Link to="/viewchats" className="flex" onClick={() => setIsNavOpen(false)}>
+          <IoLogoWechat className="text-xl mt-1" />
+          <button className="ms-2">{t("chat")}</button>
+        </Link>
+      </li>
+
+      <li className="font-medium text-black text-xl py-2">
+        <Link to="/accounts" className="flex" onClick={() => setIsNavOpen(false)}>
+          <MdAccountCircle className="text-xl mt-1" />
+          <button className="ms-2">{t("account")}</button>
+        </Link>
+      </li>
+    </>
+  ) : (
+    <>
+      {/* If user is not logged in, show only Login */}
+      <li className="font-medium text-black text-xl py-2">
+        <Link to="/login" className="flex" onClick={() => setIsNavOpen(false)}>
+          <button className="ms-2">{t("logins")}</button>
+        </Link>
+      </li>
+    </>
+  )}
+
+  <li className="font-medium text-black text-xl py-2">
+    <Link to="/allads" onClick={() => setIsNavOpen(false)}>
+      <button className="ms-1">{t("allAds")}</button>
+    </Link>
+  </li>
+
+  <li className="font-medium text-black text-xl py-2">
+    <button
+      className="bg-[#007cde] text-white py-1 px-3 rounded-full"
+      onClick={() => {
+        switchLanguage(language === "en" ? "bn" : "en");
+        setIsNavOpen(false);
+      }}
+    >
+      {language === "en" ? "বাংলা" : "English"}
+    </button>
+  </li>
+
+  <div className="md:block py-2">
+    <Link to="/postadpages" onClick={() => setIsNavOpen(false)}>
+      <button className="bg-[#007cde] text-white px-4 py-2 rounded-full font-bold">
+        {t("postFreeAd")}
       </button>
-            </li>
-            <div className=" md:block py-2">
-              <Link to="/uploadcategory">
-              <button className="bg-[#007cde] text-white px-4 py-2 rounded-full font-bold">{t("postFreeAd")}</button>
-              </Link>
-         
-          </div>
-          </ul>
+    </Link>
+  </div>
+</ul>
+
           
         </nav>
       </div>

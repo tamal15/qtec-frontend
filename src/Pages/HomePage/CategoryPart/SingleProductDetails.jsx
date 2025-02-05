@@ -4,12 +4,15 @@ import io from "socket.io-client";
 import useAuth from "../../Hooks/useAuth";
 import { TbCoinTakaFilled } from "react-icons/tb";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const socket = io("http://localhost:5000"); // Backend URL
 
 const SingleProductDetails = ({ product, onClose }) => {
   const { user } = useAuth();
-  const useremail = user.email; // Logged-in user's email
+  // const useremail = user.email; // Logged-in user's email
+  const userphone = user?.phoneNumber || ""; // Logged-in user's email
+  const username = user?.displayName || ""; // Logged-in user's email
   const productimage = product.images[0];
   const productmodel = product.model;
   const productprice = product.price;
@@ -17,16 +20,27 @@ const SingleProductDetails = ({ product, onClose }) => {
   const productcondition = product.condition;
   const productdistrict = product.district;
   const productupazila = product.upazila;
-  const sellermail = product.email; // Seller's email
+  const sellerName = product.name;
+  // const sellermail = product.email; // Seller's email
+  const sellerphone = product.phone; // Seller's email
   const productId = product._id; // Current product ID
 
-  console.log("usermail:", useremail);
-  console.log("sellermail:", sellermail);
+  console.log("usermail:", userphone);
+  console.log("sellermail:", sellerphone);
 
   const [chatVisible, setChatVisible] = useState(false);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
+  const navigate = useNavigate();
+  const [showFullNumber, setShowFullNumber] = useState(false);
+
+  const handleClick = () => {
+    setShowFullNumber(true);
+  };
+
+  const maskedPhone = product?.phone ? `${product?.phone.slice(0, 3)}-xxxxxxx` : "";
+
 
   const handleFacebookShare = () => {
     const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
@@ -49,7 +63,9 @@ const SingleProductDetails = ({ product, onClose }) => {
       division: product.division,
       district: product.district,
       upazila: product.upazila,
-      userEmail: useremail,
+      userPhone: userphone,
+      userName: username,
+      sellerName: product.name,
     };
 
     try {
@@ -87,7 +103,7 @@ const SingleProductDetails = ({ product, onClose }) => {
       const fetchMessages = async () => {
         try {
           const response = await fetch(
-            `https://to-cash-backend.onrender.com/api/chats?productId=${productId}&userEmail=${useremail}`
+            `https://to-cash-backend.onrender.com/api/chats?productId=${productId}&userPhone=${userphone}`
           );
           const data = await response.json();
           setMessages(Array.isArray(data) ? data : []);
@@ -99,7 +115,7 @@ const SingleProductDetails = ({ product, onClose }) => {
 
       fetchMessages();
     }
-  }, [chatVisible, productId, useremail]);
+  }, [chatVisible, productId, userphone]);
 
   // Handle sending messages
   // Determine receiverEmail dynamically when sending messages
@@ -108,23 +124,25 @@ const SingleProductDetails = ({ product, onClose }) => {
 
     // Determine `receiverEmail` dynamically
     const receiverEmail =
-      useremail === sellermail
-        ? messages.find((msg) => msg.senderEmail !== useremail)?.senderEmail
-        : sellermail;
+    userphone === sellerphone
+        ? messages.find((msg) => msg.senderEmail !== userphone)?.senderEmail
+        : sellerphone;
 
     const message = {
       productId,
-      senderEmail: useremail,
+      senderEmail: userphone,
       receiverEmail,
       message: newMessage,
       timestamp: new Date().toISOString(),
       productimage,
+      username,
       productmodel,
       productprice,
       productbrand,
       productcondition,
       productdistrict,
-      productupazila
+      productupazila,
+      sellerName
     };
 
     try {
@@ -158,8 +176,8 @@ const SingleProductDetails = ({ product, onClose }) => {
     socket.on("receiveMessage", (newMessage) => {
       if (
         newMessage.productId === productId &&
-        (newMessage.senderEmail === useremail ||
-          newMessage.receiverEmail === useremail)
+        (newMessage.senderEmail === userphone ||
+          newMessage.receiverEmail === userphone)
       ) {
         setMessages((prevMessages) => [...prevMessages, newMessage]);
       }
@@ -168,7 +186,7 @@ const SingleProductDetails = ({ product, onClose }) => {
     return () => {
       socket.off("receiveMessage");
     };
-  }, [productId, useremail]);
+  }, [productId, userphone]);
 
   return (
     <div className="fixed inset-0 bg-gray-100 flex  items-center justify-center z-50 overflow-y-auto">
@@ -176,7 +194,7 @@ const SingleProductDetails = ({ product, onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
+          className="absolute top-4 text-white  right-4 bg-red-200 border-2 border-red-500 rounded hover:text-gray-800"
         >
           ✖
         </button>
@@ -307,12 +325,14 @@ const SingleProductDetails = ({ product, onClose }) => {
                   />
                 </svg>
               </div>
-              <div>
-                <h4 className="font-bold text-gray-800">{product.phone}</h4>
-                <p className="text-xs text-gray-500">
-                  Click to show phone number
-                </p>
-              </div>
+              <div onClick={handleClick} className="cursor-pointer">
+      <h4 className="font-bold text-gray-800">
+        {showFullNumber ? product?.phone : maskedPhone}
+      </h4>
+      {!showFullNumber && (
+        <p className="text-xs text-gray-500">Click to show phone number</p>
+      )}
+    </div>
             </div>
 
             {/* Chat Button */}
@@ -333,12 +353,18 @@ const SingleProductDetails = ({ product, onClose }) => {
                   />
                 </svg>
               </div>
+            
+              
               <span
-                onClick={() => setChatVisible(true)}
-                className="text-yellow-500 font-semibold hover:underline"
-              >
-                Chat
-              </span>
+        onClick={() => {
+          user ? setChatVisible(true) : navigate('/login');
+        }}
+        className="text-yellow-500 font-semibold hover:underline"
+      >
+        Chat
+      </span>
+              
+
             </div>
           </div>
         </div>
@@ -347,8 +373,8 @@ const SingleProductDetails = ({ product, onClose }) => {
 
         <div>
           <h3 className="text-xl font-bold text-blue-600 mt-10 mb-5">
-            {product.brand} {product.model}{" "}
-            <span className="text-gray-500">({product.condition})</span>
+            {product.brand} {product.roles} {product.model}{" "}
+            <span className="text-gray-500">{product.condition}</span>
           </h3>
 
           <p className="font-semibold text-blue-600 mb-4 flex text-2xl">
@@ -366,15 +392,44 @@ const SingleProductDetails = ({ product, onClose }) => {
               <span className="font-medium">{product.category}</span>
             </p>
             <p>
-              Condition:{" "}
-              <span className="font-medium">{product.condition}</span>
+              
+              <span className="font-medium">{product.subCategory}</span>
             </p>
             <p>
-              Brand: <span className="font-medium">{product.brand}</span>
+            {product.condition ? `Condition: ${product.condition}` : ""}
+             
+            </p>
+            <p>
+            {product.brand ? `Brand: ${product.brand}` : ""}
+             
             </p>
             <p className="text-lg text-gray-500 ">
               Address: {product.division || "N/A"}, {product.category || "N/A"}
             </p>
+            <p className="text-lg text-gray-500">
+  {product.education ? `Education: ${product.education}` : ""}
+ 
+</p>
+<p className="text-lg text-gray-500">
+  
+  {product.experience ? ` Experience: ${product.experience}` : ""}
+</p>
+<p className="text-lg text-gray-500">
+  {product.timeperiod ? `Apply Last Date: ${product.timeperiod}` : ""}
+ 
+</p>
+<p className="text-lg text-gray-500">
+  {product.website ? `Website: ${product.website}` : ""}
+  
+</p>
+<p className="text-lg text-gray-500">
+  {product.roles ? `Roles: ${product.roles}` : ""}
+  
+</p>
+<p className="text-lg text-gray-500">
+  {product.email ? `Apply Email: ${product.email}` : ""}
+  
+</p>
             {/* <p>
               Authenticity:{" "}
               <span className="font-medium">{product.authenticity}</span>
@@ -436,14 +491,14 @@ const SingleProductDetails = ({ product, onClose }) => {
                   <div
                     key={msg._id}
                     className={`flex items-start mb-3 ${
-                      msg.senderEmail === useremail
+                      msg.senderEmail === userphone
                         ? "justify-end"
                         : "justify-start"
                     }`}
                   >
                     <div
                       className={`max-w-xs p-3 rounded-lg shadow ${
-                        msg.senderEmail === useremail
+                        msg.senderEmail === userphone
                           ? "bg-green-100 text-green-900"
                           : "bg-gray-200 text-gray-900"
                       }`}
@@ -488,6 +543,12 @@ SingleProductDetails.propTypes = {
     district: PropTypes.string.isRequired,
     division: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
+    education: PropTypes.string.isRequired,
+    roles: PropTypes.string.isRequired,
+    subCategory: PropTypes.string.isRequired,
+    website: PropTypes.string.isRequired,
+    timeperiod: PropTypes.string.isRequired,
+    experience: PropTypes.string.isRequired,
     authenticity: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     edition: PropTypes.string.isRequired,
@@ -498,7 +559,7 @@ SingleProductDetails.propTypes = {
     condition: PropTypes.string.isRequired,
     brand: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    userEmail: PropTypes.string.isRequired,
+    userPhone: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
   }).isRequired,
   onClose: PropTypes.func.isRequired,

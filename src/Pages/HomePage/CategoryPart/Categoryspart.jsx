@@ -9,7 +9,7 @@ const Categoryspart = () => {
   const [categoryCounts, setCategoryCounts] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-
+  const [ setSliderRef] = useState(null);
   const categoryMapping = {
     মোবাইল: "mobile",
     "মোবাইল ফোন": "mobile phone",
@@ -166,6 +166,10 @@ const Categoryspart = () => {
     speed: 500,
     slidesToShow: 3, // Default number of slides to show
     slidesToScroll: 2, // Default number of slides to scroll
+    arrows: true,
+    swipe: true,
+    touchMove: true,
+    adaptiveHeight: true,
     responsive: [
       {
         breakpoint: 1024, // Large tablets and small laptops
@@ -201,8 +205,8 @@ const Categoryspart = () => {
 
       {/* category part start  */}
 
-      <div className=" md:p-6 md:px-24 md:mt-20 mt-5 bg-gray-50">
-    <h1 className="md:text-3xl text-xl  font-extrabold text-gray-900 mb-8 text-center">
+      <div className=" md:p-6 md:px-24 md:mt-20 -mt-16 bg-gray-50">
+    <h1 className="md:text-3xl text-xl  font-extrabold text-gray-900 md:mb-8 mb-2 text-center">
       Browse Items by Category
     </h1>
 
@@ -212,12 +216,12 @@ const Categoryspart = () => {
        {/* Mobile slider */}
        <div className="overflow-hidden">
   <div className="md:hidden">
-    <Slider {...sliderSettings}>
+    <Slider ref={setSliderRef} {...sliderSettings}>
       {filteredCategories.map((category, index) => (
         <div
           key={index}
           onClick={() => handleCategoryClick(category)}
-          className="flex flex-col items-center justify-center p-4 h-32 rounded-xl transition-transform transform hover:scale-105"
+          className="flex flex-col items-center justify-center p-4 -mt-4 md:mt-0 h-32 rounded-xl transition-transform transform hover:scale-105"
         >
           <span className="text-4xl text-indigo-600 mb-2  icon-span ">
             {data.find((item) => item.category === category)?.icon || "📦"}

@@ -8,10 +8,10 @@ const BoostAdPage = () => {
   const navigate = useNavigate();
 
   const packages = [
-    { id: "top_ad", name: "Top Adds", price: 275, description: "Boost your ad to the top for maximum visibility!" },
-    { id: "bump_up", name: "Bump Ups", price: 195, description: "Republish your ad every 12 hours to boost visibility!" },
+    { id: "top_ad", name: "Top Adds", price: 50, description: "Boost your ad to the top for maximum visibility!" },
+    // { id: "bump_up", name: "Bump Ups", price: 195, description: "Republish your ad every 12 hours to boost visibility!" },
     // { id: "bundle", name: "Bundle", price: 180, description: "Bundle urgent and higher placement for faster sales!" },
-    { id: "urgent", name: "Urgents", price: 145, description: "Highlight your ad as urgent to attract attention!" },
+    { id: "urgent", name: "Urgents", price: 30, description: "Highlight your ad as urgent to attract attention!" },
     // { id: "spotlight", name: "Spotlight", price: 1095, description: "Premium placement to ensure maximum exposure!" },
   ];
 
@@ -56,6 +56,19 @@ const BoostAdPage = () => {
       console.error("Error boosting ad:", error);
       alert("Failed to boost the ad. Please try again.");
     }
+  };
+
+  const pricingOptions = {
+    "Top Adds": [
+      { days: 2, price: 50 },
+      { days: 5, price: 100 },
+      { days: 7, price: 130 },
+    ],
+    "Urgents": [
+      { days: 2, price: 30 },
+      { days: 5, price: 60 },
+      { days: 7, price: 90 },
+    ],
   };
 
   return (
@@ -108,9 +121,11 @@ const BoostAdPage = () => {
                 onChange={(e) => setBoostingDays(Number(e.target.value))}
                 className="w-full p-2 border rounded-md"
               >
-                <option value={3}>3 Days (Tk 275)</option>
-                <option value={5}>5 Days (Tk 350)</option>
-                <option value={7}>7 Days (Tk 415)</option>
+                {pricingOptions[selectedPackage.name].map((option) => (
+                  <option key={option.days} value={option.days}>
+                    {option.days} Days (Tk {option.price})
+                  </option>
+                ))}
               </select>
             </div>
 

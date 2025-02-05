@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 const AddsShow = () => {
   const { user } = useAuth();
-  const userEmail = user?.email;
+  const userPhone = user?.phoneNumber;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
@@ -18,7 +18,7 @@ const AddsShow = () => {
       try {
         setLoading(true);
         const response = await axios.get("https://to-cash-backend.onrender.com/api/addsproducts", {
-          params: { email: userEmail },
+          params: { phone: userPhone },
         });
         setProducts(response.data);
       } catch (error) {
@@ -28,10 +28,10 @@ const AddsShow = () => {
       }
     };
 
-    if (userEmail) {
+    if (userPhone) {
       fetchProducts();
     }
-  }, [userEmail]);
+  }, [userPhone]);
 
   if (loading) {
     return <div className="text-center mt-10">Loading...</div>;
@@ -64,7 +64,7 @@ const AddsShow = () => {
           </h1>
           <div className="grid grid-cols-1 gap-4 md:px-20">
             {products.map((product) => (
-              <ProductCard key={product._id} product={product} />
+              <ProductCard key={product._id} product={product} setProducts={setProducts} />
             ))}
           </div>
         </>

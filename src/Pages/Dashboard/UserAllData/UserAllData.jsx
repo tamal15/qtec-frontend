@@ -30,60 +30,62 @@ const UserAllData = () => {
   }, [searchEmail, users]);
 
   // Block user
-  const handleBlockUser = (email) => {
+  const handleBlockUser = (phoneNumber) => {
     if (window.confirm("Are you sure you want to block this user?")) {
-      setLoading(true);
-      fetch(`https://to-cash-backend.onrender.com/blockuser/${email}`, {
-        method: "PATCH",
-      })
+        setLoading(true);
+        fetch(`https://to-cash-backend.onrender.com/blockuser/${phoneNumber}`, {
+            method: "PATCH",
+        })
         .then((res) => res.json())
         .then((data) => {
-          if (data.success) {
-            alert("User blocked successfully!");
-            setUsers(
-              users.map((user) =>
-                user.email === email ? { ...user, status: "blocked" } : user
-              )
-            );
-          } else {
-            alert(data.message);
-          }
-          setLoading(false);
+            if (data.success) {
+                alert("User blocked successfully!");
+                setUsers(
+                    users.map((user) =>
+                        user.phoneNumber === phoneNumber ? { ...user, status: "blocked" } : user
+                    )
+                );
+            } else {
+                alert(data.message);
+            }
+            setLoading(false);
         })
         .catch((error) => {
-          console.error("Error blocking user:", error);
-          setLoading(false);
+            console.error("Error blocking user:", error);
+            setLoading(false);
         });
     }
-  };
+};
+
 
   // Unblock user
-  const handleUnblockUser = (email) => {
+  const handleUnblockUser = (phoneNumber) => {
     if (window.confirm("Are you sure you want to unblock this user?")) {
-      setLoading(true);
-      fetch(`https://to-cash-backend.onrender.com/unblockuser/${email}`, {
-        method: "PATCH",
-      })
+        setLoading(true);
+        fetch(`https://to-cash-backend.onrender.com/unblockuser/${phoneNumber}`, {
+            method: "PATCH",
+        })
         .then((res) => res.json())
         .then((data) => {
-          if (data.success) {
-            alert("User unblocked successfully!");
-            setUsers(
-              users.map((user) =>
-                user.email === email ? { ...user, status: "active" } : user
-              )
-            );
-          } else {
-            alert(data.message);
-          }
-          setLoading(false);
+            if (data.success) {
+                alert("User unblocked successfully!");
+                setUsers(
+                    users.map((user) =>
+                        user.phoneNumber === phoneNumber ? { ...user, status: "active" } : user
+                    )
+                );
+            } else {
+                alert(data.message);
+            }
+            setLoading(false);
         })
         .catch((error) => {
-          console.error("Error unblocking user:", error);
-          setLoading(false);
+            console.error("Error unblocking user:", error);
+            setLoading(false);
         });
     }
-  };
+};
+
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -102,7 +104,7 @@ const UserAllData = () => {
           <thead>
             <tr className="bg-gradient-to-r from-[#01c0c9] to-[#007cde] text-white">
               <th className="px-4 py-2 border">Name</th>
-              <th className="px-4 py-2 border">Email</th>
+              <th className="px-4 py-2 border">Phone</th>
               <th className="px-4 py-2 border">Role</th>
               <th className="px-4 py-2 border">Status</th>
               <th className="px-4 py-2 border">Actions</th>
@@ -118,7 +120,7 @@ const UserAllData = () => {
                   <td className="border px-4 py-2 text-black">
                     {user.displayName || "N/A"}
                   </td>
-                  <td className="border px-4 py-2 text-black">{user.email}</td>
+                  <td className="border px-4 py-2 text-black">{user.phoneNumber}</td>
                   <td className="border px-4 py-2 text-black">
                     {user.role || "User"}
                   </td>
@@ -128,7 +130,7 @@ const UserAllData = () => {
                   <td className="border px-4 py-2 text-black">
                     {user.status === "blocked" ? (
                       <button
-                        onClick={() => handleUnblockUser(user.email)}
+                        onClick={() => handleUnblockUser(user.phoneNumber)}
                         className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded"
                         disabled={loading}
                       >
@@ -136,7 +138,7 @@ const UserAllData = () => {
                       </button>
                     ) : (
                       <button
-                        onClick={() => handleBlockUser(user.email)}
+                        onClick={() => handleBlockUser(user.phoneNumber)}
                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded"
                         disabled={loading}
                       >

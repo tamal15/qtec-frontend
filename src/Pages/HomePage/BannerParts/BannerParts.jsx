@@ -1,25 +1,27 @@
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
-const BannerParts = ({ searchQuery, setSearchQuery }) => {
+import { Link } from "react-router-dom";
+// { searchQuery, setSearchQuery } 
+const BannerParts = () => {
     const { t } = useTranslation();
     return (
-      <div style={{background:"linear-gradient(to bottom, #01c0c9, #01c0c9, #007cde)"}} className=" text-white md:h-[500px] h-[350px]  flex items-center justify-center px-4">
+      <div style={{background:"linear-gradient(to bottom, #01c0c9, #01c0c9, #007cde)"}} className=" text-white md:h-[500px] h-[330px]  flex items-center justify-center px-4">
         <div className="max-w-6xl w-full   md:mt-0 grid grid-cols-1 md:grid-cols-2 items-center gap-8">
           {/* Left Section: Text and Search Bar */}
           <div className="text-center md:text-left">
-            <h1 className="md:text-5xl text-xl  font-bold -mt-4 md:mt-8 md:mb-4 mb-2">{t("communitySuccess")}</h1>
+            <h1 className="md:text-5xl text-xl  font-bold -mt-12 md:mt-8 md:mb-4 ">{t("communitySuccess")}</h1>
             <p className="text-lg sm:text-xl font-medium md:mb-8 mb-4">{t("fromPeople")}</p>
   
             {/* Search Bar */}
-            <div className="relative max-w-md">
+            {/* <div className="relative max-w-md">
               <input
                 type="text"
                 value={searchQuery} // Bind search query state
               onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search for a Category or Product"
-                className="w-full px-4 md:px-6 md:py-3 py-3 rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full px-3 font-medium md:text-xl -mt-4 md:px-6 md:py-4 py-2 rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
               />
-              <button className="absolute right-1 top-1 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full">
+              <button className="absolute right-1 md:-top-4  -top-2 bg-yellow-500 hover:bg-yellow-600 text-white md:px-8 md:py-4 p-2 md:mt-1  rounded-full">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -35,6 +37,20 @@ const BannerParts = ({ searchQuery, setSearchQuery }) => {
                   />
                 </svg>
               </button>
+            </div> */}
+            <div className="relative max-w-md">
+              <Link to="/allads">
+              <button className="w-full bg-white border-2 border-[#01c0c9]  px-3 font-bold md:text-xl -mt-4 md:px-6 md:py-4 py-2 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-yellow-500 text-xl ">Search All Ads</button>
+              </Link>
+            
+              {/* <input
+                type="text"
+                value={searchQuery} // Bind search query state
+              onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search for a Category or Product"
+                className="w-full px-3 font-medium md:text-xl -mt-4 md:px-6 md:py-4 py-2 rounded-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+              /> */}
+              
             </div>
           </div>
   
@@ -43,9 +59,10 @@ const BannerParts = ({ searchQuery, setSearchQuery }) => {
             <div className="absolute md:-top-1 -top-10 md:-left-8 md:w-64 w-52 h-32 bg-[#01c0c9] rounded-full blur-2xl opacity-30"></div>
   
             <img
+              // src="https://i.ibb.co.com/RTQ9ZXHq/Png-afridi.png"
               src="https://i.ibb.co.com/4KpcbnT/component-it.webp"
               alt="Illustration"
-              className="w-full -mt-5 md:-mt-10 md:h-[400px] h-[100px] max-w-xs md:max-w-sm"
+              className="md:w-full w-[200px] -mt-7 md:-mt-10 md:h-[400px] h-[80px] max-w-xs md:max-w-sm"
             />
           </div>
         </div>

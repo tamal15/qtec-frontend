@@ -14,7 +14,9 @@ const AllProductList = () => {
 
   const productsPerPage = 30;
   const {user}=useAuth();
-  const email=user.email;
+  // const email=user.email;
+  const phone = user?.phoneNumber || "";
+
 
 
   useEffect(() => {
@@ -50,37 +52,76 @@ const AllProductList = () => {
   });
 
   // Sort products based on package priority and maintain serial order for no-package items
-  const sortedProducts = filteredProducts.sort((a, b) => {
+  const isBoostingActive = (boostingDetails) => {
+    if (!boostingDetails) return false;
+  
+    const { boostingDate, boostingTime, boostingDays } = boostingDetails;
+  
+    // Convert boosting start date & time to a timestamp
+    const boostingStart = new Date(`${boostingDate}T${boostingTime}`).getTime();
+  
+    // Calculate boosting expiration timestamp
+    const boostingEnd = boostingStart + boostingDays * 24 * 60 * 60 * 1000;
+  
+    return Date.now() < boostingEnd; // Returns true if still within boosting period
+  };
+  
+  // Function to update product boosting status
+  const updateProductBoostingStatus = (products) => {
+    return products.map((product) => {
+      const isBoosted = isBoostingActive(product.boostingDetails);
+  
+      return {
+        ...product,
+        isBoosted, // Set boosted flag
+        boostingDetails: isBoosted ? product.boostingDetails : null, // Remove boosting details if expired
+      };
+    });
+  };
+  
+  // Sorting function
+  const sortedProducts = updateProductBoostingStatus(filteredProducts).sort((a, b) => {
     const packageOrder = {
       "Top Ad": 1,
       "Bump Up": 2,
       "Urgent": 3,
     };
-
-    const packageA = packageOrder[a.boostingDetails?.packageName] || Infinity;
-    const packageB = packageOrder[b.boostingDetails?.packageName] || Infinity;
-
+  
+    const isBoostingA = a.isBoosted;
+    const isBoostingB = b.isBoosted;
+  
+    const packageA = isBoostingA ? packageOrder[a.boostingDetails?.packageName] || Infinity : Infinity;
+    const packageB = isBoostingB ? packageOrder[b.boostingDetails?.packageName] || Infinity : Infinity;
+  
+    // 1️⃣ Boosted Ads First (sorted by package priority)
     if (packageA !== packageB) {
       return packageA - packageB;
     }
-
-    if (packageA === Infinity && packageB === Infinity) {
-      return filteredProducts.indexOf(a) - filteredProducts.indexOf(b);
+  
+    // 2️⃣ If both are boosted, sort by boosting expiration time (latest expiry first)
+    if (isBoostingA && isBoostingB) {
+      const boostingEndTimeA = new Date(a.boostingDetails.boostingDate + "T" + a.boostingDetails.boostingTime).getTime() +
+        a.boostingDetails.boostingDays * 24 * 60 * 60 * 1000;
+  
+      const boostingEndTimeB = new Date(b.boostingDetails.boostingDate + "T" + b.boostingDetails.boostingTime).getTime() +
+        b.boostingDetails.boostingDays * 24 * 60 * 60 * 1000;
+  
+      return boostingEndTimeB - boostingEndTimeA;
     }
-
-    const boostingEndTimeA = a.boostingDetails
-      ? new Date(
-          a.boostingDetails.boostingDate + "T" + a.boostingDetails.boostingTime
-        ).getTime()
-      : 0;
-
-    const boostingEndTimeB = b.boostingDetails
-      ? new Date(
-          b.boostingDetails.boostingDate + "T" + b.boostingDetails.boostingTime
-        ).getTime()
-      : 0;
-
-    return boostingEndTimeB - boostingEndTimeA;
+  
+    // 3️⃣ Latest Uploaded Product (Newest First based on _id timestamp)
+    const uploadTimeA = parseInt(a._id.substring(0, 8), 16) * 1000;
+    const uploadTimeB = parseInt(b._id.substring(0, 8), 16) * 1000;
+  
+    if (!isBoostingA && !isBoostingB) {
+      return uploadTimeB - uploadTimeA; // Newest uploads first
+    }
+  
+    // 4️⃣ Previous Boosted Ads (Expired boosting goes after latest uploaded)
+    if (!isBoostingA) return 1;
+    if (!isBoostingB) return -1;
+  
+    return 0;
   });
 
   // Pagination logic
@@ -98,9 +139,10 @@ const AllProductList = () => {
   const getPackageSymbol = (packageName) => {
     switch (packageName) {
       case "Top Ad":
-        return "⬆️";
-      case "Bump Up":
         return "🔝";
+        
+      case "Bump Up":
+        return "⬆️";
       case "Urgent":
         return "⚠️";
       default:
@@ -127,7 +169,7 @@ const AllProductList = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ searchTerm,email }),
+        body: JSON.stringify({ searchTerm,phone }),
       });
 
       if (response.ok) {
@@ -158,7 +200,7 @@ const AllProductList = () => {
 
        {/* Search Section */}
  {/* Search Section */}
- <div className="flex items-center justify-between mb-20 mt-16">
+ <div className="flex md:flex-row flex-col items-center justify-between mb-20 mt-16">
         {/* Left Text */}
         <button
         onClick={handleRefreshData} // Ensure the click handler is applied correctly
@@ -173,7 +215,7 @@ const AllProductList = () => {
         <div className="relative w-full md:w-3/5">
           <input
             type="text"
-            placeholder="Search by Brand or Subcategory"
+            placeholder="যেমন :মোবাইল,ফ্ল্যাট,গাড়ি উপশ্রেণি অনুসন্ধান করুন"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="border border-blue-400 rounded-full p-4 w-full pr-14 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-md text-lg h-14"
@@ -209,6 +251,9 @@ const AllProductList = () => {
             </h3>
             <p className="text-lg text-gray-500 ">
               {product.division || "N/A"}, {product.category || "N/A"}
+            </p>
+            <p className="text-lg text-gray-500 ">
+              {product.subCategory || "N/A"}
             </p>
             <p className="font-semibold text-blue-600 mb-4 flex">
               <TbCoinTakaFilled className="text-xl mt-1" />{" "}

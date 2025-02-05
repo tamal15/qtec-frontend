@@ -1,98 +1,168 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
+import ScrollToTop from "../../ScrollToTop/ScrollToTop";
 
 const ViewChat = () => {
   const { user } = useAuth();
-  const loginuser = user.email;
-  const loginUserName = user.name;
+  const loginphone = user.phoneNumber;
+  const loginUserName = user.displayName;
 
   const [chatList, setChatList] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedUserName, setSelectedUserName] = useState("");
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [productDetails, setProductDetails] = useState(null);
 
+  // ✅ Fetch Chat List
   useEffect(() => {
     axios
-      .get(`https://to-cash-backend.onrender.com/chatlist?userEmail=${loginuser}`)
+      .get(`https://to-cash-backend.onrender.com/chatlist?userPhone=${loginphone}`)
       .then((res) => {
         setChatList(res.data);
       })
       .catch((err) => console.error(err));
-  }, [loginuser]);
+  }, [loginphone]);
 
+  
+
+  // ✅ Fetch Messages & Mark as Seen
   useEffect(() => {
     if (selectedUser) {
       axios
-        .get(
-          `https://to-cash-backend.onrender.com/conversation?userEmail=${loginuser}&otherUserEmail=${selectedUser}`
-        )
-        .then((res) => setMessages(res.data))
+        .get(`https://to-cash-backend.onrender.com/conversation?userPhone=${loginphone}&otheruserPhone=${selectedUser}`)
+        .then((res) => {
+          setMessages(res.data);
+          if (res.data.length > 0) {
+            setProductDetails(res.data[0]);
+          }
+        })
         .catch((err) => console.error(err));
-
+  
+      // ✅ Fetch username of the selected user
       axios
-        .get(`https://to-cash-backend.onrender.com/user?email=${selectedUser}`)
-        .then((res) => setSelectedUserName(res.data.name || selectedUser))
+        .get(`https://to-cash-backend.onrender.com/user?phoneNumber=${selectedUser}`)
+        .then((res) => {
+          setSelectedUserName(res.data.name || selectedUser); // Default to phone if no name
+        })
         .catch((err) => console.error(err));
+  
+      markMessageAsSeen(selectedUser, loginphone);
     }
-  }, [selectedUser, loginuser]);
+  }, [selectedUser, loginphone]);
+  
 
+  // ✅ Send Message
   const sendMessage = () => {
     if (newMessage.trim() && selectedUser) {
       axios
         .post("https://to-cash-backend.onrender.com/send", {
-          productId: "product123",
-          senderEmail: loginuser,
+          productId: "product123", // Set the actual product ID
+          senderEmail: loginphone,
           receiverEmail: selectedUser,
           message: newMessage,
         })
         .then((res) => {
           setMessages((prev) => [...prev, res.data]);
           setNewMessage("");
+  
+          // Mark messages as seen for both sender and receiver
+          markMessageAsSeen(loginphone, selectedUser);
+          markMessageAsSeen(selectedUser, loginphone);
         })
         .catch((err) => console.error(err));
     }
   };
+  
+
+  // ✅ Mark Messages as Seen
+  // Mark Messages as Seen
+  const markMessageAsSeen = (sender, receiver) => {
+    axios
+      .post("https://to-cash-backend.onrender.com/markSeen", {
+        senderEmail: sender,
+        receiverEmail: receiver,
+      })
+      .then(() => {
+        // After marking, remove the notification icon
+        setChatList((prev) =>
+          prev.map((chat) =>
+            chat.phoneNumber === sender ? { ...chat, hasUnread: false } : chat
+          )
+        );
+      })
+      .catch((err) => console.error("Error marking messages as seen:", err));
+  };
+
+
+  
+
 
   return (
-    <div className="flex h-screen mt-10">
+    <div className="flex md:h-screen md:mt-10 mt-28 flex-col md:flex-row mb-20">
+      <ScrollToTop />
+
       {/* Left Panel */}
-      <div className="w-1/3 shadow p-4 ">
+      <div className="md:w-1/3 shadow p-4 w-full">
         <div className="mb-4 p-4 bg-gradient-to-r from-[#01c0c9] to-[#007cde] text-white rounded shadow">
           <h2 className="text-lg font-bold">{loginUserName}</h2>
-          <p>{loginuser}</p>
         </div>
         <h2 className="text-xl font-bold mb-4">Chat List</h2>
         {chatList.length === 0 ? (
           <p>No users to chat with.</p>
         ) : (
-          chatList.map((email) => (
+          chatList.map((user) => (
             <div
-              key={email}
-              className={`p-2 mb-2 h-12 cursor-pointer bg-gray-100 rounded shadow ${
-                selectedUser === email ? "bg-blue-100" : ""
+              key={user.phoneNumber}
+              className={`p-2 mb-2 h-14 cursor-pointer flex items-center bg-gray-100 rounded shadow ${
+                selectedUser === user.phoneNumber ? "bg-blue-100" : ""
               }`}
-              onClick={() => setSelectedUser(email)}
+              onClick={() => {
+                setSelectedUser(user.phoneNumber);
+                markMessageAsSeen(user.phoneNumber, loginphone);
+              }}
             >
-              {email}
+              {/* Chat Username */}
+              <span className="flex-1 font-semibold">{user.username}</span>
+
+              {/* Notification Icon for Unread Messages */}
+              {user.hasUnread && (
+                <span className="ml-2 text-red-500 text-lg">🔔</span>
+              )}
             </div>
           ))
         )}
       </div>
 
       {/* Right Panel */}
-      <div className="w-2/3 p-4 flex flex-col">
+      <div className="md:w-2/3 p-4 flex flex-col w-full mt-20 md:mt-0">
         {selectedUser ? (
           <>
-            {/* Header for Selected User */}
             <div className="mb-4 p-4 bg-gradient-to-r from-[#01c0c9] to-[#007cde] text-white rounded shadow">
-              <h2 className="text-lg font-bold">{selectedUserName}</h2>
-              <p>{selectedUser}</p>
+              <p>Chat Option</p>
             </div>
 
-            {/* Conversation Section */}
-            <div className="flex-1 overflow-y-auto">
+            {productDetails && (
+              <div className="mb-4 p-4 bg-gray-100 rounded shadow flex items-center">
+                <img
+                  src={productDetails.productimage}
+                  alt="Product"
+                  className="w-20 h-20 object-cover rounded mr-4"
+                />
+                <div>
+                  <h3 className="text-lg font-bold">
+                    {productDetails.productmodel} - {productDetails.productbrand}
+                  </h3>
+                  <p>Price: {productDetails.productprice} Taka</p>
+                  <p>Condition: {productDetails.productcondition}</p>
+                  <p>Location: {productDetails.productdistrict}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Chat Messages */}
+            <div className="flex-1 overflow-y-auto h-44 md:h-0">
               {messages.length === 0 ? (
                 <p>No messages yet.</p>
               ) : (
@@ -100,22 +170,24 @@ const ViewChat = () => {
                   <div
                     key={idx}
                     className={`mb-4 p-2 rounded ${
-                      msg.senderEmail === loginuser
+                      msg.senderEmail === loginphone
                         ? "self-end bg-blue-50 text-right"
                         : "self-start bg-gray-50 text-left"
                     }`}
-                    
                   >
-                    {/* Sender's Email */}
                     <div className="text-sm font-bold text-gray-500 mb-1">
-                      {msg.senderEmail}
+                      {msg.senderEmail === loginphone ? "You" : selectedUserName}
                     </div>
-                    {/* Message Content */}
                     <div>{msg.message}</div>
-                    {/* Timestamp */}
                     <div className="text-xs text-gray-400 mt-1">
                       {new Date(msg.timestamp).toLocaleString()}
                     </div>
+
+                    {msg.senderEmail === loginphone && (
+                      <div className="text-xs text-blue-500 mt-1">
+                        {msg.seen ? "✓✓ Seen" : "✓ Sent"}
+                      </div>
+                    )}
                   </div>
                 ))
               )}

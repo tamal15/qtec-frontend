@@ -9,7 +9,7 @@ import DashboardHome from "./Pages/Dashboard/DashboardHome/DashboardHome";
 
 
 import Login from "./Pages/Shared/Login/Login";
-import PrivetRoute from "./Pages/Shared/PrivetRoute/PrivetRoute";
+// import PrivetRoute from "./Pages/Shared/PrivetRoute/PrivetRoute";
 
 import ErrorPage from "./Pages/Shared/Errorpage";
 import Layout from "./Layout";
@@ -36,6 +36,16 @@ import MemberShip from "./Pages/FormPage/MemberShip/MemberShip";
 import AllProductShow from "./Pages/Dashboard/AllProductShow/AllProductShow";
 import AboutWhy from "./Pages/HomePage/AboutWhy/AboutWhy";
 import Phone from "./Pages/HomePage/Phone/Phone";
+import EditProductCard from "./Pages/AccountDetails/AddsShow/EditProductCard";
+import AddsBanner from "./Pages/HomePage/AddsBanner/AddsBanner";
+import BoostAdds from "./Pages/HomePage/BoostAdds/BoostAdds";
+import AboutPart from "./Pages/HomePage/AboutPart/AboutPart";
+import TermCondition from "./Pages/HomePage/TermCondition/TermCondition";
+import PrivacyPolicy from "./Pages/HomePage/PrivacyPolicy/PrivacyPolicy";
+import PrivetRoute from "./Pages/Shared/PrivetRoute/PrivetRoute";
+import SubAdmin from "./Pages/Dashboard/MakeAdmin/SubAdmin/SubAdmin";
+import JobFormPage from "./Pages/FormPage/JobFormPage";
+import PrivateRoute from "./Pages/Shared/PrivetRoute/PrivetRoute";
 
 
 const router = createBrowserRouter([
@@ -54,14 +64,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/uploadcategory",
-        element: <FormPage />,
+        element: 
+        <PrivetRoute>
+         <FormPage />
+        </PrivetRoute>
+        
       },
       {
         path: "/accounts",
         element: 
-        <PrivetRoute>
+        // <PrivetRoute>
           <AccountDetails />
-        </PrivetRoute>
+        // </PrivetRoute>
        
       },
       {
@@ -69,16 +83,56 @@ const router = createBrowserRouter([
         element: <BoostAdPage />,
       },
       {
+        path:"/editproductcard/:id",
+        element: <EditProductCard />,
+      },
+      {
         path: "/contactus",
         element: <ContactUs />,
       },
+      // {
+      //   path: "/banneradds",
+      //   element: <Bannerads />,
+      // },
       {
         path: "/postadpages",
-        element: <PostAdPage />,
+        element: 
+        <PrivateRoute>
+         <PostAdPage />
+        </PrivateRoute>
+        
       },
       {
         path: "/allads",
         element: <AllAds />,
+      },
+      {
+        path: "/addsbanners",
+        element: <AddsBanner />,
+      },
+      {
+        path: "/aboutsparts",
+        element: <AboutPart />,
+      },
+      {
+        path: "/postjobpage",
+        element: <JobFormPage />,
+      },
+      {
+        path: "/termcondition",
+        element: <TermCondition />,
+      },
+      {
+        path: "/privacypolicy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/boostadds",
+        element: <BoostAdds />,
+      },
+      {
+        path: "/pendingproduct",
+        element: <PendingProduct />,
       },
       
      
@@ -89,9 +143,9 @@ const router = createBrowserRouter([
       {
         path: "/viewchats",
         element: 
-        <PrivetRoute>
+        // <PrivetRoute>
           <ViewChat />
-        </PrivetRoute>
+        // </PrivetRoute>
        
       },
       {
@@ -120,7 +174,7 @@ const router = createBrowserRouter([
       // },
       
       {
-        path: "//category/:category",
+        path: "/category/:category",
         element: <CategoryDetails />,
       },
      
@@ -142,9 +196,9 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: (
-          <PrivetRoute>
+          // <PrivetRoute>
             <Dashboard />
-          </PrivetRoute>
+          // </PrivetRoute>
         ),
         children: [
           {
@@ -154,6 +208,10 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/makeadmin",
             element: <MakeAdmin />,
+          },
+          {
+            path: "/dashboard/subadmin",
+            element: <SubAdmin />,
           },
           {
             path: "/dashboard/useralldata",

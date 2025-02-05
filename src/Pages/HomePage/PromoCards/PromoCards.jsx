@@ -5,7 +5,7 @@ const PromoCards = () => {
       const { t } = useTranslation();
   
   return (
-    <div className="max-w-6xl mx-auto mt-16 p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="max-w-6xl -mt-1  mx-auto md:mt-16 p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
       {/* First Card */}
       <div className="bg-white shadow-md rounded-lg p-6 flex items-center space-x-4">
         <div className="flex-shrink-0">

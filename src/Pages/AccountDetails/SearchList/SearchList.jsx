@@ -8,7 +8,8 @@ const SearchList = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
-  const email = user.email;
+  // const email = user.email;
+  const phone = user.phoneNumber;
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const SearchList = () => {
       try {
         // Fetch only the logged-in user's data
         const response = await axios.get(
-          `https://to-cash-backend.onrender.com/api/search-terms?email=${email}`
+          `https://to-cash-backend.onrender.com/api/search-terms?phone=${phone}`
         );
         setData(response.data); // Set the data for the logged-in user
         setLoading(false);
@@ -27,7 +28,7 @@ const SearchList = () => {
     };
 
     fetchData();
-  }, [email]); // Dependency on email
+  }, [phone]); // Dependency on email
 
   // Handle delete action
   const handleDelete = async (id) => {
@@ -45,7 +46,7 @@ const SearchList = () => {
   }
 
   return (
-    <div className="p-4 md:p-8 shadow ">
+    <div className="p-4 md:p-8 shadow w-full">
       {data.length === 0 ? (
         // Show this message if there are no saved searches
         <div className="text-center">

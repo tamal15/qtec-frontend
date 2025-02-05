@@ -9,7 +9,8 @@ const Dashboard = () => {
 //   useTitle("Dashboard Home");
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
   const [isOpens, setIsOpens] = useState(false);
-  const { admin } = useFirebase();
+  const { admin,subadmin } = useFirebase();
+  console.log(subadmin)
 
 
   const toggleDropdown = () => {
@@ -19,8 +20,9 @@ const Dashboard = () => {
   return (
     <div className="flex flex-row-reverse gap-4 relative">
 
-  { admin && 
+  { (admin || subadmin) && 
 
+(
 
   <>
 
@@ -32,7 +34,7 @@ const Dashboard = () => {
       >
         <div className="w-full">
           <div className="hidden md:flex items-center gap-5">
-            <img className="w-36 h-24 ms-3 mt-2" src="https://i.ibb.co.com/RgTgTkj/Sellfo-01.png" />
+            <img className="w-36 h-24 ms-3 mt-2" src="https://i.ibb.co.com/HQ5Q5jf/sellflit.png" />
           </div>
           <DashboardSideBar setIsOpenSidebar={setIsOpenSidebar} />
         </div>
@@ -120,6 +122,7 @@ const Dashboard = () => {
   
   
   </>
+)
   
   
   

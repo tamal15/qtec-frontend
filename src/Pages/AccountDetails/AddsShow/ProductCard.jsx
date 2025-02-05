@@ -1,7 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
+import axios from "axios";
+import { MdOutlineDeleteOutline } from "react-icons/md";
+import { FaPencilAlt } from "react-icons/fa";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product ,setProducts}) => {
   const navigate = useNavigate();
 
  
@@ -9,6 +13,38 @@ const ProductCard = ({ product }) => {
   const handleBoostClick = () => {
     // Navigate to the boost page and pass the product ID
     navigate(`/boost-ad/${product._id}`);
+  };
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Immediately remove from UI before API call
+        setProducts((prevProducts) => prevProducts.filter((p) => p._id !== id));
+
+        axios
+          .delete(`https://to-cash-backend.onrender.com/categoriespartsdelete/${id}`)
+          .then((response) => {
+            if (response.status === 204) {
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            Swal.fire("Error!", "Something went wrong. Try again.", "error");
+
+            // If API call fails, restore the product back
+            setProducts((prevProducts) => [...prevProducts, product]);
+          });
+      }
+    });
   };
   
   return (
@@ -22,24 +58,47 @@ const ProductCard = ({ product }) => {
         />
         <div>
           <h3 className="text-lg font-bold text-blue-600">
-            {product.brand} {product.model}{" "}
-            <span className="text-gray-500">({product.condition})</span>
+            {product.title} 
+            {/* {product.model}{" "} */}
+            {/* <span className="text-gray-500">({product.condition})</span> */}
           </h3>
           <p className="text-sm text-gray-500">
-            6 days, {product.division || "N/A"}, {product.category || "N/A"}
+             {product.division || "N/A"}, {product.category || "N/A"}
           </p>
-          <p className="text-lg font-bold text-black mt-2">Tk {product.price}</p>
+          <h6 className="text-sm text-gray-500 bg-gray-200 p-2 me-40 rounded-md">
+             {product.productStatus || "N/A"}
+          </h6>
+          <p className="text-lg font-bold text-black mb-2 mt-2">Tk {product.price}</p>
+
+          {product.boostingDetails?.packageName && (
+      <span className="text-sm font-semibold  mt-3 text-blue-500 bg-gray-100 px-3 py-1 rounded-md">
+        {product.boostingDetails.packageName}
+      </span>
+    )}
+          
         </div>
+        
       </div>
 
       {/* Buttons Section */}
       <div className="flex gap-2 mt-4">
-        <button className="px-4 py-2 text-center bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">
-          Edit
-        </button>
-        <button className="px-4 py-2 text-center bg-red-500 text-white rounded-lg hover:bg-red-600">
-          Delete
-        </button>
+         <NavLink
+                                to={`/editproductcard/${product._id}`}
+                                style={{
+                                  textDecoration: "none",
+                                  marginRight: "-10px",
+                                }}
+                              >
+                                <button className="w-10 h-10 rounded-full flex items-center justify-center bg-[#01c0c9] text-white text-xl duration-300 active:scale-90">
+                                  <FaPencilAlt />
+                                </button>
+                              </NavLink>
+        <button
+                                onClick={() => handleDelete(product?._id)}
+                                className="w-10 h-10 ml-4 rounded-full flex items-center justify-center bg-[#007cde] text-white text-xl duration-300 active:scale-90"
+                              >
+                                <MdOutlineDeleteOutline />
+                              </button>
       </div>
 
       {/* Divider */}
@@ -80,11 +139,24 @@ ProductCard.propTypes = {
       brand: PropTypes.string.isRequired, // Product brand (required)
       productStatus: PropTypes.string.isRequired, // Product brand (required)
       model: PropTypes.string, // Product model
+      title:PropTypes.string,
       condition: PropTypes.string, // Product condition (e.g., "Used", "New")
       division: PropTypes.string, // Division/Region
       category: PropTypes.string, // Product category
       price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired, // Price (required)
+      boostingDetails: PropTypes.shape({
+        packageName: PropTypes.string, // Package name for boosted ads
+        amount: PropTypes.number, // Boosting amount
+        // boostingDays: PropTypes.number, 
+        // boostingDate: PropTypes.string, 
+        // boostingTime: PropTypes.string, 
+        // bkashNumber: PropTypes.string,
+        // boostedAt: PropTypes.string, 
+      }),
+    
     }).isRequired,
+    setProducts: PropTypes.func.isRequired,
+    
   };
 
 export default ProductCard;

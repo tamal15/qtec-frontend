@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 const image_hosting_key = "87e8c93db3b7d5540df8a8f00585cbe9";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
-const FormPage = () => {
+const JobFormPage = () => {
 
   const [divisions, setDivisions] = useState([]); // State to hold divisions data
   const [selectedDivision, setSelectedDivision] = useState("");
@@ -31,7 +31,7 @@ const FormPage = () => {
    useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/service.json"); // Adjust the path to your JSON file
+        const response = await fetch("/job.json"); // Adjust the path to your JSON file
         const data = await response.json();
         setCategories(data.categories); // Set categories data
       } catch (error) {
@@ -148,11 +148,15 @@ const FormPage = () => {
       const [step, setStep] = useState(1);
     
       const [formDatas, setFormDatas] = useState({
-        condition: "used",
         productStatus:"pending",
-        brand: "",
+        roles: "",
         title:"",
         model: "",
+        website: "",
+        timeperiod: "",
+        salary: "",
+        education: "",
+        experience: "",
         edition: "",
         features: [],
         description: "",
@@ -164,34 +168,7 @@ const FormPage = () => {
         termsAccepted: false,
       });
     
-      // const featuresOptions = [
-      //   "4G",
-      //   "5G",
-      //   "Dual SIM",
-      //   "Micro SIM",
-      //   "Mini SIM",
-      //   "USB Type-B Port",
-      //   "USB Type-C Port",
-      //   "Fast Charging",
-      //   "Flash Charging",
-      //   "Android",
-      //   "Windows",
-      //   "iOS",
-      //   "Expandable Memory",
-      //   "4GB RAM",
-      //   "6GB RAM",
-      //   "8GB RAM",
-      //   "12GB RAM",
-      //   "Dual Camera",
-      //   "Triple Camera",
-      //   "Dual LED Flash",
-      //   "Quad LED Flash",
-      //   "Bluetooth",
-      //   "WiFi",
-      //   "GPS",
-      //   "Fingerprint Sensor",
-      //   "Infrared Port",
-      // ];
+     
     
       const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -294,10 +271,14 @@ const FormPage = () => {
               icon: "",
             });
             setFormDatas({
-              condition: "used",
-              brand: "",
+                roles: "",
               title:"",
               model: "",
+              website: "",
+              timeperiod: "",
+              salary: "",
+              education: "",
+              experience: "",
               edition: "",
               features: [],
               description: "",
@@ -362,12 +343,16 @@ const FormPage = () => {
           !name ||
           !phone ||
           // !formDatas.email ||
-          !formDatas.phone ||
+          !formDatas.email ||
           !formDatas.title ||
           !formDatas.description ||
+          !formDatas.roles ||
+          !formDatas.model ||
+          !formDatas.website ||
+          !formDatas.timeperiod ||
           !formDatas.price ||
-          !formDatas.condition ||
-          !formDatas.images.length
+          !formDatas.education ||
+          !formDatas.experience 
         ) {
           Swal.fire({
             icon: 'warning',
@@ -442,21 +427,7 @@ const FormPage = () => {
           ))}
         </select>
       </div>
-            {/* <div>
-            <h2 className="text-lg font-bold mb-4 mt-10">বিভাগ নির্বাচন করুন</h2>
-            <select
-              name="division"
-              value={formData.division}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded-md"
-            >
-              <option value="">বিভাগ নির্বাচন করুন</option>
-              <option value="dhaka">ঢাকা</option>
-              <option value="chittagong">চট্টগ্রাম</option>
-            </select>
-            
-          </div> */}
-
+           
           <div>
             {/* Division Selector */}
       <div className="mb-4">
@@ -493,23 +464,7 @@ const FormPage = () => {
         </select>
       </div>
 
-      {/* Upazila Selector */}
-      {/* <div className="mb-4">
-        <label className="block text-lg font-bold mb-4 mt-10">উপজেলা নির্বাচন করুন:</label>
-        <select
-          value={selectedUpazila}
-          onChange={handleUpazilaChange}
-          className="border rounded p-2 w-full"
-          disabled={!upazilas.length}
-        >
-          <option value="">উপজেলা নির্বাচন</option>
-          {upazilas.map((upazila) => (
-            <option key={upazila.name} value={upazila.name}>
-              {upazila.name}
-            </option>
-          ))}
-        </select>
-      </div> */}
+    
 
       {/* Thana Selector */}
       <div className="mb-4">
@@ -565,33 +520,20 @@ const FormPage = () => {
           <h1 className="text-2xl font-bold mb-4">বিস্তারিত তথ্য দিন</h1>
     
        
-            <div className="mb-4">
-              <label className="block text-gray-700 font-medium mb-2">কন্ডিশন</label>
-              <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="condition"
-                    value="used"
-                    checked={formDatas.condition === 'used'}
-                    onChange={handleInputChanges}
-                  />
-                  ব্যবহৃত
-                </label>
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="condition"
-                    value="new"
-                    checked={formDatas.condition === 'new'}
-                    onChange={handleInputChanges}
-                  />
-                  নতুন
-                </label>
-              </div>
-            </div>
+           
     
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label className="block text-gray-700 font-medium mb-2"> রোল </label>
+                <input
+                  type="text"
+                  name="roles"
+                  value={formDatas.roles}
+                  onChange={handleInputChanges}
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  placeholder="ট্যাক্স অফিসার, হিসাবরক্ষক, ফাইন্যান্স উপদেষ্টা"
+                />
+              </div>
               <div>
                 <label className="block text-gray-700 font-medium mb-2">বিজ্ঞাপন শিরোনাম</label>
                 <input
@@ -600,27 +542,91 @@ const FormPage = () => {
                   value={formDatas.title}
                   onChange={handleInputChanges}
                   className="w-full border border-gray-300 p-2 rounded-md"
-                  placeholder="phone name,model,জৈব সার ১০০% অর্গানিক"
+                  placeholder="Dhaka তে ট্যাক্স অফিসার  চাকুরী"
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-2">ব্র্যান্ড</label>
-                <input
-                  type="text"
-                  name="brand"
-                  value={formDatas.brand}
-                  onChange={handleInputChanges}
-                  className="w-full border border-gray-300 p-2 rounded-md"
-                  placeholder="ব্র্যান্ড লিখুন"
-                />
-              </div>
-    
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">মডেল</label>
+                <label className="block text-gray-700 font-medium mb-2">চাকরির ধরণ</label>
                 <input
                   type="text"
                   name="model"
                   value={formDatas.model}
+                  onChange={handleInputChanges}
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  placeholder="ফুলটাইম ,পার্ট টাইম, চুক্তিভিত্তিক, ইন্টার্নশীপ"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">প্রয়োজনীয় চাকরির অভিজ্ঞতা (বছর)</label>
+                <input
+                  type="text"
+                  name="experience"
+                  value={formDatas.experience}
+                  onChange={handleInputChanges}
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  placeholder="1 বছর"
+
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">প্রয়োজনীয় শিক্ষাগত যোগ্যতা
+                </label>
+                <input
+                  type="text"
+                  name="education"
+                  value={formDatas.education}
+                  onChange={handleInputChanges}
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  placeholder="ssc, hsc, bsc,masters"
+
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">মাসিক বেতন
+                </label>
+                <input
+                  type="text"
+                  name="price"
+                  value={formDatas.price}
+                  onChange={handleInputChanges}
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  placeholder="10000-25000"
+
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">আবেদনের সময়সীমা
+                </label>
+                <input
+                  type="text"
+                  name="timeperiod"
+                  value={formDatas.timeperiod}
+                  onChange={handleInputChanges}
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  placeholder="4 april"
+
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">নিয়োগকারীর ওয়েবসাইট
+                </label>
+                <input
+                  type="text"
+                  name="website"
+                  value={formDatas.website}
+                  onChange={handleInputChanges}
+                  className="w-full border border-gray-300 p-2 rounded-md"
+                  placeholder="https://tocash-4af3a.web.app/login"
+
+                />
+              </div>
+    
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">নিয়োগকারীর ইমেইল </label>
+                <input
+                  type="text"
+                  name="email"
+                  value={formDatas.email}
                   onChange={handleInputChanges}
                   className="w-full border border-gray-300 p-2 rounded-md"
                   placeholder="মডেল লিখুন"
@@ -639,35 +645,9 @@ const FormPage = () => {
               />
             </div>
     
-            <div className="mb-4">
-              <label className="block text-gray-700 font-medium mb-2">মূল্য (৳)</label>
-              <input
-                type="number"
-                name="price"
-                value={formDatas.price}
-                onChange={handleInputChanges}
-                className="w-full border border-gray-300 p-2 rounded-md"
-                placeholder="পণ্যের মূল্য লিখুন"
-              />
-            </div>
+           
     
-            {/* <div className="mb-4">
-              <label className="block text-gray-700 font-medium mb-2">ফিচার</label>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                {featuresOptions.map((feature) => (
-                  <label key={feature} className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      name="features"
-                      value={feature}
-                      checked={formDatas.features.includes(feature)}
-                      onChange={handleInputChanges}
-                    />
-                    {feature}
-                  </label>
-                ))}
-              </div>
-            </div> */}
+            
     
     <div className="mb-4">
   <label className="block text-gray-700 font-medium mb-2">ছবি যোগ করুন (সর্বাধিক ৫)</label>
@@ -685,13 +665,11 @@ const FormPage = () => {
 <div className="grid grid-cols-5 gap-2 mt-4">
   {formDatas.images.map((image, index) => (
     <div key={index} className="relative w-full h-24">
-      {/* Image */}
       <img
         src={image}
         alt={`Uploaded ${index + 1}`}
         className="w-full h-full object-cover rounded-md"
       />
-      {/* Remove Button */}
       <button
         onClick={() => handleImageRemove(index)}
         className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full hover:bg-red-600"
@@ -719,17 +697,7 @@ const FormPage = () => {
                 />
               </div>
     
-              {/* <div>
-                <label className="block text-gray-700 font-medium mb-2">ইমেইল</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formDatas.email}
-                  onChange={handleInputChanges}
-                  className="w-full border border-gray-300 p-2 rounded-md"
-                  placeholder="আপনার ইমেইল লিখুন"
-                />
-              </div> */}
+             
             </div>
     
             <div className="mb-4">
@@ -775,4 +743,4 @@ const FormPage = () => {
   );
 };
 
-export default FormPage;
+export default JobFormPage;

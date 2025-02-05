@@ -111,3 +111,70 @@ DetailsProduct.propTypes = {
 };
 
 export default DetailsProduct;
+
+
+
+
+// const isBoostingActive = (boostingDetails) => {
+//   if (!boostingDetails) return false;
+
+//   const { boostingDate, boostingTime, boostingDays } = boostingDetails;
+
+//   // Convert boosting start date & time to a timestamp
+//   const boostingStart = new Date(`${boostingDate}T${boostingTime}`).getTime();
+
+//   // Calculate boosting expiration timestamp
+//   const boostingEnd = boostingStart + boostingDays * 24 * 60 * 60 * 1000;
+
+//   return Date.now() < boostingEnd; // Returns true if still within boosting period
+// };
+
+// // Function to update product boosting status
+// const updateProductBoostingStatus = (products) => {
+//   return products.map((product) => {
+//     const isBoosted = isBoostingActive(product.boostingDetails);
+
+//     return {
+//       ...product,
+//       isBoosted, // Set boosted flag
+//       boostingDetails: isBoosted ? product.boostingDetails : null, // Remove boosting details if expired
+//     };
+//   });
+// };
+
+// // Sorting function: Active boosted products stay on top
+// const sortedProducts = updateProductBoostingStatus(filteredProducts).sort((a, b) => {
+//   const packageOrder = {
+//     "Top Ad": 1,
+//     "Bump Up": 2,
+//     "Urgent": 3,
+//   };
+
+//   const isBoostingA = a.isBoosted;
+//   const isBoostingB = b.isBoosted;
+
+//   const packageA = isBoostingA ? packageOrder[a.boostingDetails?.packageName] || Infinity : Infinity;
+//   const packageB = isBoostingB ? packageOrder[b.boostingDetails?.packageName] || Infinity : Infinity;
+
+//   if (packageA !== packageB) {
+//     return packageA - packageB; // Prioritize active boosted products
+//   }
+
+//   // Sort by boosting expiration time
+//   const boostingEndTimeA = isBoostingA
+//     ? new Date(a.boostingDetails.boostingDate + "T" + a.boostingDetails.boostingTime).getTime() + a.boostingDetails.boostingDays * 24 * 60 * 60 * 1000
+//     : 0;
+
+//   const boostingEndTimeB = isBoostingB
+//     ? new Date(b.boostingDetails.boostingDate + "T" + b.boostingDetails.boostingTime).getTime() + b.boostingDetails.boostingDays * 24 * 60 * 60 * 1000
+//     : 0;
+
+//   return boostingEndTimeB - boostingEndTimeA;
+// });
+
+
+
+
+
+
+  

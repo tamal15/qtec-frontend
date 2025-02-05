@@ -57,7 +57,7 @@ const AboutWhy = () => {
         data.map((item, index) => (
           <div key={index} className="border-b">
             <button
-              className="w-full text-left py-3 flex justify-between items-center hover:text-red-500"
+              className="w-full text-left py-3 flex justify-between items-center hover:text-[#007cde]"
               onClick={() => handleToggle(index)}
             >
               <span className="text-lg font-medium">{t(item.titleKey)}</span>

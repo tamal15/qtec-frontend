@@ -5,12 +5,13 @@ import useAuth from "../../Hooks/useAuth";
 
 const Setting = () => {
   const { user } = useAuth(); // Get the logged-in user's details
-  const email = user.email;
+  // const email = user.email;
+  const phone = user.phoneNumber;
 
   const [formData, setFormData] = useState({
-    email: email,
+    phone: phone,
     name: "",
-    phone: "",
+    email: "",
     district: "",
     upazila: "",
   });
@@ -23,14 +24,14 @@ const Setting = () => {
       try {
         setLoading(true);
         const response = await axios.get("https://to-cash-backend.onrender.com/getuserdats", {
-          params: { email }, // Send email as query param
+          params: { phone }, // Send email as query param
         });
 
         if (response.data) {
           setFormData({
-            email: response.data.email || "",
+            phone: response.data.phoneNumber || "",
             name: response.data.displayName || "",
-            phone: response.data.phone || "",
+            email: response.data.email || "",
             district: response.data.district || "",
             upazila: response.data.upazila || "",
           });
@@ -45,10 +46,10 @@ const Setting = () => {
       }
     };
 
-    if (email) {
+    if (phone) {
       fetchUserData();
     }
-  }, [email]);
+  }, [phone]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

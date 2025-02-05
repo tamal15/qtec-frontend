@@ -1,142 +1,189 @@
-import {
-  getAuth,
-  onAuthStateChanged,
-  signOut,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-  sendEmailVerification,
-} from "firebase/auth";
 import { useEffect, useState } from "react";
-import initial from "../Shared/Firebase/firebase.init";
-
-initial();
+import Swal from "sweetalert2";
 
 const useFirebase = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(() => {
+    // ✅ Load user from localStorage when the app starts
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
   const [isLoading, setIsLoading] = useState(true);
   const [authError, setAuthError] = useState('');
   const [admin, setAdmin] = useState(false);
-  const [error, setError] = useState("");
-
+  const [subadmin, setsubAdmin] = useState(false);
+  const [error] = useState("");
   const [toggle, setToggle] = useState(false);
 
-  const auth = getAuth();
-
-  // Register user with email and password
-  const registerUser = (email, password, name, location, navigate) => {
+  // Register user with email and password (without Firebase Auth)
+  const registerUser = (email, password, name,phoneNumber, location, navigate) => {
     setIsLoading(true);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        verifyEmail();
-        const newUser = { email, displayName: name };
-        setUser(newUser);
 
-        // Save user to database
-        sendUser(email, name, 'POST');
+    // Simulate email verification (your API might handle this)
+    const verifyEmail = () => {
+      console.log("Email verified");
+    };
 
-        // Send name to Firebase after creation
-        updateProfile(auth.currentUser, {
-          displayName: name,
-        })
-          .then(() => {})
-          .catch(() => {});
+    verifyEmail();
+    
+    const newUser = { email, displayName: name,phoneNumber };
+    setUser(newUser);
 
-        setAuthError('');
-        const destination = location?.state?.from || '/';
-        navigate(destination); // Use navigate here
-      })
-      .catch((error) => {
-        setAuthError(error.message);
-      })
-      .finally(() => setIsLoading(false));
+    // Save user to database via API (not Firebase)
+    sendUser(email, name, phoneNumber, 'POST');
+
+    setAuthError('');
+    const destination = location?.state?.from || '/';
+    navigate(destination); // Use navigate to redirect after registration
+
+    setIsLoading(false);
   };
 
-  // Login with email and password
-  // Login with email and password
-  // Login with email and password
-  const loginWithOwnEmailAndPass = async (email, password, location, navigate) => {
-    setIsLoading(true);
-    try {
-      // Check user status from database
-      const response = await fetch(`http://localhost:5000/usersblock/${email}`);
-      const userData = await response.json();
-      console.log(userData)
+  // Login with email and password (without Firebase Auth)
+   // ✅ Save user to localStorage on login
+  
 
-      if (userData.status === "blocked") {
-        setAuthError("Your account is blocked. Contact support.");
+   const loginWithOwnEmailAndPass = async (phoneNumber, password, location, navigate) => {
+    setIsLoading(true);
+    setAuthError(""); // Clear previous errors
+  
+    try {
+      const response = await fetch(`https://to-cash-backend.onrender.com/usersblock/${phoneNumber}`);
+  
+      if (!response.ok) {
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed!",
+          text: "Phone number or password is incorrect!",
+        });
         setIsLoading(false);
         return;
       }
-
-      // Proceed with login if not blocked
-      await signInWithEmailAndPassword(auth, email, password);
+  
+      const userData = await response.json();
+  
+      if (!userData?.phoneNumber) {
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed!",
+          text: "Phone number or password is incorrect!",
+        });
+        setIsLoading(false);
+        return;
+      }
+  
+      if (userData.status === "blocked") {
+        Swal.fire({
+          icon: "error",
+          title: "Account Blocked!",
+          text: "Your account is blocked. Contact support.",
+        });
+        setIsLoading(false);
+        return;
+      }
+  
+      // Ensure password matches
+      if (userData.password !== password) {
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed!",
+          text: "Phone number or password is incorrect!",
+        });
+        setIsLoading(false);
+        return;
+      }
+  
+      // Store user data in state and localStorage
+      setUser(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
+  
+      Swal.fire({
+        icon: "success",
+        title: "Login Successful!",
+        text: "Welcome back!",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+  
+      // Navigate after login
       const destination = location?.state?.from || "/";
       navigate(destination);
       setAuthError("");
     } catch (error) {
-      setAuthError(error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed!",
+        text: "An error occurred. Please try again.",
+      });
     } finally {
       setIsLoading(false);
     }
   };
+  
 
-  // Verify email
-  const verifyEmail = () => {
-    sendEmailVerification(auth.currentUser)
-      .then(() => {
-        console.log("Verification email sent.");
-      });
-  };
+
+
+  // ✅ Ensure user is loaded from localStorage when app starts
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+  
+  
+  
 
   // Log out user
-  const userLogOut = () => {
+  const userLogOut = (navigate) => {
     setIsLoading(true);
     setToggle(false);
-    signOut(auth)
-      .then(() => {})
-      .catch((error) => {
-        setError(error.message);
-      })
-      .finally(() => setIsLoading(false));
+    setUser(null); // Clear user state
+    localStorage.removeItem("user"); // Clear user session
+    navigate("/"); // Redirect to home after logout
+    setIsLoading(false);
   };
+  
 
-  // Save user to database
-  const sendUser = (email, displayName, method) => {
-    const user = { email, displayName };
-    fetch('http://localhost:5000/users', {
+  // Save user to the database via API
+ 
+  const sendUser = (email, displayName, phoneNumber, method) => {
+    const user = { email, displayName, phoneNumber };
+  
+    fetch("https://to-cash-backend.onrender.com/usersdatasd", {
       method: method,
-      headers: { 'content-type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (!data.success) {
+          alert(data.message); // Show error if phone number is already registered
+        } else {
+          alert("User registered successfully!");
+        }
       })
-      .catch((error) => console.error('Error:', error));
+      .catch((error) => console.error("Error:", error));
   };
+  
 
-  // Observer user state
+  // Load admin role from the database
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser({});
-      }
-      setIsLoading(false);
-    });
-    return () => unsubscribe();
-  }, [auth]);
-
-  // Load admin role from database
-  useEffect(() => {
-    if (user.email) {
-      fetch(`http://localhost:5000/userLogin/${user.email}`)
+    if (user?.phoneNumber) {
+      fetch(`https://to-cash-backend.onrender.com/userLogin/${user?.phoneNumber}`)
         .then((res) => res.json())
         .then((data) => setAdmin(data?.admin));
     }
-  }, [user.email]);
+  }, [user?.phoneNumber]);
+
+  // load the subadmin 
+  useEffect(() => {
+    if (user?.phoneNumber) {
+      fetch(`https://to-cash-backend.onrender.com/userLoginsubadmin/${user?.phoneNumber}`)
+        .then((res) => res.json())
+        .then((data) => setsubAdmin(data?.subadmin));
+    }
+  }, [user?.phoneNumber]);
 
   return {
     user,
@@ -147,6 +194,7 @@ const useFirebase = () => {
     setToggle,
     error,
     admin,
+    subadmin,
     userLogOut,
     loginWithOwnEmailAndPass,
   };

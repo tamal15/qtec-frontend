@@ -154,6 +154,11 @@
 } */
 
 
+/* close button color  */
+.newbuttoncolor{
+  color: white !important;
+  background-color: red;
+}
 
 
 

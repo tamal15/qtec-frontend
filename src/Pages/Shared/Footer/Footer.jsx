@@ -26,14 +26,14 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="mb-2">
-                <Link href="#" className="hover:text-gray-800">
+                <Link to="/addsbanners" className="hover:text-gray-800">
                   {t("bannerAds")}
                 </Link>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:text-gray-800">
+                <Link to="/boostadds" className="hover:text-gray-800">
                   {t("boostAd")}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -50,9 +50,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:text-gray-800">
+                <Link to="/" className="hover:text-gray-800">
                   {t("staySafe")}
-                </a>
+                </Link>
               </li>
               <li className="mb-2">
                 <Link to="/contactus" className="hover:text-gray-800">
@@ -69,30 +69,30 @@ const Footer = () => {
             </h3>
             <ul>
               <li className="mb-2">
-                <a href="#" className="hover:text-gray-800">
+                <Link to="/aboutsparts" className="hover:text-gray-800">
                   {t("aboutUs")}
-                </a>
+                </Link>
               </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-800">
+              {/* <li className="mb-2">
+                <Link to="#" className="hover:text-gray-800">
                   {t("careers")}
-                </a>
-              </li>
+                </Link>
+              </li> */}
               <li className="mb-2">
-                <a href="#" className="hover:text-gray-800">
+                <Link to="/termcondition" className="hover:text-gray-800">
                   {t("termsAndConditions")}
-                </a>
+                </Link>
               </li>
               <li className="mb-2">
-                <a href="#" className="hover:text-gray-800">
+                <Link to="/privacypolicy" className="hover:text-gray-800">
                   {t("privacyPolicy")}
-                </a>
+                </Link>
               </li>
-              <li className="mb-2">
-                <a href="#" className="hover:text-gray-800">
+              {/* <li className="mb-2">
+                <Link to="#" className="hover:text-gray-800">
                   {t("sitemap")}
-                </a>
-              </li>
+                </Link>
+              </li> */}
             </ul>
           </div>
 
@@ -173,7 +173,7 @@ const Footer = () => {
           {/* Right Side Image */}
           <div>
             <img
-              src="https://i.ibb.co.com/RgTgTkj/Sellfo-01.png"
+              src="https://i.ibb.co.com/HQ5Q5jf/sellflit.png"
               alt="Sellflit Logo"
               className="w-20 md:w-24 h-16 me-8"
             />

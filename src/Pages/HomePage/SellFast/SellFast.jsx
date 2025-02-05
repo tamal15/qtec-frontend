@@ -6,8 +6,8 @@ const SellFast = () => {
       <ScrollToTop/>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 md:mt-10 mt-20">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-800">Sell fast on  SellFlit</h1>
-          <p className="text-gray-600 mt-2">Below are some tips on how to post ads that attract a lot of buyer interest.<br />See our ad posting rules</p>
+          <h1 className="text-2xl font-bold text-gray-800">Core detailing on  SellFlit</h1>
+          <p className="text-gray-600 mt-2">Add core details of your product,Include keywords and information that buyers will be interested in.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -16,10 +16,10 @@ const SellFast = () => {
               <div className="w-12 h-12 bg-gray-200 flex items-center justify-center rounded-full">
                 <i className="text-2xl text-green-600">📄</i>
               </div>
-              <h3 className="text-lg font-bold text-gray-800">Add as much detail as you can</h3>
+              <h3 className="text-lg font-bold text-gray-800">First the visionary</h3>
             </div>
             <p className="text-gray-600 mt-2">
-              Ads with clear details get more views! Include keywords and information that buyers will be interested in. Remember to be honest while providing these details.
+            Use clear photos of the item you are selling.A good photo can boost your sale magically.
             </p>
           </div>
 
@@ -28,10 +28,10 @@ const SellFast = () => {
               <div className="w-12 h-12 bg-gray-200 flex items-center justify-center rounded-full">
                 <i className="text-2xl text-blue-600">📷</i>
               </div>
-              <h3 className="text-lg font-bold text-gray-800">Add great photos</h3>
+              <h3 className="text-lg font-bold text-gray-800">Smart pricing</h3>
             </div>
             <p className="text-gray-600 mt-2">
-              Use clear photos of the item you’re selling. Ads with real photos get up to 10 times more views than ads with catalog/stock photos. Make sure the lighting is good and take photos from different angles.
+            Browse similar ads and choose a competitive price.
             </p>
           </div>
 
@@ -40,10 +40,10 @@ const SellFast = () => {
               <div className="w-12 h-12 bg-gray-200 flex items-center justify-center rounded-full">
                 <i className="text-2xl text-yellow-600">💲</i>
               </div>
-              <h3 className="text-lg font-bold text-gray-800">Pick the right price</h3>
+              <h3 className="text-lg font-bold text-gray-800">Attract more</h3>
             </div>
             <p className="text-gray-600 mt-2">
-              Everything sells if the price is right! Browse similar ads on Bikroy and choose a competitive price. If you are willing to negotiate, be sure to select the Negotiable option while posting the ad.
+            Boost ad and explore more views and interested buyers for your ad.
             </p>
           </div>
 

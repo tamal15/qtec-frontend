@@ -8,7 +8,8 @@ import { useTranslation } from "react-i18next";
 
 const FavouriteProduct = () => {
   const { user } = useAuth();
-  const userEmail = user?.email;
+  // const userEmail = user?.email;
+  const userPhone = user?.phoneNumber;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
     const { t } = useTranslation();
@@ -19,7 +20,7 @@ const FavouriteProduct = () => {
       try {
         setLoading(true);
         const response = await axios.get("https://to-cash-backend.onrender.com/api/lovelistproduct", {
-          params: { email: userEmail },
+          params: { phone: userPhone },
         });
         setProducts(response.data);
       } catch (error) {
@@ -29,10 +30,10 @@ const FavouriteProduct = () => {
       }
     };
 
-    if (userEmail) {
+    if (userPhone) {
       fetchProducts();
     }
-  }, [userEmail]);
+  }, [userPhone]);
 
   if (loading) {
     return <div className="text-center mt-10">Loading...</div>;

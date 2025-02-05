@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
 
 const PostAdPage = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg p-6">
+      <ScrollToTop/>
+      <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg p-6 mt-8 md:mt-0">
         <h2 className="text-center text-xl font-semibold text-gray-800 mb-4">
-          Welcome car project! Lets post an ad.
+          Welcome SellFlit! Lets post an ad.
         </h2>
         <p className="text-center text-gray-600 mb-6">Choose any option below</p>
 
@@ -21,16 +23,16 @@ const PostAdPage = () => {
                   to="/uploadcategory"
                   className="text-blue-600 hover:underline block"
                 >
-                  Sell an item, property or service
+                  Sell an item, Category or service
                 </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/uploadcategory"
                   className="text-blue-600 hover:underline block"
                 >
-                  Offer a property for rent
-                </a>
+                  Offer a Category for Service
+                </Link>
               </li>
             </ul>
           </div>
@@ -42,20 +44,20 @@ const PostAdPage = () => {
             </h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/postjobpage"
                   className="text-blue-600 hover:underline block"
                 >
                   Post a job in Bangladesh
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/postjobpage"
                   className="text-blue-600 hover:underline block"
                 >
-                  Post a job overseas
-                </a>
+                  Post a job SellFlit
+                </Link>
               </li>
             </ul>
           </div>
@@ -67,20 +69,20 @@ const PostAdPage = () => {
             </h3>
             <ul className="mt-4 space-y-2">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/uploadcategory"
                   className="text-blue-600 hover:underline block"
                 >
                   Look for property to rent
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/uploadcategory"
                   className="text-blue-600 hover:underline block"
                 >
                   Look for something to buy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
