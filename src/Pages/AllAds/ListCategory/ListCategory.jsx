@@ -12,7 +12,7 @@ const ListCategory = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`https://to-cash-backend.onrender.com/getcategoryparts`);
+        const response = await fetch(`https://servers.sellflit.com/getcategoryparts`);
         const result = await response.json();
 
         // Calculate category counts

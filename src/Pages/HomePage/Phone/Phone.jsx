@@ -12,7 +12,7 @@ const Phone = () => {
       return;
     }
     try {
-      const response = await fetch("https://to-cash-backend.onrender.com/send-otp", {
+      const response = await fetch("https://servers.sellflit.com/send-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phoneNumber }),
@@ -32,7 +32,7 @@ const Phone = () => {
 
   const verifyOtp = async () => {
     try {
-      const response = await fetch("https://to-cash-backend.onrender.com/verify-otp", {
+      const response = await fetch("https://servers.sellflit.com/verify-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phoneNumber, otp }),

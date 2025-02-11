@@ -16,7 +16,7 @@ const EditBanners = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`https://to-cash-backend.onrender.com/editbaners/${id}`)
+    fetch(`https://servers.sellflit.com/editbaners/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -75,7 +75,7 @@ const EditBanners = () => {
     }
 
     // Send the updated data to the server
-    fetch(`https://to-cash-backend.onrender.com/bannerdataupdate/${id}`, {
+    fetch(`https://servers.sellflit.com/bannerdataupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBanner),

@@ -7,7 +7,7 @@ const Slider = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`https://to-cash-backend.onrender.com/getbannerdata`);
+        const response = await fetch(`https://servers.sellflit.com/getbannerdata`);
         const result = await response.json();
         setData(result);
       } catch (error) {

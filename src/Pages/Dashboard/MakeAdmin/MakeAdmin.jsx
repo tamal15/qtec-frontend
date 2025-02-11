@@ -7,7 +7,7 @@ const MakeAdmin = () => {
 
   // Fetch admin list
   useEffect(() => {
-    fetch("https://to-cash-backend.onrender.com/getadminlist")
+    fetch("https://servers.sellflit.com/getadminlist")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -28,7 +28,7 @@ const MakeAdmin = () => {
     e.preventDefault();
     const user = { phoneNumber };
 
-    fetch("https://to-cash-backend.onrender.com/userLogin/admin", {
+    fetch("https://servers.sellflit.com/userLogin/admin", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const MakeAdmin = () => {
   };
 
   const handleDeleteAdmin = (phoneNumber) => {
-    fetch(`https://to-cash-backend.onrender.com/userLogin/admin/${phoneNumber}`, {
+    fetch(`https://servers.sellflit.com/userLogin/admin/${phoneNumber}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" }, // Ensure JSON communication
     })

@@ -30,7 +30,7 @@ const ProductCard = ({ product ,setProducts}) => {
         setProducts((prevProducts) => prevProducts.filter((p) => p._id !== id));
 
         axios
-          .delete(`https://to-cash-backend.onrender.com/categoriespartsdelete/${id}`)
+          .delete(`https://servers.sellflit.com/categoriespartsdelete/${id}`)
           .then((response) => {
             if (response.status === 204) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

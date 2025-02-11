@@ -69,7 +69,7 @@ const SingleProductDetails = ({ product, onClose }) => {
     };
 
     try {
-      const response = await fetch("https://to-cash-backend.onrender.com/api/saved-products", {
+      const response = await fetch("https://servers.sellflit.com/api/saved-products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -103,7 +103,7 @@ const SingleProductDetails = ({ product, onClose }) => {
       const fetchMessages = async () => {
         try {
           const response = await fetch(
-            `https://to-cash-backend.onrender.com/api/chats?productId=${productId}&userPhone=${userphone}`
+            `https://servers.sellflit.com/api/chats?productId=${productId}&userPhone=${userphone}`
           );
           const data = await response.json();
           setMessages(Array.isArray(data) ? data : []);
@@ -147,7 +147,7 @@ const SingleProductDetails = ({ product, onClose }) => {
 
     try {
       // Save the message to the database
-      const response = await fetch("https://to-cash-backend.onrender.com/api/chats", {
+      const response = await fetch("https://servers.sellflit.com/api/chats", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(message),

@@ -15,7 +15,7 @@ const ProjectHome = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `https://to-cash-backend.onrender.com/getprojecthome`
+          `https://servers.sellflit.com/getprojecthome`
         );
         const result = await response.json();
         setData(result);
@@ -42,7 +42,7 @@ const ProjectHome = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`https://to-cash-backend.onrender.com/homeprojectdelete/${id}`)
+          .delete(`https://servers.sellflit.com/homeprojectdelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

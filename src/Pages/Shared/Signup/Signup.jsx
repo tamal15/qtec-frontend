@@ -24,7 +24,7 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await fetch("https://to-cash-backend.onrender.com/send-otp", {
+      const response = await fetch("https://servers.sellflit.com/send-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phoneNumber }),
@@ -49,7 +49,7 @@ const Signup = () => {
   // Verify OTP
   const verifyOtp = async () => {
     try {
-      const response = await fetch("https://to-cash-backend.onrender.com/verify-otp", {
+      const response = await fetch("https://servers.sellflit.com/verify-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phoneNumber, otp }),
@@ -94,7 +94,7 @@ const Signup = () => {
   
     try {
       // Send registration data
-      const response = await fetch("https://to-cash-backend.onrender.com/users", {
+      const response = await fetch("https://servers.sellflit.com/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({  displayName: data.name, password:data.password, phoneNumber }),

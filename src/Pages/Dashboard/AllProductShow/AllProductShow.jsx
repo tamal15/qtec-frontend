@@ -9,7 +9,7 @@ const AllProductShow = () => {
 
   // Fetch data from the server
   useEffect(() => {
-    fetch("https://to-cash-backend.onrender.com/allshowsproducts") // Replace with your API URL
+    fetch("https://servers.sellflit.com/allshowsproducts") // Replace with your API URL
       .then((res) => res.json())
       .then((data) => {
         
@@ -21,7 +21,7 @@ const AllProductShow = () => {
 
   // Update product status to approved
   const handleApprove = (id) => {
-    fetch(`https://to-cash-backend.onrender.com/approvedproducts/${id}`, {
+    fetch(`https://servers.sellflit.com/approvedproducts/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const AllProductShow = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`https://to-cash-backend.onrender.com/pendingdatsdelete/${id}`)
+          .delete(`https://servers.sellflit.com/pendingdatsdelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

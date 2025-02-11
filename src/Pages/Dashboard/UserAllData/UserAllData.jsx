@@ -8,7 +8,7 @@ const UserAllData = () => {
 
   // Fetch all users
   useEffect(() => {
-    fetch("https://to-cash-backend.onrender.com/getadminlist")
+    fetch("https://servers.sellflit.com/getadminlist")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -33,7 +33,7 @@ const UserAllData = () => {
   const handleBlockUser = (phoneNumber) => {
     if (window.confirm("Are you sure you want to block this user?")) {
         setLoading(true);
-        fetch(`https://to-cash-backend.onrender.com/blockuser/${phoneNumber}`, {
+        fetch(`https://servers.sellflit.com/blockuser/${phoneNumber}`, {
             method: "PATCH",
         })
         .then((res) => res.json())
@@ -62,7 +62,7 @@ const UserAllData = () => {
   const handleUnblockUser = (phoneNumber) => {
     if (window.confirm("Are you sure you want to unblock this user?")) {
         setLoading(true);
-        fetch(`https://to-cash-backend.onrender.com/unblockuser/${phoneNumber}`, {
+        fetch(`https://servers.sellflit.com/unblockuser/${phoneNumber}`, {
             method: "PATCH",
         })
         .then((res) => res.json())

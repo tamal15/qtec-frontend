@@ -26,10 +26,13 @@ const DetailsProduct = ({ data }) => {
     const brandMatch = product.brand
       ?.toLowerCase()
       .includes(searchTerm.toLowerCase());
+    const titleMatch = product.title
+      ?.toLowerCase()
+      .includes(searchTerm.toLowerCase());
     const subCategoryMatch = product.subCategory
       ?.toLowerCase()
       .includes(searchTerm.toLowerCase());
-    return brandMatch || subCategoryMatch;
+    return brandMatch || subCategoryMatch || titleMatch;
   });
 
   // Sort products based on package priority and maintain serial order for no-package items
@@ -151,7 +154,7 @@ const DetailsProduct = ({ data }) => {
     }
 
     try {
-      const response = await fetch("https://to-cash-backend.onrender.com/api/save-search", {
+      const response = await fetch("https://servers.sellflit.com/api/save-search", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

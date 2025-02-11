@@ -19,7 +19,7 @@ const FavouriteProduct = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("https://to-cash-backend.onrender.com/api/lovelistproduct", {
+        const response = await axios.get("https://servers.sellflit.com/api/lovelistproduct", {
           params: { phone: userPhone },
         });
         setProducts(response.data);

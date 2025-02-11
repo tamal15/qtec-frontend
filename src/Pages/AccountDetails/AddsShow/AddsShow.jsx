@@ -17,7 +17,7 @@ const AddsShow = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("https://to-cash-backend.onrender.com/api/addsproducts", {
+        const response = await axios.get("https://servers.sellflit.com/api/addsproducts", {
           params: { phone: userPhone },
         });
         setProducts(response.data);

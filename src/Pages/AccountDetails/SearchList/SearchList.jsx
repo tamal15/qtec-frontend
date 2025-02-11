@@ -17,7 +17,7 @@ const SearchList = () => {
       try {
         // Fetch only the logged-in user's data
         const response = await axios.get(
-          `https://to-cash-backend.onrender.com/api/search-terms?phone=${phone}`
+          `https://servers.sellflit.com/api/search-terms?phone=${phone}`
         );
         setData(response.data); // Set the data for the logged-in user
         setLoading(false);
@@ -34,7 +34,7 @@ const SearchList = () => {
   const handleDelete = async (id) => {
     try {
       // Replace with your actual delete API endpoint
-      await axios.delete(`https://to-cash-backend.onrender.com/api/search-terms/${id}`);
+      await axios.delete(`https://servers.sellflit.com/api/search-terms/${id}`);
       setData(data.filter((item) => item._id !== id)); // Remove item from state
     } catch (error) {
       console.error("Error deleting item:", error);

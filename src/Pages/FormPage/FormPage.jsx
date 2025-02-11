@@ -275,7 +275,7 @@ const FormPage = () => {
         const combinedData = { ...formData, ...formDatas ,name,phone};
     
         try {
-          const response = await axios.post("https://to-cash-backend.onrender.com/api/form-submit", combinedData);
+          const response = await axios.post("https://servers.sellflit.com/api/form-submit", combinedData);
     
           if (response.status === 200) {
             Swal.fire({

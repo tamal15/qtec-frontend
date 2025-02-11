@@ -23,7 +23,7 @@ const Setting = () => {
     const fetchUserData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("https://to-cash-backend.onrender.com/getuserdats", {
+        const response = await axios.get("https://servers.sellflit.com/getuserdats", {
           params: { phone }, // Send email as query param
         });
 
@@ -62,7 +62,7 @@ const Setting = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put("https://to-cash-backend.onrender.com/api/update-user", formData);
+      const response = await axios.put("https://servers.sellflit.com/api/update-user", formData);
 
       // Show success message with SweetAlert
       Swal.fire({

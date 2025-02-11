@@ -20,7 +20,7 @@ const ViewChat = () => {
   // ✅ Fetch Chat List (Updated with unread message notifications)
   useEffect(() => {
     axios
-      .get(`https://to-cash-backend.onrender.com/chatlist?userPhone=${loginphone}`)
+      .get(`https://servers.sellflit.com/chatlist?userPhone=${loginphone}`)
       .then((res) => {
         setChatList(res.data);
       })
@@ -31,7 +31,7 @@ const ViewChat = () => {
   useEffect(() => {
     if (selectedUser) {
       axios
-        .get(`https://to-cash-backend.onrender.com/conversation?userPhone=${loginphone}&otheruserPhone=${selectedUser}`)
+        .get(`https://servers.sellflit.com/conversation?userPhone=${loginphone}&otheruserPhone=${selectedUser}`)
         .then((res) => {
           setMessages(res.data);
           if (res.data.length > 0) {
@@ -40,7 +40,7 @@ const ViewChat = () => {
         })
         .catch((err) => console.error(err));
         axios
-        .get(`https://to-cash-backend.onrender.com/user?phoneNumber=${selectedUser}`)
+        .get(`https://servers.sellflit.com/user?phoneNumber=${selectedUser}`)
         .then((res) => {
           setSelectedUserName(res.data.name || selectedUser); // Default to phone if no name
         })
@@ -55,7 +55,7 @@ const ViewChat = () => {
   const sendMessage = () => {
     if (newMessage.trim() && selectedUser) {
       axios
-        .post("https://to-cash-backend.onrender.com/send", {
+        .post("https://servers.sellflit.com/send", {
           productId: "product123", // Set the actual product ID
           senderEmail: loginphone,
           receiverEmail: selectedUser,
@@ -81,7 +81,7 @@ const ViewChat = () => {
   // ✅ Mark Messages as Seen & Update Notification
   const markMessageAsSeen = (sender, receiver) => {
     axios
-      .post("https://to-cash-backend.onrender.com/markSeen", {
+      .post("https://servers.sellflit.com/markSeen", {
         senderEmail: sender,
         receiverEmail: receiver,
       })

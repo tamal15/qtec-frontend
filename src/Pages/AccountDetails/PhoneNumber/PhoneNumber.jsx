@@ -21,7 +21,7 @@ const PhoneNumber = () => {
 
       try {
         setLoading(true);
-        const response = await axios.get("https://to-cash-backend.onrender.com/getuserdats", {
+        const response = await axios.get("https://servers.sellflit.com/getuserdats", {
           params: { phone: userPhone }, // Ensure API receives correct phone
         });
 

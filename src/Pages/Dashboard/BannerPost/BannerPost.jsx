@@ -15,7 +15,7 @@ const BannerPost = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `https://to-cash-backend.onrender.com/getbannerdata`
+          `https://servers.sellflit.com/getbannerdata`
         );
         const result = await response.json();
         setData(result);
@@ -42,7 +42,7 @@ const BannerPost = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`https://to-cash-backend.onrender.com/bannerpartdelete/${id}`)
+          .delete(`https://servers.sellflit.com/bannerpartdelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

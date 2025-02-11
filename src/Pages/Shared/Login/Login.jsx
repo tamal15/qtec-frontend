@@ -31,7 +31,7 @@ const Login = () => {
         return;
       }
       try {
-        const response = await fetch("https://to-cash-backend.onrender.com/send-otp", {
+        const response = await fetch("https://servers.sellflit.com/send-otp", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ phoneNumber }),
@@ -56,7 +56,7 @@ const Login = () => {
     // Verify OTP
     const verifyOtp = async () => {
       try {
-        const response = await fetch("https://to-cash-backend.onrender.com/verify-otp", {
+        const response = await fetch("https://servers.sellflit.com/verify-otp", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ phoneNumber, otp }),
@@ -93,7 +93,7 @@ const Login = () => {
         return;
       }
       try {
-        const response = await fetch("https://to-cash-backend.onrender.com/reset-password", {
+        const response = await fetch("https://servers.sellflit.com/reset-password", {
           method: "PUT", // ✅ Use PUT method for updating password
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ phoneNumber, newPassword }),

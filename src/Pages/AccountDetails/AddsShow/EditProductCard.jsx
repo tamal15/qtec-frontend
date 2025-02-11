@@ -23,7 +23,7 @@ const EditProductCard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`https://to-cash-backend.onrender.com/editcategoryproducts/${id}`)
+    fetch(`https://servers.sellflit.com/editcategoryproducts/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data))
       .catch((error) => console.error("Error fetching product:", error));
@@ -76,7 +76,7 @@ const EditProductCard = () => {
       }
     }
 
-    fetch(`https://to-cash-backend.onrender.com/catehorypartsupdate/${id}`, {
+    fetch(`https://servers.sellflit.com/catehorypartsupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedProduct),

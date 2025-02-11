@@ -39,7 +39,7 @@ const BoostAdPage = () => {
     }
 
     try {
-      await axios.put("https://to-cash-backend.onrender.com/api/updateBoost", {
+      await axios.put("https://servers.sellflit.com/api/updateBoost", {
         productId,
         packageName: selectedPackage.name,
         amount: selectedPackage.price,

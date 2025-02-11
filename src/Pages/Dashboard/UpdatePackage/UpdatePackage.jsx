@@ -9,7 +9,7 @@ const UpdatePackage = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("https://to-cash-backend.onrender.com/api/newproductss"); // Adjust endpoint
+      const response = await axios.get("https://servers.sellflit.com/api/newproductss"); // Adjust endpoint
       const filteredProducts = response.data.filter((product) =>
         ["Top Adds", "Bump Ups", "Urgents"].includes(product.boostingDetails?.packageName)
       );
@@ -25,7 +25,7 @@ const UpdatePackage = () => {
     try {
       const updatedPackage = { packageName: newPackageName };
       const response = await axios.put(
-        `https://to-cash-backend.onrender.com/api/products/update-package/${productId}`,
+        `https://servers.sellflit.com/api/products/update-package/${productId}`,
         updatedPackage
       );
 
