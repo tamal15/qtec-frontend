@@ -19,4 +19,4 @@ backend-- npm install
 then nodemon index.js
 
 ----description----
-This is a fully dynamic website with complete admin control. The admin has the ability to customize the site's text and color scheme, manage content, and perform full CRUD operations. Products can be added, edited, or deleted through a dedicated admin dashboard, allowing for seamless and scalable product management.user check and user see order all data check the admin and full site control
+This is a fully dynamic website with complete admin control. The admin has the ability to customize the site's text and color scheme, manage content, and perform full CRUD operations. Products can be added, edited, or deleted through a dedicated admin dashboard, allowing for seamless and scalable product management.user check and user see order all data check the admin and full site control and responsive site mobile, tab or any device
