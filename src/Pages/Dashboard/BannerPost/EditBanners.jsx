@@ -3,12 +3,15 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const image_hosting_key = "87e8c93db3b7d5540df8a8f00585cbe9";
+const image_hosting_key = "746adaf1da9a1a48b000bec014639aeb";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const EditBanners = () => {
   const [banner, setBanner] = useState({
     title: "",
+    link:"",
+    time:"",
+    detail:"",
     image: "",
   });
   const [imageFile, setImageFile] = useState(null); // State to hold the selected image file
@@ -16,7 +19,7 @@ const EditBanners = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`https://servers.sellflit.com/editbaners/${id}`)
+    fetch(`https://server.virtualshopbd.com/editbaners/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -75,7 +78,7 @@ const EditBanners = () => {
     }
 
     // Send the updated data to the server
-    fetch(`https://servers.sellflit.com/bannerdataupdate/${id}`, {
+    fetch(`https://server.virtualshopbd.com/bannerdataupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBanner),
@@ -120,6 +123,46 @@ const EditBanners = () => {
                   className="input input-text border-[2px] border-[#01c0c9] hover:border-[#007cde] rounded-3xl px-5 py-2 w-full input-wrapper md:min-w-[450px] max-w-[20.5rem] mx-2 text-xl mt-2"
                   placeholder="Title"
                   name="title"
+                />
+                <br />
+                <input
+  onChange={handleChange}
+  value={banner.detail}
+  style={{
+    fontWeight: "600",
+    color: "#0E1621",
+    height: "60px",
+  }}
+  className="input input-text border-[2px] border-[#01c0c9] hover:border-[#007cde] rounded-3xl px-5 py-2 w-full input-wrapper md:min-w-[450px] max-w-[20.5rem] mx-2 text-xl mt-2"
+  placeholder="Detail"
+  name="detail"
+/>
+
+                <br />
+                {/* <input
+                  onChange={handleChange}
+                  value={banner.link}
+                  style={{
+                    fontWeight: "600",
+                    color: "#0E1621",
+                    height: "60px",
+                  }}
+                  className="input input-text border-[2px] border-[#01c0c9] hover:border-[#007cde] rounded-3xl px-5 py-2 w-full input-wrapper md:min-w-[450px] max-w-[20.5rem] mx-2 text-xl mt-2"
+                  placeholder="website link"
+                  name="link"
+                />
+                <br /> */}
+                <input
+                  onChange={handleChange}
+                  value={banner.time}
+                  style={{
+                    fontWeight: "600",
+                    color: "#0E1621",
+                    height: "60px",
+                  }}
+                  className="input input-text border-[2px] border-[#01c0c9] hover:border-[#007cde] rounded-3xl px-5 py-2 w-full input-wrapper md:min-w-[450px] max-w-[20.5rem] mx-2 text-xl mt-2"
+                  placeholder="example 5000 means 5sec 6000 6s"
+                  name="time"
                 />
                 <br />
                 

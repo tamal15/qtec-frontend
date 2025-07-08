@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
-const image_hosting_key = "87e8c93db3b7d5540df8a8f00585cbe9";
+const image_hosting_key = "746adaf1da9a1a48b000bec014639aeb";
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddPost = () => {
@@ -40,11 +40,13 @@ const AddPost = () => {
     // Add the image URL to the form data
     const formData = {
       title: data.title,
+      link: data.link,
+      time: data.time,
       image: imageUrl, // Attach the image URL here
     };
 
     try {
-      await axios.post("https://servers.sellflit.com/postaddbanner", formData);  // Adjust the URL to your backend API
+      await axios.post(`https://server.virtualshopbd.com/postaddbanner`, formData);  // Adjust the URL to your backend API
       Swal.fire({
         icon: "success",
         title: "Post Success",
@@ -110,13 +112,29 @@ const AddPost = () => {
                       placeholder="Title"
                     />
                     <br />
-                 
+
                     <input
                       type="file"
                       onChange={handleImageChange}
                       className="input-file border-[2px] border-[#01c0c9] hover:border-[#007cde] rounded-3xl px-5 py-2 w-full input-wrapper md:min-w-[450px] max-w-[20.5rem] mx-2 text-xl mt-2"
                     />
                     <br />
+                    {/* <input
+                      {...register("link", { required: true })}
+                      style={{ fontWeight: "600", color: "#0E1621", height: "60px" }}
+                      className="input input-text border-[2px] border-[#01c0c9] hover:border-[#007cde] rounded-3xl px-5 py-2 w-full input-wrapper md:min-w-[450px] max-w-[20.5rem] mx-2 text-xl mt-2"
+                      placeholder="website link"
+                    />
+                    <br /> */}
+                    <input
+                      {...register("time", { required: true })}
+                      style={{ fontWeight: "600", color: "#0E1621", height: "60px" }}
+                      className="input input-text border-[2px] border-[#01c0c9] hover:border-[#007cde] rounded-3xl px-5 py-2 w-full input-wrapper md:min-w-[450px] max-w-[20.5rem] mx-2 text-xl mt-2"
+                      placeholder="example 5000 means 5sec 6000 6s"
+                    />
+                    <br />
+                 
+                   
                     <button
                       className="bg-[#01c0c9] font-semibold text-white mt-5 mb-10 px-6 py-2 text-xl rounded-2xl"
                       type="submit"
