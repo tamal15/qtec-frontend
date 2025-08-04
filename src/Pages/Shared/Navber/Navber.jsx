@@ -26,7 +26,7 @@ const Navber = () => {
   const [navData, setNavData] = useState([]);
 
   useEffect(() => {
-    axios.get("https://server.virtualshopbd.com/getnavber")
+    axios.get("https://qtec-backend.onrender.com/getnavber")
       .then((res) => setNavData(res.data))
       .catch((err) => console.error("Error fetching navbar data:", err));
   }, []);

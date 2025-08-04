@@ -12,7 +12,7 @@ const GetNavber = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `https://server.virtualshopbd.com/getnavber`
+          `https://qtec-backend.onrender.com/getnavber`
         );
         const result = await response.json();
         setData(result);

@@ -46,7 +46,7 @@ const ProductUpload = () => {
             images,
         };
 
-        fetch("https://server.virtualshopbd.com/postProductdata", {
+        fetch("https://qtec-backend.onrender.com/postProductdata", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(productData),

@@ -9,7 +9,7 @@ const Footer = () => {
     // Fetch the footer data from the backend
     const fetchFooterData = async () => {
       try {
-        const response = await axios.get("https://server.virtualshopbd.com/getfooters"); // Adjust the API URL as needed
+        const response = await axios.get("https://qtec-backend.onrender.com/getfooters"); // Adjust the API URL as needed
         setFooterData(response.data[0]); // Assuming you're returning an array with one object
       } catch (error) {
         console.error("Error fetching footer data:", error);

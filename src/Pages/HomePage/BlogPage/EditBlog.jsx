@@ -18,7 +18,7 @@ const EditBlog = () => {
 
   // Fetch about data
   useEffect(() => {
-    fetch(`https://server.virtualshopbd.com/editblogs/${id}`)
+    fetch(`https://qtec-backend.onrender.com/editblogs/${id}`)
       .then((res) => res.json())
       .then((data) => setAboutData(data))
       .catch((error) => console.error("Error fetching about data:", error));
@@ -77,7 +77,7 @@ const EditBlog = () => {
     }
 
     // Send the updated data to the server
-    fetch(`https://server.virtualshopbd.com/blogdataupdate/${id}`, {
+    fetch(`https://qtec-backend.onrender.com/blogdataupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedAboutData),

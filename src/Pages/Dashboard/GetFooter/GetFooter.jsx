@@ -11,7 +11,7 @@ const GetFooter = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiUrl = `https://server.virtualshopbd.com/api/footer`;
+        const apiUrl = `https://qtec-backend.onrender.com/api/footer`;
         console.log("Fetching from:", apiUrl);
 
         const response = await fetch(apiUrl);

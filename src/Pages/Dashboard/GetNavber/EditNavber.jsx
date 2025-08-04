@@ -26,7 +26,7 @@ const EditNavber = () => {
 
   // Fetch banner data
   useEffect(() => {
-    fetch(`https://server.virtualshopbd.com/editnavbers/${id}`)
+    fetch(`https://qtec-backend.onrender.com/editnavbers/${id}`)
       .then((res) => res.json())
       .then((data) => setBanner(data))
       .catch((error) => console.error("Error fetching banner:", error));
@@ -85,7 +85,7 @@ const EditNavber = () => {
     }
 
     // Send the updated data to the server
-    fetch(`https://server.virtualshopbd.com/navberdataupdate/${id}`, {
+    fetch(`https://qtec-backend.onrender.com/navberdataupdate/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedBanner),

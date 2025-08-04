@@ -25,7 +25,7 @@ const ProductShow = () => {
   };
 
   useEffect(() => {
-    fetch("https://server.virtualshopbd.com/getproducts")
+    fetch("https://qtec-backend.onrender.com/getproducts")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error fetching products:", error));

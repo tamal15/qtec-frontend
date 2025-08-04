@@ -9,7 +9,7 @@ console.log(data)
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`https://server.virtualshopbd.com/getbannerdata`);
+        const response = await fetch(`https://qtec-backend.onrender.com/getbannerdata`);
         const result = await response.json();
         setData(result);
       } catch (error) {

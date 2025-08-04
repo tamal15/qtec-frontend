@@ -46,7 +46,7 @@ const AddPost = () => {
     };
 
     try {
-      await axios.post(`https://server.virtualshopbd.com/postaddbanner`, formData);  // Adjust the URL to your backend API
+      await axios.post(`https://qtec-backend.onrender.com/postaddbanner`, formData);  // Adjust the URL to your backend API
       Swal.fire({
         icon: "success",
         title: "Post Success",

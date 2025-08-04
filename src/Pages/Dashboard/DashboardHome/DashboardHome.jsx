@@ -30,7 +30,7 @@ const DashboardHome = () => {
   const [approvedCount, setApprovedCount] = useState(0);
 
   useEffect(() => {
-    fetch("https://server.virtualshopbd.com/userMy")
+    fetch("https://qtec-backend.onrender.com/userMy")
       .then(res => res.json())
       .then(data => {
         const pendingOrders = data.filter(order => order.status === "Pending");

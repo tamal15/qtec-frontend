@@ -27,7 +27,7 @@ const CategoryPage = () => {
     };
 
   useEffect(() => {
-    fetch(`https://server.virtualshopbd.com/getproducts`)
+    fetch(`https://qtec-backend.onrender.com/getproducts`)
       .then((response) => response.json())
       .then((data) => {
         const filteredProducts = data

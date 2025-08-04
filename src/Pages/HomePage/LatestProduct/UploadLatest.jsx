@@ -46,7 +46,7 @@ const UploadLatest = () => {
             images,
         };
 
-        fetch("https://server.virtualshopbd.com/postlatest", {
+        fetch("https://qtec-backend.onrender.com/postlatest", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(productData),

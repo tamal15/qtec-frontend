@@ -14,7 +14,7 @@ const GetProduct = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `https://server.virtualshopbd.com/getproducts`
+          `https://qtec-backend.onrender.com/getproducts`
         );
         const result = await response.json();
         setData(result);
@@ -41,7 +41,7 @@ const GetProduct = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`https://server.virtualshopbd.com/productdatadelete/${id}`)
+          .delete(`https://qtec-backend.onrender.com/productdatadelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

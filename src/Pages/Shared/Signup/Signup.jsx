@@ -45,7 +45,7 @@ const Signup = () => {
   
     try {
       // Send registration data
-      const response = await fetch(`https://server.virtualshopbd.com/users`, {
+      const response = await fetch(`https://qtec-backend.onrender.com/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ payload: encryptedData }),

@@ -10,7 +10,7 @@ const GetAbout = () => {
   // Fetch about data
   useEffect(() => {
     axios
-      .get("https://server.virtualshopbd.com/aboutparts")
+      .get("https://qtec-backend.onrender.com/aboutparts")
       .then((response) => {
         if (Array.isArray(response.data) && response.data.length > 0) {
           setAboutData(response.data[0]); // Assuming single entry

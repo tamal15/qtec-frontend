@@ -10,7 +10,7 @@ const GetBlog = () => {
   // Fetch blog posts data
   useEffect(() => {
     axios
-      .get("https://server.virtualshopbd.com/blogpart") // Replace with your API URL
+      .get("https://qtec-backend.onrender.com/blogpart") // Replace with your API URL
       .then((response) => {
         if (Array.isArray(response.data) && response.data.length > 0) {
           setPosts(response.data); // Assuming response contains array of blog posts

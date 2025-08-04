@@ -27,7 +27,7 @@ const OfferPage = () => {
   };
 
   useEffect(() => {
-    fetch(`https://server.virtualshopbd.com/getoffer`)
+    fetch(`https://qtec-backend.onrender.com/getoffer`)
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Error fetching products:", error));

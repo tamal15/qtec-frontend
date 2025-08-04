@@ -8,7 +8,7 @@ const UserAllData = () => {
 
   // Fetch all users
   useEffect(() => {
-    fetch(`https://server.virtualshopbd.com/getadminlist`)
+    fetch(`https://qtec-backend.onrender.com/getadminlist`)
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -33,7 +33,7 @@ const UserAllData = () => {
   const handleBlockUser = (phoneNumber) => {
     if (window.confirm("Are you sure you want to block this user?")) {
         setLoading(true);
-        fetch(`https://server.virtualshopbd.com/blockuser/${phoneNumber}`, {
+        fetch(`https://qtec-backend.onrender.com/blockuser/${phoneNumber}`, {
             method: "PATCH",
         })
         .then((res) => res.json())
@@ -62,7 +62,7 @@ const UserAllData = () => {
   const handleUnblockUser = (phoneNumber) => {
     if (window.confirm("Are you sure you want to unblock this user?")) {
         setLoading(true);
-        fetch(`https://server.virtualshopbd.com/unblockuser/${phoneNumber}`, {
+        fetch(`https://qtec-backend.onrender.com/unblockuser/${phoneNumber}`, {
             method: "PATCH",
         })
         .then((res) => res.json())

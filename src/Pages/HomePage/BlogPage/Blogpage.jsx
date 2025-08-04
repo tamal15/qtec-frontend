@@ -7,7 +7,7 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`https://server.virtualshopbd.com/blogpart`);
+        const response = await fetch(`https://qtec-backend.onrender.com/blogpart`);
         const data = await response.json();
         setPosts(data);
       } catch (error) {

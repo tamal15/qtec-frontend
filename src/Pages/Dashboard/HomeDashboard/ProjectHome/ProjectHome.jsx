@@ -15,7 +15,7 @@ const ProjectHome = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `https://server.virtualshopbd.com/getprojecthome`
+          `https://qtec-backend.onrender.com/getprojecthome`
         );
         const result = await response.json();
         setData(result);
@@ -42,7 +42,7 @@ const ProjectHome = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`https://server.virtualshopbd.com/homeprojectdelete/${id}`)
+          .delete(`https://qtec-backend.onrender.com/homeprojectdelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

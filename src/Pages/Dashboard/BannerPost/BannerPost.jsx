@@ -15,7 +15,7 @@ const BannerPost = () => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `https://server.virtualshopbd.com/getbannerdata`
+          `https://qtec-backend.onrender.com/getbannerdata`
         );
         const result = await response.json();
         setData(result);
@@ -42,7 +42,7 @@ const BannerPost = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`https://server.virtualshopbd.com/bannerpartdelete/${id}`)
+          .delete(`https://qtec-backend.onrender.com/bannerpartdelete/${id}`)
           .then((response) => {
             response.status === 204 &&
               Swal.fire("Deleted!", "Your file has been deleted.", "success");

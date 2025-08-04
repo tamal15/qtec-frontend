@@ -17,7 +17,7 @@ const Payment = () => {
   const [book, setBook] = useState({});
 console.log(book)
   useEffect(() => {
-    fetch(`https://server.virtualshopbd.com/product/${id}`)
+    fetch(`https://qtec-backend.onrender.com/product/${id}`)
       .then((res) => res.json())
       .then((data) => setBook(data));
 
@@ -58,7 +58,7 @@ console.log(book)
     };
 
     axios
-      .post("https://server.virtualshopbd.com/init", paymentData)
+      .post("https://qtec-backend.onrender.com/init", paymentData)
       .then(() => {
         Swal.fire({ title: "Success!", text: "Payment successful!", icon: "success" }).then(() => {
           localStorage.removeItem("productCart");

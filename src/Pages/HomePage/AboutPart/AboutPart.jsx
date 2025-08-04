@@ -5,7 +5,7 @@ const AboutPart = () => {
   const [aboutData, setAboutData] = useState(null);
 
   useEffect(() => {
-    fetch("https://server.virtualshopbd.com/aboutparts") // Fetching data from the API
+    fetch("https://qtec-backend.onrender.com/aboutparts") // Fetching data from the API
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {

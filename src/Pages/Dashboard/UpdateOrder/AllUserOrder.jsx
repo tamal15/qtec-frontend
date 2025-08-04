@@ -14,7 +14,7 @@ const AllUserOrder = () => {
     const ordersPerPage = 10;
 
     useEffect(() => {
-        fetch(`https://server.virtualshopbd.com/userMy`)
+        fetch(`https://qtec-backend.onrender.com/userMy`)
             .then(res => res.json())
             .then(data => setOrder(data));
     }, []);
@@ -30,7 +30,7 @@ const AllUserOrder = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`https://server.virtualshopbd.com/manageAllOrderDelete/${id}`)
+                axios.delete(`https://qtec-backend.onrender.com/manageAllOrderDelete/${id}`)
                     .then(() => {
                         setOrder(ordering.filter((order) => order._id !== id));
                         Swal.fire('Deleted!', 'Order has been deleted.', 'success');

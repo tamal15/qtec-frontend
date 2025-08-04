@@ -46,7 +46,7 @@ const UploadOffer = () => {
             images,
         };
 
-        fetch("https://server.virtualshopbd.com/offerpost", {
+        fetch("https://qtec-backend.onrender.com/offerpost", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(productData),
