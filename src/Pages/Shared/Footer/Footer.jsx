@@ -1,110 +1,153 @@
-import { useEffect, useState } from "react";
-import { FaPhoneAlt } from "react-icons/fa";
-import axios from "axios";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaLinkedinIn,
+} from "react-icons/fa";
 
 const Footer = () => {
-  const [footerData, setFooterData] = useState(null);
-
-  useEffect(() => {
-    // Fetch the footer data from the backend
-    const fetchFooterData = async () => {
-      try {
-        const response = await axios.get("https://qtec-backend.onrender.com/getfooters"); // Adjust the API URL as needed
-        setFooterData(response.data[0]); // Assuming you're returning an array with one object
-      } catch (error) {
-        console.error("Error fetching footer data:", error);
-      }
-    };
-
-    fetchFooterData();
-  }, []);
-
-  if (!footerData) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="flex flex-col items-center space-y-6">
-          {/* Multi-colored Animated Loader */}
-          <div className="relative">
-            <div className="w-20 h-20 border-8 border-red-500 border-t-transparent rounded-full animate-spin"></div>
-            <div className="absolute inset-1 w-16 h-16 border-8 border-blue-500 border-t-transparent rounded-full animate-spin-slow"></div>
-            <div className="absolute inset-2 w-12 h-12 border-8 border-green-500 border-t-transparent rounded-full animate-spin-reverse"></div>
-          </div>
-          
-          {/* Loading Text */}
-          <p className="text-xl font-bold text-gray-700 tracking-wide animate-pulse">
-            Loading, please wait...
-          </p>
-        </div>
-      </div>
-    );
-  }
-  
-  
-  
-
-  const { header, footer } = footerData;
   return (
-    <>
-      {/* Header Section */}
-      <div style={{ backgroundColor: header?.background , color:header?.color}}  className=" py-4 text-center">
-        <div className="flex justify-center items-center gap-3 text-white text-xl font-semibold">
-          <FaPhoneAlt className="bg-white text-black p-2 rounded-full text-3xl" />
-          <span>{header.phone}</span>
+    <footer className="bg-white  text-sm text-gray-700 pt-10">
+      {/* Top Footer Grid */}
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+        {/* QUICK LINKS */}
+        <div>
+          <h4 className="text-gray-800 font-semibold text-base mb-4">Quick Links</h4>
+         
+          <ul className="space-y-2 text-gray-600">
+            {[
+              "About Us", "Contact Us", "Quotation Request",
+              "Intellectual Property", "Sitemap", "Track Order",
+              "Customs Tariffs & Fees", "Shipping Policy",
+              "Micro Influencer", "Sellular Membership",
+              "Sellular Warranty", "Healthcare Disclaimer"
+            ].map(link => (
+              <li key={link} className="hover:text-blue-600 cursor-pointer transition">{link}</li>
+            ))}
+          </ul>
         </div>
-        <p className="text-lg mt-2 text-white">
-          <span className="text-white font-bold">{header.orderNowText}</span> {header.orderMessage}
-        </p>
-        <p className="text-lg text-white">
-          {header.viewAllMessage} <span className="text-white font-bold">{header.viewAllButton}</span>
-        </p>
-      </div>
 
-      {/* Footer Section */}
-      <div className="bg-[#051e3e] text-white py-6">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Contact Info */}
-          <div>
-            <h2 className="text-lg font-semibold mb-3">Contact Us</h2>
-            <p>{footer.contact.address}</p>
-            <p>{footer.contact.phone}</p>
-            <p className="mt-2">✉ {footer.contact.email}</p>
-          </div>
+        {/* SELLULAR INFO */}
+        <div>
+          <h4 className="text-gray-800 font-semibold text-base mb-4">Sellular</h4>
+          <ul className="space-y-2 text-gray-600">
+            {[
+              "Download App", "Brands List", "Customer Reviews",
+              "Return Policy", "Blog", "FAQ",
+              "About Scredit", "Sellular Affiliates"
+            ].map(link => (
+              <li key={link} className="hover:text-blue-600 cursor-pointer transition">{link}</li>
+            ))}
+          </ul>
+        </div>
 
-          {/* Quick Links */}
-          <div>
-            <h2 className="text-lg font-semibold mb-3">Quick Link</h2>
-            <ul className="space-y-2">
-              {footer.quickLinks.map((link, index) => (
-                <li key={index}>
-                  {link.icon} {link.title}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Payment & Courier */}
-          <div>
-            <h2 className="text-lg font-semibold mb-3">Payment Option</h2>
-            <div className="flex space-x-2">
-              {footer.paymentOptions.map((option, index) => (
-                <img key={index} src={option} alt={`Payment Option ${index + 1}`} className="h-8" />
-              ))}
+        {/* PAYMENT METHODS */}
+        <div>
+          <h4 className="text-gray-800 font-semibold text-base mb-4">Payment</h4>
+          <div className="space-y-3">
+            <div className="flex items-center space-x-2">
+              <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="Paypal" className="w-6 h-6" />
+              <span>Paypal</span>
             </div>
-
-           
+            <div className="flex items-center space-x-2">
+              <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa" className="w-6 h-6" />
+              <span>Visa</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" alt="Mastercard" className="w-6 h-6" />
+              <span>Master</span>
+            </div>
           </div>
         </div>
 
-        <div className="text-center mt-6 border-t border-gray-500 pt-4">
-          <p className="text-sm">
-            All Rights Reserved By <span className="text-green-400">{footer.copyright.owner}</span>
-          </p>
-          <p className="text-sm">
-            Development By <span className="text-green-400">Tamal Sarkar</span>
-          </p>
+        {/* SHIPPING OPTIONS */}
+        <div>
+          <h4 className="text-gray-800 font-semibold text-base mb-4">Shipping</h4>
+          <div className="space-y-4">
+            <div className="flex items-start space-x-3">
+              <span className="bg-yellow-400 px-2 py-1 rounded text-white font-semibold text-sm">🚀</span>
+              <div>
+                <p className="font-semibold">Express Shipping</p>
+                <p className="text-xs text-gray-500">Fast Delivery</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-3">
+              <span className="bg-gray-400 px-2 py-1 rounded text-white font-semibold text-sm">📦</span>
+              <div>
+                <p className="font-semibold">Standard Shipping</p>
+                <p className="text-xs text-gray-500">10+ Business Days</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CITIES COVERED */}
+        <div>
+          <h4 className="text-gray-800 font-semibold text-base mb-4">Cities Covered</h4>
+          <ul className="space-y-2 text-gray-600">
+            {[
+              "Dhaka", "Chittagong (Chattogram)", "Khulna",
+              "Rajshahi", "Sylhet", "Barisal (Bagerhat)", "Mymensingh"
+            ].map(city => (
+              <li key={city}>{city}</li>
+            ))}
+            <li className="text-blue-600 hover:underline cursor-pointer">View More Cities</li>
+          </ul>
+        </div>
+
+        {/* SUPPORT */}
+        <div>
+          <h4 className="text-gray-800 font-semibold text-base mb-4">24/7 Support</h4>
+          <div className="border rounded-md p-3 bg-gray-50 mb-3 shadow-sm">
+            <p className="font-semibold text-gray-700">📞 Customer Support</p>
+            <p className="text-xs text-gray-500">
+              Get responses in your native language
+            </p>
+          </div>
+          <div className="mb-3">
+            <p className="font-semibold">📱 Services:</p>
+            <p className="text-gray-700">+8801091271236</p>
+          </div>
+          <div>
+            <p className="font-semibold mb-2">📲 Download our App</p>
+            <div className="flex space-x-3">
+              <img src="https://sellularr.netlify.app/images/appstore.png" alt="Apple" className="h-8" />
+              <img src="https://sellularr.netlify.app/images/playstore.png" alt="Google Play" className="h-8 w-6" />
+            </div>
+          </div>
         </div>
       </div>
-    </>
+
+      {/* Certifications & Copyright */}
+      <div className="max-w-7xl mx-auto px-4 mt-10 pt-6 border-t flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0">
+        <div className="flex items-center space-x-4">
+          <img src="https://sellularr.netlify.app/images/t1.svg" alt="PCI DSS" className="h-8" />
+          <img src="https://sellularr.netlify.app/images/t2.webp" alt="ISO 27001" className="h-8" />
+          <span className="text-gray-600 text-sm">27001:2022</span>
+        </div>
+        <div className="text-gray-500 text-sm">
+          © 2025 Lucky Shop | Designed & Developed by{" "}
+          <a href="#" className="text-blue-600 hover:underline">QuickTech IT</a>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="max-w-7xl mx-auto px-4 mt-6 pt-4 border-t flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+        <div className="flex space-x-4 mb-4 md:mb-0">
+          <a href="#" className="hover:underline">Terms & Conditions</a>
+          <a href="#" className="hover:underline">Privacy Policy</a>
+          <a href="#" className="hover:underline">About Us</a>
+          <a href="#" className="hover:underline">Contact Us</a>
+        </div>
+        <div className="flex items-center space-x-4">
+          <span>Follow Us:</span>
+          <FaFacebookF className="hover:text-blue-600 cursor-pointer" />
+          <FaInstagram className="hover:text-pink-500 cursor-pointer" />
+          <FaYoutube className="hover:text-red-600 cursor-pointer" />
+          <FaLinkedinIn className="hover:text-blue-700 cursor-pointer" />
+        </div>
+      </div>
+    </footer>
   );
 };
 

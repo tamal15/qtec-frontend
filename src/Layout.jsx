@@ -1,16 +1,16 @@
 import { Outlet, useLocation } from "react-router-dom";
 // import Navber from "./Pages/Shared/Navber/Navber";
+import Navbar from "./Pages/Shared/Navbar/Navbar";
 import Footer from "./Pages/Shared/Footer/Footer";
-import Navber from "./Pages/Shared/Navber/Navber";
 
 const Layout = () => {
   const location = useLocation();
   const isDashboardRoute = location.pathname.startsWith("/dashboard");
-  const isHomeRoute = location.pathname === "/";
+  // const isHomeRoute = location.pathname === "/";
 
   return (
     <>
-      {!isDashboardRoute && !isHomeRoute && <Navber />}
+       <Navbar />
       <Outlet />
       {!isDashboardRoute && <Footer />}
     </>
